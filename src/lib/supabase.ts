@@ -3,7 +3,10 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://your-project.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Only create client if we have valid credentials
+export const supabase = (supabaseUrl !== 'https://your-project.supabase.co' && supabaseAnonKey !== 'your-anon-key') 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null
 
 // Contact form submission function
 export async function submitContactForm(formData: {
@@ -13,6 +16,11 @@ export async function submitContactForm(formData: {
   message: string
 }) {
   try {
+    // Check if Supabase is configured
+    if (!supabase) {
+      throw new Error('Supabase is not configured. Please check your environment variables.')
+    }
+
     const { data, error } = await supabase
       .from('contact_submissions')
       .insert([
