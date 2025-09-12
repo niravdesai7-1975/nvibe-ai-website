@@ -9,17 +9,18 @@ A modern, Apple-inspired single-page website for NVibe AI built with Next.js, Ty
 - **Smooth Animations**: Framer Motion for scroll-triggered animations and hover effects
 - **Parallax Effects**: Hero section with parallax scrolling background
 - **Interactive Components**: Hover effects, scale animations, and smooth transitions
-- **Contact Form**: Supabase-integrated contact form with validation
+- **Contact Form**: Supabase-integrated contact form with EmailJS auto response
 - **SEO Optimized**: Meta tags, Open Graph, and Twitter Card support
 - **Performance**: Fast loading times with optimized images and code splitting
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 with App Router
+- **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Database**: Supabase
+- **Email Service**: EmailJS (template: template_h1vkudn)
 - **Icons**: Lucide React
 - **Fonts**: Inter (Google Fonts)
 
@@ -35,6 +36,9 @@ A modern, Apple-inspired single-page website for NVibe AI built with Next.js, Ty
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_h1vkudn
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
    ```
 
 3. **Set up Supabase Database**
@@ -50,12 +54,17 @@ A modern, Apple-inspired single-page website for NVibe AI built with Next.js, Ty
    );
    ```
 
-4. **Run the Development Server**
+4. **Set up EmailJS**
+   - Create an account at [emailjs.com](https://emailjs.com)
+   - Create email templates for auto responses
+   - Get your service ID, template ID, and public key
+
+5. **Run the Development Server**
    ```bash
    npm run dev
    ```
 
-5. **Open in Browser**
+6. **Open in Browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Project Structure
@@ -71,7 +80,7 @@ src/
 │   ├── HeroSection.tsx      # Hero with parallax background
 │   ├── SolutionsSection.tsx # Solutions cards with animations
 │   ├── NvidiaSection.tsx    # NVIDIA-powered section
-│   ├── ContactSection.tsx   # Contact form and info
+│   ├── ContactSection.tsx   # Contact form with EmailJS integration
 │   └── Footer.tsx           # Footer with links and contact info
 └── lib/
     └── supabase.ts          # Supabase client and utilities
@@ -97,15 +106,15 @@ src/
 
 ## Deployment
 
-### Vercel (Recommended)
+### Netlify (Recommended)
 1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Add environment variables in Vercel dashboard
+2. Connect your repository to Netlify
+3. Add environment variables in Netlify dashboard
 4. Deploy automatically
 
 ### Other Platforms
 The app can be deployed to any platform that supports Next.js:
-- Netlify
+- Vercel
 - AWS Amplify
 - Railway
 - DigitalOcean App Platform
