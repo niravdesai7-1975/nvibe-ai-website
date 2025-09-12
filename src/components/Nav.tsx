@@ -25,7 +25,7 @@ export default function Nav() {
         <ul className="flex gap-8 font-sans text-sm md:text-base">
           <li><a href="#home" className="hover:text-gray-300 transition-colors">Home</a></li>
           <li><a href="#solutions" className="hover:text-gray-300 transition-colors">Solutions</a></li>
-          <li><a href="#nvidia" className="hover:text-gray-300 transition-colors">NVIDIA</a></li>
+          <li><a href="#nvidia" className="hover:text-gray-300 transition-colors">NVibe</a></li>
           <li><a href="#contact" className="hover:text-gray-300 transition-colors">Contact</a></li>
         </ul>
       </div>
