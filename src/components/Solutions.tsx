@@ -297,11 +297,11 @@ export default function Solutions() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
         >
-          Our NVibe Cutting-Edge SaaS AI solution, powered by Nvidia's full-stack innovation, combines with your enterprise data in a secure industry-compliant cloud environment to achieve{' '}
+          NVibe's cutting-edge SaaS AI, powered by Nvidia's full-stack innovation, transforms your enterprise by seamlessly integrating data systems in a secure, compliant cloud, achieving{' '}
           <span className="font-semibold text-orange-600">20% margin protection</span>,{' '}
-          <span className="font-semibold text-orange-600">10-20% cost cuts</span>,{' '}
-          <span className="font-semibold text-orange-600">5-10% revenue savings</span>, and{' '}
-          <span className="font-semibold text-orange-600">10-15% CLV growth</span> to enable you to compete and scale in a highly competitive environment.
+          <span className="font-semibold text-orange-600">10-20% cost savings</span>,{' '}
+          <span className="font-semibold text-orange-600">5-10% revenue retention</span>, and{' '}
+          <span className="font-semibold text-orange-600">10-15% CLV growth</span> to drive unparalleled competitive advantage.
         </motion.p>
         <motion.a
           href="https://profitisle.com"
