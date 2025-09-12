@@ -54,7 +54,7 @@ export default function ContactSection() {
         try {
           await emailjs.send(
             process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-            'template_notification',
+            'template_yqbrwj8',
             {
               from_name: formData.name,
               from_email: formData.email,
