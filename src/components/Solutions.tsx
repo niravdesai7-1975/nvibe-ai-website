@@ -251,9 +251,9 @@ const SectionCard = ({ item, index }: { item: { title: string; description: stri
     </div>
     <h4 className="text-xl font-bold text-white mb-3">{item.title}</h4>
     <div className="space-y-2 text-sm">
-      <p><span className="font-semibold text-blue-400">CFO:</span> <span className="text-gray-300">{item.cfo}</span></p>
-      <p><span className="font-semibold text-green-400">CMO:</span> <span className="text-gray-300">{item.cmo}</span></p>
-      <p><span className="font-semibold text-purple-400">Result:</span> <span className="text-gray-300">{item.result}</span></p>
+      <p><span className="font-semibold text-orange-400">CFO:</span> <span className="text-gray-300">{item.cfo}</span></p>
+      <p><span className="font-semibold text-orange-400">CMO:</span> <span className="text-gray-300">{item.cmo}</span></p>
+      <p><span className="font-semibold text-orange-400">Result:</span> <span className="text-gray-300">{item.result}</span></p>
       <p><span className="font-semibold text-orange-400">Retail Example:</span> <span className="text-gray-300">{item.retail}</span></p>
     </div>
   </motion.div>
@@ -299,9 +299,9 @@ export default function Solutions() {
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
         >
           Our solution combines NVibe Cutting-Edge AI, NVIDIA's full-stack innovation, and your enterprise ERP, CRM, financial integrations to achieve{' '}
-          <span className="font-semibold text-blue-600">20% margin protection</span>,{' '}
-          <span className="font-semibold text-green-600">10-20% cost cuts</span>,{' '}
-          <span className="font-semibold text-purple-600">5-10% revenue savings</span>, and{' '}
+          <span className="font-semibold text-orange-600">20% margin protection</span>,{' '}
+          <span className="font-semibold text-orange-600">10-20% cost cuts</span>,{' '}
+          <span className="font-semibold text-orange-600">5-10% revenue savings</span>, and{' '}
           <span className="font-semibold text-orange-600">10-15% CLV growth</span>.
         </motion.p>
         <motion.a

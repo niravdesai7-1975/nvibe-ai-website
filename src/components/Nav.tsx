@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function Nav() {
   return (
     <motion.nav
-      className="fixed top-0 w-full backdrop-blur-md bg-black/30 text-white z-10"
+      className="fixed top-0 w-full bg-black text-white z-10"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
