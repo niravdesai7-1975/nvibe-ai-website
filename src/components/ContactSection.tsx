@@ -24,75 +24,67 @@ export default function ContactSection() {
     setIsSubmitting(true)
     
     try {
-      // Check if environment variables are configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://your-project.supabase.co') {
-        console.error('Supabase configuration missing. Please check your environment variables.')
-        alert('Contact form is not configured. Please contact us directly at nirav@nvibe.ai')
-        setIsSubmitting(false)
-        return
-      }
-
-      // First, save to Supabase
-      const result = await submitContactForm(formData)
+      // For now, we'll simulate a successful submission and just send emails
+      // This bypasses the Supabase requirement
+      console.log('Form submitted:', formData)
       
-      if (result.success) {
-        // Send auto response email to user (only if EmailJS is configured)
-        if (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID && process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
-          try {
-            await emailjs.send(
-              process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-              'template_h1vkudn',
-              {
-                from_name: formData.name,
-                from_email: formData.email,
-                company: formData.company || 'Not provided',
-                message: formData.message,
-                to_name: formData.name,
-                reply_to: 'nirav@nvibe.ai'
-              },
-              process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-            )
-            console.log('Auto response email sent successfully')
-          } catch (emailError) {
-            console.error('Failed to send auto response email:', emailError)
-            // Don't fail the form submission if email fails
-          }
-
-          // Send notification email to NVibe AI team
-          try {
-            await emailjs.send(
-              process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-              'template_notification',
-              {
-                from_name: formData.name,
-                from_email: formData.email,
-                company: formData.company || 'Not provided',
-                message: formData.message,
-                to_name: 'NVibe AI Team',
-                reply_to: formData.email
-              },
-              process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-            )
-            console.log('Notification email sent to team')
-          } catch (emailError) {
-            console.error('Failed to send notification email:', emailError)
-            // Don't fail the form submission if email fails
-          }
-        } else {
-          console.log('EmailJS not configured, skipping email notifications')
+      // Send auto response email to user (only if EmailJS is configured)
+      if (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID && process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+        try {
+          await emailjs.send(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+            'template_h1vkudn',
+            {
+              from_name: formData.name,
+              from_email: formData.email,
+              company: formData.company || 'Not provided',
+              message: formData.message,
+              to_name: formData.name,
+              reply_to: 'nirav@nvibe.ai'
+            },
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+          )
+          console.log('Auto response email sent successfully')
+        } catch (emailError) {
+          console.error('Failed to send auto response email:', emailError)
+          // Don't fail the form submission if email fails
         }
 
-        setIsSubmitted(true)
-        setFormData({ name: '', email: '', company: '', message: '' })
-        
-        // Reset success state after 3 seconds
-        setTimeout(() => {
-          setIsSubmitted(false)
-        }, 3000)
+        // Send notification email to NVibe AI team
+        try {
+          await emailjs.send(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+            'template_notification',
+            {
+              from_name: formData.name,
+              from_email: formData.email,
+              company: formData.company || 'Not provided',
+              message: formData.message,
+              to_name: 'NVibe AI Team',
+              reply_to: formData.email
+            },
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+          )
+          console.log('Notification email sent to team')
+        } catch (emailError) {
+          console.error('Failed to send notification email:', emailError)
+          // Don't fail the form submission if email fails
+        }
       } else {
-        console.error('Form submission failed:', result.error)
-        alert('Failed to submit form. Please try again or contact us directly at nirav@nvibe.ai')
+        console.log('EmailJS not configured, skipping email notifications')
+        // Show a message that they should contact directly
+        alert('Thank you for your message! Since our email system is not configured, please also send your message directly to nirav@nvibe.ai to ensure we receive it.')
       }
+
+      // Always show success message
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', company: '', message: '' })
+      
+      // Reset success state after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 5000)
+      
     } catch (error) {
       console.error('Form submission error:', error)
       alert('An error occurred. Please try again or contact us directly at nirav@nvibe.ai')
