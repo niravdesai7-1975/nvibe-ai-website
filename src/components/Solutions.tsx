@@ -53,7 +53,7 @@ const customerOptimization = [
     cfo: 'Boost profits 20% with high-margin focus.',
     cmo: 'Engage top customers for growth.',
     result: 'Increase ROI by 20%.',
-    retail: 'Prioritize Ulta Beauty loyalty members with 25% margin purchases.',
+    retail: 'Prioritize high-value loyalty members with 25% margin purchases.',
     icon: '💎'
   }
 ];
@@ -95,7 +95,7 @@ const retentionStrategies = [
     cfo: 'Save 5-10% revenue with retention.',
     cmo: 'Keep top customers loyal.',
     result: 'Save 5-10% revenue.',
-    retail: 'Retain Ulta Beauty\'s high-margin loyalty members.',
+    retail: 'Retain high-margin loyalty members.',
     icon: '🔄'
   },
   {
