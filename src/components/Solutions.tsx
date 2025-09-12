@@ -472,7 +472,7 @@ export default function Solutions() {
       >
         <h3 className="text-3xl font-bold text-white mb-4">See the Results for Yourself</h3>
         <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-          Request an NVibe AI demo to explore how NVIDIA's full-stack innovation and NVibe AI transform your retail business.
+          Request an NVibe AI demo to explore how we can transform your business with AI
         </p>
         <motion.a
           href="https://profitisle.com"
