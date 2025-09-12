@@ -46,7 +46,7 @@ export default function ContactSection() {
           )
           console.log('Auto response email sent successfully')
         } catch (emailError) {
-          console.error('Failed to send auto response email:', emailError)
+          console.log('EmailJS not configured - auto response email skipped')
           // Don't fail the form submission if email fails
         }
 
@@ -67,7 +67,7 @@ export default function ContactSection() {
           )
           console.log('Notification email sent to team')
         } catch (emailError) {
-          console.error('Failed to send notification email:', emailError)
+          console.log('EmailJS not configured - notification email skipped')
           // Don't fail the form submission if email fails
         }
       } else {
