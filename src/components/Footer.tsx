@@ -17,7 +17,7 @@ export default function Footer() {
   const quickLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Solutions', href: '#solutions' },
-    { name: 'NVIDIA', href: '#nvidia' },
+    { name: 'NVibe', href: '#nvidia' },
     { name: 'Contact', href: '#contact' }
   ]
 
@@ -39,10 +39,12 @@ export default function Footer() {
               <span className="text-2xl font-bold gradient-text">NVibe AI</span>
             </div>
             
-            <p className="text-white/70 mb-6 max-w-md leading-relaxed">
-              An innovative solution to modern sales & manufacturing challenges. 
-              Transform your business with cutting-edge AI technology powered by NVIDIA.
-            </p>
+            <div className="text-white/70 mb-6 max-w-md leading-relaxed">
+              <p className="text-xl font-bold mb-2">An Innovative AI-Powered Solutions</p>
+              <p className="text-lg mb-2">custom build for your needs on industry standards</p>
+              <p className="text-lg mb-2 text-green-400 font-semibold">Driven by NVIDIA's Platform</p>
+              <p className="text-base">Transform your business with cutting-edge AI technology that supercharges your business.</p>
+            </div>
 
             <div className="space-y-3">
               {contactInfo.map((info, index) => (

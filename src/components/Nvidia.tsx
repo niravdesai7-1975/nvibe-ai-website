@@ -15,7 +15,7 @@ export default function Nvidia() {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
         >
-          <span className="text-black font-bold text-lg">NVIDIA</span>
+          <span className="text-black font-bold text-lg">NVibe</span>
         </motion.div>
         <p className="text-lg font-sans group relative">
           Get Fortune 500 insights without their budget
