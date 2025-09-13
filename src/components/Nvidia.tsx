@@ -10,18 +10,9 @@ export default function Nvidia() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.div
-          className="h-12 w-32 bg-gradient-to-r from-green-400 to-green-600 rounded flex items-center justify-center"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.2 }}
-        >
-          <span className="text-black font-bold text-lg">NVibe</span>
-        </motion.div>
-        <p className="text-lg font-sans group relative">
-          Get Fortune 500 insights without their budget
-          <span className="absolute hidden group-hover:block bg-gray-900 text-white p-2 rounded mt-2">
-            Powered by NVibe + NVIDIA
-          </span>
+        <h2 className="text-4xl font-bold text-white mb-4">NVibe AI Powered by Nvidia Technology</h2>
+        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          Leveraging NVIDIA's cutting-edge AI platform to deliver unparalleled performance and accuracy in machine learning applications.
         </p>
       </motion.div>
     </section>
