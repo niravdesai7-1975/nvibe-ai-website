@@ -10,7 +10,7 @@ export default function Nvidia() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-4xl font-bold text-white mb-4">Powered by NVIDIA Technology</h2>
+        <h2 className="text-4xl font-bold text-white mb-4">NVibe AI Powered by Nvidia Technology</h2>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
           Leveraging NVIDIA's cutting-edge AI platform to deliver unparalleled performance and accuracy in machine learning applications.
         </p>
