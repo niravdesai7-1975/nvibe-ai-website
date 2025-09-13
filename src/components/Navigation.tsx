@@ -14,7 +14,7 @@ export default function Navigation({ isScrolled }: NavigationProps) {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Demo', href: '#nvidia' },
+    { name: 'NVIDIA', href: '#nvidia' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -33,8 +33,8 @@ export default function Navigation({ isScrolled }: NavigationProps) {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-black/90 backdrop-blur-md py-4' 
-          : 'bg-black/80 backdrop-blur-sm py-6'
+          ? 'glass py-4' 
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -84,7 +84,7 @@ export default function Navigation({ isScrolled }: NavigationProps) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10"
+            className="md:hidden glass border-t border-white/10"
           >
             <div className="px-6 py-4 space-y-4">
               {navItems.map((item) => (

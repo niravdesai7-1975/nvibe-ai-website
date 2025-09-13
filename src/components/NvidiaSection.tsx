@@ -66,7 +66,7 @@ export default function NvidiaSection() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-lg text-white/70 mb-8 max-w-2xl mx-auto"
               >
-                Leveraging NVIDIA's cutting-edge GPU technology and AI frameworks 
+                Leveraging NVIDIA&apos;s cutting-edge GPU technology and AI frameworks 
                 to deliver unprecedented performance and accuracy in machine learning applications.
               </motion.p>
 

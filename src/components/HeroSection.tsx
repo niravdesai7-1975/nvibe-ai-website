@@ -67,7 +67,7 @@ export default function HeroSection() {
             >
               Industry-leading AI/ML performance for sales intelligence, 
               manufacturing optimization, and predictive analytics. 
-              Powered by NVIDIA's cutting-edge platform.
+              Powered by NVIDIA&apos;s cutting-edge platform.
             </motion.p>
 
             {/* CTA Buttons */}

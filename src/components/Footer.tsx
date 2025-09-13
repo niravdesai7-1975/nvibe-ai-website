@@ -39,14 +39,12 @@ export default function Footer() {
               <span className="text-2xl font-bold gradient-text">NVibe AI</span>
             </div>
             
-            <p className="text-white/70 mb-6 max-w-md leading-relaxed">
-              An Innovative AI-Powered Solutions
-              custom build for your needs on industry standards
-
-              Driven by NVIDIA's Platform
-
-              Transform your business with cutting-edge AI technology that supercharges your business.
-            </p>
+            <div className="text-white/70 mb-6 max-w-md leading-relaxed">
+              <p className="text-xl font-bold mb-2">An Innovative AI-Powered Solutions</p>
+              <p className="text-lg mb-2">custom build for your needs on industry standards</p>
+              <p className="text-lg mb-2 text-green-400 font-semibold">Driven by NVIDIA's Platform</p>
+              <p className="text-base">Transform your business with cutting-edge AI technology that supercharges your business.</p>
+            </div>
 
             <div className="space-y-3">
               {contactInfo.map((info, index) => (
@@ -105,7 +103,7 @@ export default function Footer() {
           >
             <h3 className="text-white font-semibold text-lg mb-6">Get in Touch</h3>
             <p className="text-white/70 mb-6">
-              Ready to transform your business with AI? Let's discuss your project.
+              Ready to transform your business with AI? Let&apos;s discuss your project.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}

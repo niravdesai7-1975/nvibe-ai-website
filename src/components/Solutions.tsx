@@ -3,22 +3,26 @@ import { motion } from 'framer-motion';
 
 const platformFeatures = [
   {
-    title: 'Real-Time Insights and Automation',
+    description: 'AI-powered solution for business optimization',
+    title: 'NVibe AI Real-Time Insights and Automation',
     desc: 'Our solution is built on NVIDIA\'s cutting-edge AI platform to deliver unparalleled processing power, allowing us to analyze millions of transactions in real time, ensuring your business stays ahead of the curve with up-to-the-minute data insights and proactive decision-making.',
     icon: '⚡'
   },
   {
-    title: 'Advanced RAG Capabilities',
+    description: 'AI-powered solution for business optimization',
+    title: 'NVibe AI Advanced RAG Capabilities',
     desc: 'By harnessing NVIDIA\'s advanced AI capabilities, we achieve precise and reliable insights through sophisticated data integration, ensuring our AI inputs to you are both comprehensive and actionable.',
     icon: '🧠'
   },
   {
-    title: 'Full-Stack Innovation',
+    description: 'AI-powered solution for business optimization',
+    title: 'NVibe AI Full-Stack Innovation',
     desc: 'Our platform benefits from NVIDIA\'s full-stack AI innovation, providing a seamless integration of hardware and software that scales effortlessly to meet the demands of any business size.',
     icon: '🔧'
   },
   {
-    title: 'Enterprise-Grade Security and Compliance',
+    description: 'AI-powered solution for business optimization',
+    title: 'NVibe AI Enterprise-Grade Security and Compliance',
     desc: 'We prioritize your data security with NVIDIA\'s enterprise-grade AI platform, so you can focus on growing your business without worrying about risks.',
     icon: '🔒'
   }
@@ -26,6 +30,7 @@ const platformFeatures = [
 
 const customerOptimization = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Uncover Profit Peaks',
     cfo: 'Identify 20% of customers driving 80% of profits.',
     cmo: 'Target top customers for high-impact campaigns.',
@@ -34,6 +39,7 @@ const customerOptimization = [
     icon: '📈'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Eliminate Profit Drains',
     cfo: 'Cut losses from low-margin customers.',
     cmo: 'Shift focus to high-value customers.',
@@ -42,17 +48,19 @@ const customerOptimization = [
     icon: '🚫'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Optimize High-Value Clients',
     cfo: 'Boost profits 20% with high-margin focus.',
     cmo: 'Engage top customers for growth.',
     result: 'Increase ROI by 20%.',
-    retail: 'Prioritize loyalty members with 25% margin purchases.',
+    retail: 'Prioritize high-value loyalty members with 25% margin purchases.',
     icon: '💎'
   }
 ];
 
 const pricingStrategies = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Set Dynamic Prices',
     cfo: 'Boost margins 20% with dynamic pricing.',
     cmo: 'Tailor prices for customers.',
@@ -61,6 +69,7 @@ const pricingStrategies = [
     icon: '💰'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Offer Profit-Driven Discounts',
     cfo: 'Target discounts for profits.',
     cmo: 'Engage top customers with offers.',
@@ -69,6 +78,7 @@ const pricingStrategies = [
     icon: '🎯'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Price per Transaction',
     cfo: 'Maximize per-sale profits.',
     cmo: 'Optimize every customer transaction.',
@@ -80,6 +90,7 @@ const pricingStrategies = [
 
 const retentionStrategies = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Retain Profit Peaks',
     cfo: 'Save 5-10% revenue with retention.',
     cmo: 'Keep top customers loyal.',
@@ -88,6 +99,7 @@ const retentionStrategies = [
     icon: '🔄'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Optimize Service Costs',
     cfo: 'Cut service costs 10-20%.',
     cmo: 'Streamline low-value support.',
@@ -96,6 +108,7 @@ const retentionStrategies = [
     icon: '⚙️'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Re-Engage Lapsed Customers',
     cfo: 'Win back high-margin revenue.',
     cmo: 'Re-engage top customers.',
@@ -107,6 +120,7 @@ const retentionStrategies = [
 
 const loyaltyPrograms = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Hyper-Personalize Rewards',
     cfo: 'Boost profits with custom rewards.',
     cmo: 'Engage with tailored offers.',
@@ -115,6 +129,7 @@ const loyaltyPrograms = [
     icon: '🎁'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Drive Subscription Loyalty',
     cfo: 'Generate recurring profits.',
     cmo: 'Build loyalty with subscriptions.',
@@ -123,6 +138,7 @@ const loyaltyPrograms = [
     icon: '📱'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Incentivize Cross-Sells',
     cfo: 'Increase profits with cross-sells.',
     cmo: 'Drive sales with add-on rewards.',
@@ -134,6 +150,7 @@ const loyaltyPrograms = [
 
 const segmentationTechniques = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Segment by Profitability',
     cfo: 'Target high-margin segments.',
     cmo: 'Group customers by profitability.',
@@ -142,6 +159,7 @@ const segmentationTechniques = [
     icon: '📊'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Churn Risk Segments',
     cfo: 'Prevent high-margin churn.',
     cmo: 'Save at-risk customers.',
@@ -150,6 +168,7 @@ const segmentationTechniques = [
     icon: '⚠️'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'RFM + Profit Analysis',
     cfo: 'Enhance RFM for profits.',
     cmo: 'Segment customers with RFM.',
@@ -161,6 +180,7 @@ const segmentationTechniques = [
 
 const predictiveAnalytics = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Forecast Churn Risks',
     cfo: 'Save 5-10% with churn forecasts.',
     cmo: 'Predict customer churn.',
@@ -169,6 +189,7 @@ const predictiveAnalytics = [
     icon: '🔮'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Increase CLV',
     cfo: 'Grow CLV 10-15% with forecasts.',
     cmo: 'Boost customer lifetime value.',
@@ -177,6 +198,7 @@ const predictiveAnalytics = [
     icon: '📈'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Predict Upsell Opportunities',
     cfo: 'Drive 5-10% revenue with upsells.',
     cmo: 'Target accessory sales.',
@@ -188,6 +210,7 @@ const predictiveAnalytics = [
 
 const neuralNetworks = [
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Predict Churn with Neural Networks',
     cfo: 'Save revenue with AI churn predictions.',
     cmo: 'Predict customer churn.',
@@ -196,6 +219,7 @@ const neuralNetworks = [
     icon: '🧠'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Scale with TensorFlow',
     cfo: 'Scale AI for profits.',
     cmo: 'Analyze all customers.',
@@ -204,6 +228,7 @@ const neuralNetworks = [
     icon: '⚡'
   },
   {
+    description: 'AI-powered solution for business optimization',
     title: 'Optimize with JAX',
     cfo: 'Enhance AI efficiency with JAX.',
     cmo: 'Optimize customer predictions.',
@@ -213,7 +238,7 @@ const neuralNetworks = [
   }
 ];
 
-const SectionCard = ({ item, index }: { item: { title: string; cfo: string; cmo: string; result: string; retail: string; icon: string }; index: number }) => (
+const SectionCard = ({ item, index }: { item: { title: string; description: string; cfo: string; cmo: string; result: string; retail: string; icon: string }; index: number }) => (
   <motion.div
     className="bg-gray-900 p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-700"
     initial={{ opacity: 0, y: 50 }}
@@ -259,21 +284,33 @@ export default function Solutions() {
 
       {/* Intro Section - Premium feel with results */}
       <div className="container mx-auto px-4 text-center mb-20">
+        <motion.h3 
+          className="text-4xl font-bold text-white mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+        </motion.h3>
         <motion.p 
           className="text-lg text-gray-300 mb-8 max-w-5xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
         >
-          Our NVibe AI platform, built on Nvidia's advanced technology stack, seamlessly integrates with your enterprise data in a secure, industry-compliant cloud environment. It delivers measurable outcomes: up to{' '}
-          <span className="font-semibold text-orange-500">20% margin improvement</span>,{' '}
-          <span className="font-semibold text-orange-500">10-20% cost reduction</span>,{' '}
-          <span className="font-semibold text-orange-500">5-10% revenue optimization</span>, and{' '}
-          <span className="font-semibold text-orange-500">10-15% growth in customer lifetime value</span>. These results empower your organization to enhance operational efficiency, strengthen competitive positioning, and achieve sustainable growth.
+          NVibe's cutting-edge SaaS AI, powered by Nvidia's full-stack innovation, transforms your enterprise by seamlessly integrating data systems in a secure, compliant cloud, achieving{' '}
+          <span className="font-semibold text-orange-600">20% margin protection</span>,{' '}
+          <span className="font-semibold text-orange-600">10-20% cost savings</span>,{' '}
+          <span className="font-semibold text-orange-600">5-10% revenue retention</span>, and{' '}
+          <span className="font-semibold text-orange-600">10-15% CLV growth</span> to drive unparalleled competitive advantage.
         </motion.p>
-        <motion.a
-          href="#contact"
-          className="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        <motion.button
+          onClick={() => {
+            const element = document.querySelector('#contact')
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          className="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -281,7 +318,7 @@ export default function Solutions() {
           whileTap={{ scale: 0.95 }}
         >
           Request a Demo
-        </motion.a>
+        </motion.button>
       </div>
 
       {/* NVibe AI Platform Section */}
@@ -431,25 +468,60 @@ export default function Solutions() {
         </div>
       </div>
 
+      {/* NVibe Button Section */}
+      <motion.div 
+        id="nvidia"
+        className="container mx-auto px-4 text-center pt-24 mt-20 mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="flex flex-col items-center gap-4 max-w-5xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            className="h-12 w-32 bg-gradient-to-r from-green-400 to-green-600 rounded flex items-center justify-center"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <span className="text-black font-bold text-lg">NVibe</span>
+          </motion.div>
+          <p className="text-lg font-sans group relative">
+            Get Fortune 500 insights without their budget
+            <span className="absolute hidden group-hover:block bg-gray-900 text-white p-2 rounded mt-2">
+              Powered by NVibe + NVIDIA
+            </span>
+          </p>
+        </motion.div>
+      </motion.div>
+
       {/* Call-to-Action Section */}
       <motion.div 
-        className="container mx-auto px-4 text-center mt-20"
+        className="container mx-auto px-4 text-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <h3 className="text-3xl font-bold text-white mb-4">See the Results for Yourself</h3>
         <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-          Request an NVibe AI demo to explore how Nvidia's full-stack innovation and NVibe AI transform your retail business.
+          Request an NVibe AI demo to explore how we can transform your business with AI
         </p>
-        <motion.a
-          href="#contact"
-          className="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        <motion.button
+          onClick={() => {
+            const element = document.querySelector('#contact')
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          className="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           Request a Demo
-        </motion.a>
+        </motion.button>
       </motion.div>
     </section>
   );
