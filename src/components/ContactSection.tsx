@@ -79,12 +79,13 @@ export default function ContactSection() {
       if (error instanceof Error) {
         errorMessage = error.message
       } else if (typeof error === 'object' && error !== null) {
-        if (error.text) {
+        if ('text' in error && typeof error.text === 'string') {
           errorMessage = error.text
-        } else if (error.message) {
+        } else if ('message' in error && typeof error.message === 'string') {
           errorMessage = error.message
-        } else if (error.status) {
-          errorMessage = `HTTP ${error.status}: ${error.statusText || 'Request failed'}`
+        } else if ('status' in error && typeof error.status === 'number') {
+          const statusText = 'statusText' in error && typeof error.statusText === 'string' ? error.statusText : 'Request failed'
+          errorMessage = `HTTP ${error.status}: ${statusText}`
         } else {
           errorMessage = JSON.stringify(error)
         }
