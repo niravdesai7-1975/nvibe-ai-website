@@ -303,9 +303,14 @@ export default function Solutions() {
           <span className="font-semibold text-orange-600">5-10% revenue retention</span>, and{' '}
           <span className="font-semibold text-orange-600">10-15% CLV growth</span> to drive unparalleled competitive advantage.
         </motion.p>
-        <motion.a
-          href="https://profitisle.com"
-          className="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        <motion.button
+          onClick={() => {
+            const element = document.querySelector('#contact')
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          className="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -313,7 +318,7 @@ export default function Solutions() {
           whileTap={{ scale: 0.95 }}
         >
           Request a Demo
-        </motion.a>
+        </motion.button>
       </div>
 
       {/* NVibe AI Platform Section */}
