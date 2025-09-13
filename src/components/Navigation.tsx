@@ -14,7 +14,7 @@ export default function Navigation({ isScrolled }: NavigationProps) {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Solutions', href: '#solutions' },
-    { name: 'NVIDIA', href: '#nvidia' },
+    { name: 'Demo', href: '#nvidia' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -47,7 +47,7 @@ export default function Navigation({ isScrolled }: NavigationProps) {
             <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
               <span className="text-black font-bold text-xl">N</span>
             </div>
-            <span className="text-2xl font-bold gradient-text">Demo</span>
+            <span className="text-2xl font-bold gradient-text">NVibe AI</span>
           </motion.div>
 
           {/* Desktop Navigation */}

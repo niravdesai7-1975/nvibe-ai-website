@@ -25,14 +25,14 @@ export default function Nav() {
           <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
             <span className="text-black font-bold text-sm">N</span>
           </div>
-          <span className="text-xl font-bold text-green-500">Demo</span>
+          <span className="text-xl font-bold text-green-500">NVibe AI</span>
         </motion.div>
         
         {/* Navigation Links */}
         <ul className="flex gap-8 font-sans text-sm md:text-base">
           <li><button onClick={() => scrollToSection('#home')} className="hover:text-gray-300 transition-colors">Home</button></li>
           <li><button onClick={() => scrollToSection('#solutions')} className="hover:text-gray-300 transition-colors">Solutions</button></li>
-          <li><button onClick={() => scrollToSection('#nvidia')} className="hover:text-gray-300 transition-colors">NVibe</button></li>
+          <li><button onClick={() => scrollToSection('#nvidia')} className="hover:text-gray-300 transition-colors">Demo</button></li>
           <li><button onClick={() => scrollToSection('#contact')} className="hover:text-gray-300 transition-colors">Contact</button></li>
         </ul>
       </div>
