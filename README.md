@@ -1,5 +1,7 @@
 # NVibe AI Website
 
+> Latest build: Fixed TypeScript errors and build issues - Ready for deployment
+
 A modern, Apple-inspired single-page website for NVibe AI built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## Features
