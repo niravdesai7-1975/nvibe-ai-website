@@ -504,14 +504,19 @@ export default function Solutions() {
         <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
           Request an NVibe AI demo to explore how we can transform your business with AI
         </p>
-        <motion.a
-          href="https://profitisle.com"
-          className="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        <motion.button
+          onClick={() => {
+            const element = document.querySelector('#contact')
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          className="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           Request a Demo
-        </motion.a>
+        </motion.button>
       </motion.div>
     </section>
   );
