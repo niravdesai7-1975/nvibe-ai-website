@@ -465,7 +465,8 @@ export default function Solutions() {
 
       {/* NVibe Button Section */}
       <motion.div 
-        className="container mx-auto px-4 text-center mt-20 mb-16"
+        id="nvidia"
+        className="container mx-auto px-4 text-center pt-24 mt-20 mb-16"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}

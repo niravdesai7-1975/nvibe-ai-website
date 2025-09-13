@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Nvidia() {
   return (
-    <section id="nvidia" className="py-16 bg-black text-white text-center">
+    <section className="py-16 bg-black text-white text-center">
       <motion.div
         className="flex flex-col items-center gap-4 max-w-5xl mx-auto"
         initial={{ opacity: 0 }}
