@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <div className="h-screen bg-gray-100 relative">
+    <div id="home" className="h-screen bg-gray-100 relative">
       <motion.div
         className="flex flex-col items-center justify-center h-full text-gray-900"
         initial={{ opacity: 0, y: 50 }}

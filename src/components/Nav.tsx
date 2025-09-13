@@ -11,15 +11,16 @@ export default function Nav() {
     >
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <motion.div
-          className="flex items-center space-x-2"
+        <motion.a
+          href="#home"
+          className="flex items-center space-x-2 cursor-pointer"
           whileHover={{ scale: 1.05 }}
         >
           <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
             <span className="text-black font-bold text-sm">N</span>
           </div>
           <span className="text-xl font-bold text-green-500">NVibe AI</span>
-        </motion.div>
+        </motion.a>
         
         {/* Navigation Links */}
         <ul className="flex gap-8 font-sans text-sm md:text-base">
