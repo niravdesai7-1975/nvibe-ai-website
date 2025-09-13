@@ -112,3 +112,6 @@ temp/
 # Local configuration files
 config.local.js
 config.local.json
+
+# Nested git repository
+nvibe-website/
