@@ -4,7 +4,6 @@ import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
-import { submitContactForm } from '@/lib/supabase'
 import emailjs from '@emailjs/browser'
 
 export default function ContactSection() {
