@@ -298,9 +298,9 @@ export default function Solutions() {
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
         >
           NVibe's cutting-edge SaaS AI, powered by Nvidia's full-stack innovation, transforms your enterprise by seamlessly integrating data systems in a secure, compliant cloud, achieving{' '}
-          <span className="font-semibold text-orange-600">20% margin protection</span>,{' '}
-          <span className="font-semibold text-orange-600">10-20% cost savings</span>,{' '}
-          <span className="font-semibold text-orange-600">5-10% revenue retention</span>, and{' '}
+          <span className="font-semibold text-orange-600">3.5% margin protection</span>,{' '}
+          <span className="font-semibold text-orange-600">10-12% cost savings</span>,{' '}
+          <span className="font-semibold text-orange-600">3% revenue retention</span>, and{' '}
           <span className="font-semibold text-orange-600">10-15% CLV growth</span> to drive unparalleled competitive advantage.
         </motion.p>
         <motion.button

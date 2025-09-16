@@ -46,7 +46,7 @@ export default function SolutionsPage() {
           <p className="text-xl text-gray-600 mb-8">Compete and Scale with NVibe AI</p>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg leading-relaxed mb-8">
-              NVibe's cutting-edge SaaS AI, powered by Nvidia's full-stack innovation, transforms your enterprise by seamlessly integrating data systems in a secure, compliant cloud, achieving 20% margin protection, 10-20% cost savings, 5-10% revenue retention, and 10-15% CLV growth to drive unparalleled competitive advantage.
+              NVibe's cutting-edge SaaS AI, powered by Nvidia's full-stack innovation, transforms your enterprise by seamlessly integrating data systems in a secure, compliant cloud, achieving 3.5% margin protection, 10-12% cost savings, 3% revenue retention, and 10-15% CLV growth to drive unparalleled competitive advantage.
             </p>
             <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               Request a Demo
