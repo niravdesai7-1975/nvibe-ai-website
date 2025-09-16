@@ -1,0 +1,389 @@
+
+<!-- saved from url=(0012)about:srcdoc -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>
+const topWindowOrigin = 'https://grok.com';
+
+function logErrorMessage(message) {
+  const messageStr = JSON.stringify({type: 'console_message', level: 'error', message});
+  window.top.postMessage(messageStr, topWindowOrigin);
+};
+
+function logWarning(message) {
+  const messageStr = JSON.stringify({type: 'console_message', level: 'warn', message});
+  window.top.postMessage(messageStr, topWindowOrigin);
+}
+
+function logMessage(message) {
+  const messageStr = JSON.stringify({type: 'console_message', level: 'log', message});
+  window.top.postMessage(messageStr, topWindowOrigin);
+}
+
+const _windowOnerror = window.onerror;
+window.onerror = (...args) => {
+  logErrorMessage(args[0]);
+  return _windowOnerror ? _windowOnerror(...args) : undefined;
+};
+
+const _windowOnunhandledrejection = window.onunhandledrejection;
+window.onunhandledrejection = function(event) {
+  let message = 'Error: onunhandledrejection';
+  if (event && event.reason && event.reason.message) {
+    message = event.reason.message;
+  }
+
+  logErrorMessage(message);
+  return _windowOnunhandledrejection ? _windowOnunhandledrejection(...args) : undefined;
+};
+
+const _consoleError = console.error;
+console.error = function(...args) {
+  if (args[0] instanceof Error) {
+    logErrorMessage(args[0].message);
+  } else {
+    logErrorMessage(...args);
+  }
+  return _consoleError(...args);
+};
+
+const _consoleLog = console.log;
+console.log = function(...args) {
+  logMessage(...args);
+  return _consoleLog(...args);
+};
+
+const _consoleWarning = console.warn;
+console.warn = function(...args) {
+  logWarning(...args);
+  return _consoleWarning(...args);
+};
+
+</script>
+<script>
+  document.addEventListener('click', function(event) {
+    const anchor = event.target.closest('a');
+    if (anchor && anchor.getAttribute('href').startsWith('#')) {
+      event.preventDefault();
+      const targetId = anchor.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+</script><script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script>
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Our Solution Works</title>
+  <script src="https://cdn.tailwindcss.com/"></script>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-2{margin-top:0.5rem}.grid{display:grid}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.gap-6{gap:1.5rem}.rounded-lg{border-radius:0.5rem}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-blue-900{--tw-bg-opacity:1;background-color:rgb(30 58 138 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.text-center{text-align:center}.font-sans{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-blue-900{--tw-text-opacity:1;color:rgb(30 58 138 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-200:hover{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style></head>
+<body class="bg-gray-100 font-sans" style="margin: 0px;">
+  <!-- Header -->
+  <header class="bg-blue-900 text-white py-8">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center">How Our Solution Works</h1>
+      <p class="text-lg text-center mt-2">Driving Business Growth with NVibe Cutting-Edge AI and NVIDIA Full-Stack Innovation</p>
+    </div>
+  </header>
+
+  <!-- Intro Section -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold mb-4">Transform Your Business with NVibe's Self-Driving AI Powered by NVIDIA's Cutting-Edge Platform</h2>
+      <p class="text-lg mb-6">Our solution combines NVibe Cutting-Edge AI, NVIDIA’s full-stack innovation, and your enterprise ERP, CRM, financial integrations to achieve <strong>20% margin protection</strong>, <strong>10-20% cost cuts</strong>, <strong>5-10% revenue savings</strong>, and <strong>10-15% CLV growth</strong>.</p>
+      <a href="https://profitisle.com/" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">Request a Demo</a>
+    </div>
+  </section>
+
+  <!-- NVibe AI Platform -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Platform</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">NVibe AI Real-Time Insights and Automation</h3>
+          <p class="text-sm">Our solution is built on NVIDIA’s cutting-edge AI platform to deliver unparalleled processing power, allowing us to analyze millions of transactions in real time, ensuring your business stays ahead of the curve with up-to-the-minute data insights and proactive decision-making.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">NVibe AI Advanced RAG Capabilities</h3>
+          <p class="text-sm">By harnessing NVIDIA’s advanced AI capabilities, we achieve precise and reliable insights through sophisticated data integration, ensuring our AI inputs to you are both comprehensive and actionable.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">NVibe AI Full-Stack Innovation</h3>
+          <p class="text-sm">Our platform benefits from NVIDIA’s full-stack AI innovation, providing a seamless integration of hardware and software that scales effortlessly to meet the demands of any business size.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">NVibe AI Enterprise-Grade Security and Compliance</h3>
+          <p class="text-sm">We prioritize your data security with NVIDIA’s enterprise-grade AI platform, so you can focus on growing your business without worrying about risks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Customer Optimization -->
+  <section class="bg-gray-100 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Customer Optimization</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Uncover Profit Peaks</h3>
+          <p><strong>CFO:</strong> Identify 20% of customers driving 80% of profits.</p>
+          <p><strong>CMO:</strong> Target top customers for high-impact campaigns.</p>
+          <p><strong>Result:</strong> Boost profit focus by 20%.</p>
+          <p><strong>Retail Example:</strong> Pinpoint customers buying high-margin cosmetics for targeted campaigns.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Eliminate Profit Drains</h3>
+          <p><strong>CFO:</strong> Cut losses from low-margin customers.</p>
+          <p><strong>CMO:</strong> Shift focus to high-value customers.</p>
+          <p><strong>Result:</strong> Reduce unprofitable spend by 15%.</p>
+          <p><strong>Retail Example:</strong> Identify customers with high returns eroding margins for remediation.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Optimize High-Value Clients</h3>
+          <p><strong>CFO:</strong> Boost profits 20% with high-margin focus.</p>
+          <p><strong>CMO:</strong> Engage top customers for growth.</p>
+          <p><strong>Result:</strong> Increase ROI by 20%.</p>
+          <p><strong>Retail Example:</strong> Prioritize Ulta Beauty loyalty members with 25% margin purchases.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Granular Pricing Strategies -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Granular Pricing Strategies</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Set Dynamic Prices</h3>
+          <p><strong>CFO:</strong> Boost margins 20% with dynamic pricing.</p>
+          <p><strong>CMO:</strong> Tailor prices for customers.</p>
+          <p><strong>Result:</strong> Protect 20% margins.</p>
+          <p><strong>Retail Example:</strong> Dynamic prices for customers buying skincare products.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Offer Profit-Driven Discounts</h3>
+          <p><strong>CFO:</strong> Target discounts for profits.</p>
+          <p><strong>CMO:</strong> Engage top customers with offers.</p>
+          <p><strong>Result:</strong> Increase revenue 5-10%.</p>
+          <p><strong>Retail Example:</strong> Discounts for customers with high-margin loyalty purchases.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Price per Transaction</h3>
+          <p><strong>CFO:</strong> Maximize per-sale profits.</p>
+          <p><strong>CMO:</strong> Optimize every customer transaction.</p>
+          <p><strong>Result:</strong> Boost profitability by 10%.</p>
+          <p><strong>Retail Example:</strong> Optimize prices for each customer apparel purchase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Customer Retention Strategies -->
+  <section class="bg-gray-100 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Customer Retention Strategies</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Retain Profit Peaks</h3>
+          <p><strong>CFO:</strong> Save 5-10% revenue with retention.</p>
+          <p><strong>CMO:</strong> Keep top customers loyal.</p>
+          <p><strong>Result:</strong> Save 5-10% revenue.</p>
+          <p><strong>Retail Example:</strong> Retain Ulta Beauty’s high-margin loyalty members.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Optimize Service Costs</h3>
+          <p><strong>CFO:</strong> Cut service costs 10-20%.</p>
+          <p><strong>CMO:</strong> Streamline low-value support.</p>
+          <p><strong>Result:</strong> Cut costs 10-20%.</p>
+          <p><strong>Retail Example:</strong> Shift customers with low-margin purchases to self-service.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Re-Engage Lapsed Customers</h3>
+          <p><strong>CFO:</strong> Win back high-margin revenue.</p>
+          <p><strong>CMO:</strong> Re-engage top customers.</p>
+          <p><strong>Result:</strong> Recover 5-10% revenue.</p>
+          <p><strong>Retail Example:</strong> Re-engage lapsed customers with high-margin purchases.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Loyalty Program Trends -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Loyalty Program Trends</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Hyper-Personalize Rewards</h3>
+          <p><strong>CFO:</strong> Boost profits with custom rewards.</p>
+          <p><strong>CMO:</strong> Engage with tailored offers.</p>
+          <p><strong>Result:</strong> Grow CLV 10-15%.</p>
+          <p><strong>Retail Example:</strong> Personalize rewards for customers buying skincare.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Drive Subscription Loyalty</h3>
+          <p><strong>CFO:</strong> Generate recurring profits.</p>
+          <p><strong>CMO:</strong> Build loyalty with subscriptions.</p>
+          <p><strong>Result:</strong> Increase revenue 5-15%.</p>
+          <p><strong>Retail Example:</strong> Subscription tiers for customers with high-margin purchases.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Incentivize Cross-Sells</h3>
+          <p><strong>CFO:</strong> Increase profits with cross-sells.</p>
+          <p><strong>CMO:</strong> Drive sales with add-on rewards.</p>
+          <p><strong>Result:</strong> Boost revenue 5-10%.</p>
+          <p><strong>Retail Example:</strong> Incentivize accessory cross-sells for customers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Customer Segmentation Techniques -->
+  <section class="bg-gray-100 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Customer Segmentation Techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Segment by Profitability</h3>
+          <p><strong>CFO:</strong> Target high-margin segments.</p>
+          <p><strong>CMO:</strong> Group customers by profitability.</p>
+          <p><strong>Result:</strong> Boost revenue 10-15%.</p>
+          <p><strong>Retail Example:</strong> Segment customers by high-margin cosmetics purchases.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Churn Risk Segments</h3>
+          <p><strong>CFO:</strong> Prevent high-margin churn.</p>
+          <p><strong>CMO:</strong> Save at-risk customers.</p>
+          <p><strong>Result:</strong> Save 5-10% revenue.</p>
+          <p><strong>Retail Example:</strong> Identify at-risk customers with high-margin purchases.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">RFM + Profit Analysis</h3>
+          <p><strong>CFO:</strong> Enhance RFM for profits.</p>
+          <p><strong>CMO:</strong> Segment customers with RFM.</p>
+          <p><strong>Result:</strong> Increase revenue 10-15%.</p>
+          <p><strong>Retail Example:</strong> Combine RFM with margins for customers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Predictive Analytics Applications -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Predictive Analytics Applications</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Forecast Churn Risks</h3>
+          <p><strong>CFO:</strong> Save 5-10% with churn forecasts.</p>
+          <p><strong>CMO:</strong> Predict customer churn.</p>
+          <p><strong>Result:</strong> Save 5-10% revenue.</p>
+          <p><strong>Retail Example:</strong> Forecast customer churn risks in loyalty programs.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Increase CLV</h3>
+          <p><strong>CFO:</strong> Grow CLV 10-15% with forecasts.</p>
+          <p><strong>CMO:</strong> Boost customer lifetime value.</p>
+          <p><strong>Result:</strong> Grow CLV 10-15%.</p>
+          <p><strong>Retail Example:</strong> Grow CLV with propensity models for customers.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Predict Upsell Opportunities</h3>
+          <p><strong>CFO:</strong> Drive 5-10% revenue with upsells.</p>
+          <p><strong>CMO:</strong> Target accessory sales.</p>
+          <p><strong>Result:</strong> Boost revenue 5-10%.</p>
+          <p><strong>Retail Example:</strong> Predict accessory upsells for customers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NVibe AI Neural Networks and Deep Learning Frameworks -->
+  <section class="bg-gray-100 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">NVibe AI Neural Networks &amp; Deep Learning</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Predict Churn with Neural Networks</h3>
+          <p><strong>CFO:</strong> Save revenue with AI churn predictions.</p>
+          <p><strong>CMO:</strong> Predict customer churn.</p>
+          <p><strong>Result:</strong> Save 5-10% revenue.</p>
+          <p><strong>Retail Example:</strong> Predict customer churn in loyalty programs.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Scale with TensorFlow</h3>
+          <p><strong>CFO:</strong> Scale AI for profits.</p>
+          <p><strong>CMO:</strong> Analyze all customers.</p>
+          <p><strong>Result:</strong> Boost revenue 5-10%.</p>
+          <p><strong>Retail Example:</strong> Scale analytics with TensorFlow for customers.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold">Optimize with JAX</h3>
+          <p><strong>CFO:</strong> Enhance AI efficiency with JAX.</p>
+          <p><strong>CMO:</strong> Optimize customer predictions.</p>
+          <p><strong>Result:</strong> Improve prediction efficiency.</p>
+          <p><strong>Retail Example:</strong> Optimize predictions for customers with JAX.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-blue-900 text-white py-12 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold mb-4">See the Results for Yourself</h2>
+      <p class="text-lg mb-6">Request an NVibe AI demo to explore how NVIDIA’s full-stack innovation and NVibe AI transform your retail business.</p>
+      <a href="https://profitisle.com/" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200">Request a Demo</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Your Company. Driving Business Growth with NVibe Cutting-Edge AI and NVIDIA Full-Stack Innovation.</p>
+    </div>
+  </footer>
+
+</body></html>
