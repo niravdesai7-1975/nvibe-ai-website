@@ -100,3 +100,101 @@ document.addEventListener('DOMContentLoaded', () => {
         connection.style.animationDelay = `${index * 0.3}s`;
     });
 });
+
+// Interactive Solutions Carousel
+document.addEventListener('DOMContentLoaded', () => {
+    const navTabs = document.querySelectorAll('.nav-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let currentTabIndex = 0;
+    const totalTabs = navTabs.length;
+    
+    // Tab switching function
+    function switchTab(index) {
+        // Remove active class from all tabs and contents
+        navTabs.forEach(tab => tab.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to current tab and content
+        navTabs[index].classList.add('active');
+        tabContents[index].classList.add('active');
+        
+        currentTabIndex = index;
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+    }
+    
+    // Update navigation button states
+    function updateNavigationButtons() {
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentTabIndex === 0;
+            nextBtn.disabled = currentTabIndex === totalTabs - 1;
+        }
+    }
+    
+    // Tab click handlers
+    navTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+            switchTab(index);
+        });
+    });
+    
+    // Previous button handler
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentTabIndex > 0) {
+                switchTab(currentTabIndex - 1);
+            }
+        });
+    }
+    
+    // Next button handler
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentTabIndex < totalTabs - 1) {
+                switchTab(currentTabIndex + 1);
+            }
+        });
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentTabIndex > 0) {
+            switchTab(currentTabIndex - 1);
+        } else if (e.key === 'ArrowRight' && currentTabIndex < totalTabs - 1) {
+            switchTab(currentTabIndex + 1);
+        }
+    });
+    
+    // Auto-rotate carousel (optional)
+    let autoRotateInterval;
+    
+    function startAutoRotate() {
+        autoRotateInterval = setInterval(() => {
+            const nextIndex = (currentTabIndex + 1) % totalTabs;
+            switchTab(nextIndex);
+        }, 8000); // Change tab every 8 seconds
+    }
+    
+    function stopAutoRotate() {
+        if (autoRotateInterval) {
+            clearInterval(autoRotateInterval);
+        }
+    }
+    
+    // Start auto-rotate on page load
+    startAutoRotate();
+    
+    // Stop auto-rotate when user interacts
+    const carouselSection = document.querySelector('.solutions-carousel-section');
+    if (carouselSection) {
+        carouselSection.addEventListener('mouseenter', stopAutoRotate);
+        carouselSection.addEventListener('mouseleave', startAutoRotate);
+    }
+    
+    // Initialize
+    updateNavigationButtons();
+});
