@@ -5,9 +5,9 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'NVibe Private AI - Fortune 500 Insights for Small Business',
-  description: 'NVibe Private AI, built on NVIDIA\'s world-class AI platform, supercharges your profits by connecting to your financial systems and building a Profit Grid to pinpoint exactly where your profits soar and bleed.',
-  keywords: 'private AI, profit optimization, financial intelligence, NVIDIA NeMo, business analytics, profit grid, cost optimization, Fortune 500 insights, small business AI',
+  title: 'NVibe AI: NVIDIA-Powered Business Automation',
+  description: 'NVibe AI - An Innovative AI-Powered Solutions custom build for your needs on industry standards. Driven by NVIDIA\'s Platform. Transform your business with cutting-edge AI technology that supercharges your business.',
+  keywords: 'NVibe AI, NVibe, nvibe ai, AI-powered solutions, sales intelligence, manufacturing optimization, predictive analytics, process automation, NVIDIA platform, business transformation, NVibe AI company, NVibe AI solutions',
   authors: [{ name: 'NVibe AI' }],
   creator: 'NVibe AI',
   publisher: 'NVibe AI',
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://nvibe.ai'),
   openGraph: {
-    title: 'NVibe Private AI - Fortune 500 Insights for Small Business',
-    description: 'Built on NVIDIA\'s world-class AI platform to solve your toughest business problems. The first private AI that supercharges your profits.',
+    title: 'NVibe AI: NVIDIA-Powered Business Automation',
+    description: 'NVibe AI - An Innovative AI-Powered Solutions custom build for your needs on industry standards. Driven by NVIDIA\'s Platform.',
     url: 'https://nvibe.ai',
     siteName: 'NVibe AI',
     images: [
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NVibe Private AI - Fortune 500 Insights for Small Business',
-    description: 'Built on NVIDIA\'s world-class AI platform to solve your toughest business problems. The first private AI that supercharges your profits.',
+    title: 'NVibe AI: NVIDIA-Powered Business Automation',
+    description: 'NVibe AI - An Innovative AI-Powered Solutions custom build for your needs on industry standards. Driven by NVIDIA\'s Platform.',
     images: ['https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'],
   },
   robots: {
@@ -50,6 +50,24 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: 'https://nvibe.ai',
+  },
+  category: 'technology',
+  classification: 'AI Business Solutions',
+  other: {
+    'theme-color': '#1a1a2e',
+    'msapplication-TileColor': '#1a1a2e',
+    'application-name': 'NVibe AI',
+    'apple-mobile-web-app-title': 'NVibe AI',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
+    'language': 'English',
+    'geo.region': 'US-CA',
+    'geo.placename': 'San Francisco',
+    'geo.position': '37.7749;-122.4194',
+    'ICBM': '37.7749, -122.4194',
+  },
 }
 
 export default function RootLayout({
@@ -61,6 +79,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
