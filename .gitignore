@@ -114,4 +114,4 @@ config.local.js
 config.local.json
 
 # Nested git repository
-nvibe-website/
+nvibe-website/demo/

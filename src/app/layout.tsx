@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { MockAuthProvider } from '@/contexts/MockAuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -83,7 +84,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <MockAuthProvider>
+          {children}
+        </MockAuthProvider>
+      </body>
     </html>
   )
 }

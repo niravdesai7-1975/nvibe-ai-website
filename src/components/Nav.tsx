@@ -1,10 +1,16 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { useAuth } from '@/contexts/MockAuthContext';
+import LoginModal from './LoginModal';
+import RegisterModal from './RegisterModal';
 
 export default function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -42,6 +48,43 @@ export default function Nav() {
           <li><a href="#nvidia" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#nvidia')}>Demo</a></li>
           <li><a href="#contact" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#contact')}>Contact</a></li>
         </ul>
+
+        {/* Auth Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <a
+                href="/demo"
+                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <User className="w-4 h-4" />
+                <span>Dashboard</span>
+              </a>
+              <button
+                onClick={signOut}
+                className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setIsLoginOpen(true)}
+                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => setIsRegisterOpen(true)}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                Sign Up
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Mobile Menu Button */}
         <motion.button
@@ -91,9 +134,58 @@ export default function Nav() {
             >
               Contact
             </a>
+            {user ? (
+              <>
+                <a 
+                  href="/demo" 
+                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
+                >
+                  Dashboard
+                </a>
+                <button 
+                  onClick={signOut}
+                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2 w-full text-left"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <button 
+                  onClick={() => setIsLoginOpen(true)}
+                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2 w-full text-left"
+                >
+                  Sign In
+                </button>
+                <button 
+                  onClick={() => setIsRegisterOpen(true)}
+                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2 w-full text-left"
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
         </motion.div>
       )}
+
+      {/* Auth Modals */}
+      <LoginModal 
+        isOpen={isLoginOpen} 
+        onClose={() => setIsLoginOpen(false)}
+        onSwitchToRegister={() => {
+          setIsLoginOpen(false)
+          setIsRegisterOpen(true)
+        }}
+      />
+      <RegisterModal 
+        isOpen={isRegisterOpen} 
+        onClose={() => setIsRegisterOpen(false)}
+        onSwitchToLogin={() => {
+          setIsRegisterOpen(false)
+          setIsLoginOpen(true)
+        }}
+      />
     </motion.nav>
   );
 }
