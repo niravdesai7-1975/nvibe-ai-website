@@ -12,7 +12,7 @@ export default function AboutSection() {
             <div className="flex-shrink-0 text-center">
               <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full border border-black p-2 bg-black mx-auto">
                 <Image
-                  src="/images/nirav-desai.png?v=2"
+                  src="/images/nirav-desai.png"
                   alt="Nirav Desai"
                   width={256}
                   height={256}
