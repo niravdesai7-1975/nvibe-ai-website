@@ -6,35 +6,24 @@ export default function AboutSection() {
         <div className="min-h-screen bg-gray-100 text-gray-900">
       {/* Founder Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col items-center justify-center gap-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-center gap-8 lg:gap-12">
             {/* Founder Image */}
-            <div className="flex-shrink-0">
-                  <div className="w-64 h-64 rounded-full border-4 border-black p-2 bg-black">
+            <div className="flex-shrink-0 text-center">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full border border-black p-2 bg-black mx-auto">
                 <Image
-                  src="/images/nirav-desai.jpg"
+                  src="/images/nirav-desai.png"
                   alt="Nirav Desai"
                   width={240}
                   height={240}
                   className="w-full h-full rounded-full object-cover"
                 />
               </div>
-            </div>
-            
-            {/* Founder Info */}
-            <div className="text-center max-w-md">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-4">Nirav Desai</h3>
-                  <h4 className="text-xl sm:text-2xl text-green-400 mb-6 font-bold">Founder & CTO</h4>
-              <p className="text-gray-700 leading-relaxed">
-                After engineering AI at Salesforce and scaling it to millions of customers and over $1.2 billion in ARR, Nirav is now bringing that same high-performance AI innovation directly to companies of all sizes.
-                <br /><br />
-                    He believes the era of costly, slow "keep-the-lights-on" technology is over.
-                <br /><br />
-                The next chapter belongs to companies bold enough to lead — and thrive — in the third industrial AI revolution.
-              </p>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mt-4 lg:mt-6">Nirav Desai</h3>
+              <h4 className="text-lg sm:text-xl lg:text-2xl text-green-400 font-bold mb-4 lg:mb-6">Founder & CTO</h4>
               
               {/* Social Links */}
-              <div className="flex justify-center gap-4 mt-8">
+              <div className="flex justify-center gap-4">
                     <a 
                       href="https://www.linkedin.com/in/ndesai730/" 
                       target="_blank" 
@@ -47,20 +36,31 @@ export default function AboutSection() {
                 </a>
               </div>
             </div>
+            
+            {/* Founder Info */}
+            <div className="text-center lg:text-left max-w-lg lg:max-w-xl lg:-mt-8">
+              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                After <strong>engineering AI at Salesforce</strong> and scaling it to <strong>millions of customers</strong> and over <strong>$1.2 billion in ARR</strong>, Nirav is now bringing that same <strong>high-performance AI innovation</strong> directly to companies of all sizes.
+                <br /><br />
+                    He believes the era of costly, slow <strong>"keep-the-lights-on" technology is over</strong>.
+                <br /><br />
+                The <strong>next chapter belongs</strong> to companies <strong>bold enough to lead — and thrive — in the third industrial AI revolution</strong>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Mission Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8">Our Mission</h2>
-          <p className="text-xl text-gray-700 leading-relaxed mb-12">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 lg:mb-8">Our Mission</h2>
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 lg:mb-12 px-4">
             At NVibe AI, we believe that artificial intelligence should be accessible to businesses of all sizes. We're dedicated to creating innovative AI-powered solutions that position companies for unprecedented growth.
           </p>
           
           {/* Values Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mt-12 lg:mt-16 px-4">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,12 +96,12 @@ export default function AboutSection() {
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8">Ready to Transform Your Business?</h2>
-          <p className="text-xl text-gray-700 mb-12">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 lg:mb-8">Ready to Transform Your Business?</h2>
+          <p className="text-lg sm:text-xl text-gray-700 mb-8 lg:mb-12 px-4">
             Join the companies already leveraging NVibe AI's innovative solutions to optimize their operations and drive growth.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
             <a 
               href="/#contact" 
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
