@@ -11,11 +11,9 @@ export default function AboutSection() {
             {/* Founder Image */}
             <div className="flex-shrink-0 text-center">
               <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full border border-black p-2 bg-black mx-auto">
-                <Image
-                  src="/images/nirav-desai.png"
+                <img
+                  src="/images/nirav-desai-optimized.jpg"
                   alt="Nirav Desai"
-                  width={240}
-                  height={240}
                   className="w-full h-full rounded-full object-cover"
                 />
               </div>
