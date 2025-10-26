@@ -45,6 +45,7 @@ export default function Nav() {
         <ul className="hidden md:flex gap-6 lg:gap-8 font-sans text-sm lg:text-base">
           <li><a href="#home" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#home')}>Home</a></li>
           <li><a href="#solutions" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#solutions')}>Solutions</a></li>
+          <li><a href="/about" className="hover:text-gray-300 transition-colors">About</a></li>
           <li><a href="#nvidia" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#nvidia')}>Demo</a></li>
           <li><a href="#contact" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#contact')}>Contact</a></li>
         </ul>
@@ -119,6 +120,12 @@ export default function Nav() {
               onClick={() => scrollToSection('#solutions')}
             >
               Solutions
+            </a>
+            <a 
+              href="/about" 
+              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
+            >
+              About
             </a>
             <a 
               href="#nvidia" 
