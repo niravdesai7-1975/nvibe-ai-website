@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  distDir: 'publish',
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -9,6 +11,7 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
     formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
   compress: true,
   poweredByHeader: false,
