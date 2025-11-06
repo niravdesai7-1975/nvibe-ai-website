@@ -17,7 +17,7 @@ export default function Nav() {
 
   // Handle hash scrolling when component mounts or pathname changes
   useEffect(() => {
-    if (pathname === '/' && typeof window !== 'undefined') {
+    if (pathname === '/home' && typeof window !== 'undefined') {
       const hash = window.location.hash;
       if (hash) {
         setTimeout(() => {
@@ -33,14 +33,14 @@ export default function Nav() {
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
     // If we're on the home page, scroll to the section
-    if (pathname === '/') {
+    if (pathname === '/home') {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
       // If we're on another page, navigate to home with anchor
-      router.push(`/${href}`);
+      router.push(`/home${href}`);
     }
   };
 
@@ -72,11 +72,11 @@ export default function Nav() {
         
         {/* Desktop Navigation Links */}
         <ul className="hidden md:flex gap-6 lg:gap-8 font-sans text-sm lg:text-base">
-          <li><a href="/#home" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}>Home</a></li>
-          <li><a href="/#solutions" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}>Solutions</a></li>
-          <li><a href="/about" className="hover:text-gray-300 transition-colors">About</a></li>
-          <li><a href="/#nvidia" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}>Demo</a></li>
-          <li><a href="/#contact" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}>Contact</a></li>
+          <li><a href="/home" className="hover:text-gray-300 transition-colors">Home</a></li>
+          <li><a href="/home#solutions" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}>Solutions</a></li>
+          <li><a href="/" className="hover:text-gray-300 transition-colors">About</a></li>
+          <li><a href="/home#nvidia" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}>Demo</a></li>
+          <li><a href="/home#contact" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}>Contact</a></li>
         </ul>
 
         {/* Auth Buttons */}
@@ -137,34 +137,33 @@ export default function Nav() {
         >
           <div className="px-4 py-4 space-y-3">
             <a 
-              href="/#home" 
+              href="/home" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
             >
               Home
             </a>
             <a 
-              href="/#solutions" 
+              href="/home#solutions" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
               onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}
             >
               Solutions
             </a>
             <a 
-              href="/about" 
+              href="/" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
             >
               About
             </a>
             <a 
-              href="/#nvidia" 
+              href="/home#nvidia" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
               onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}
             >
               Demo
             </a>
             <a 
-              href="/#contact" 
+              href="/home#contact" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
               onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}
             >
