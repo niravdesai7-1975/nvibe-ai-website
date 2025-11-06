@@ -15,10 +15,10 @@ export default function Footer() {
   ]
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Solutions', href: '#solutions' },
-    { name: 'NVibe', href: '#nvidia' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '/#home' },
+    { name: 'Solutions', href: '/#solutions' },
+    { name: 'NVibe', href: '/#nvidia' },
+    { name: 'Contact', href: '/#contact' }
   ]
 
   return (
@@ -79,17 +79,12 @@ export default function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                 >
-                  <button
-                    onClick={() => {
-                      const element = document.querySelector(link.href)
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' })
-                      }
-                    }}
+                  <a
+                    href={link.href}
                     className="text-white/60 hover:text-white transition-colors"
                   >
                     {link.name}
-                  </button>
+                  </a>
                 </motion.li>
               ))}
             </ul>
@@ -105,19 +100,14 @@ export default function Footer() {
             <p className="text-white/70 mb-6">
               Ready to transform your business with AI? Let&apos;s discuss your project.
             </p>
-            <motion.button
+            <motion.a
+              href="/#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                const element = document.querySelector('#contact')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
-              className="btn-primary text-sm px-6 py-3"
+              className="btn-primary text-sm px-6 py-3 inline-block"
             >
               Start Your Project
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
 

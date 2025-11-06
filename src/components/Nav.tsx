@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import { useAuth } from '@/contexts/MockAuthContext';
 import LoginModal from './LoginModal';
@@ -11,13 +12,36 @@ export default function Nav() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Handle hash scrolling when component mounts or pathname changes
+  useEffect(() => {
+    if (pathname === '/home' && typeof window !== 'undefined') {
+      const hash = window.location.hash;
+      if (hash) {
+        setTimeout(() => {
+          const element = document.querySelector(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    }
+  }, [pathname]);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMobileMenuOpen(false);
+    // If we're on the home page, scroll to the section
+    if (pathname === '/home') {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, navigate to home with anchor
+      router.push(`/home${href}`);
+    }
   };
 
   return (
@@ -30,10 +54,15 @@ export default function Nav() {
       <div className="flex items-center justify-between px-4 sm:px-6 py-4">
         {/* Logo */}
         <motion.a
-          href="#home"
+          href="/"
           className="flex items-center space-x-2 cursor-pointer"
           whileHover={{ scale: 1.05 }}
-          onClick={() => scrollToSection('#home')}
+          onClick={(e) => {
+            if (pathname !== '/') {
+              e.preventDefault();
+              router.push('/');
+            }
+          }}
         >
           <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
             <span className="text-black font-bold text-sm">N</span>
@@ -43,10 +72,11 @@ export default function Nav() {
         
         {/* Desktop Navigation Links */}
         <ul className="hidden md:flex gap-6 lg:gap-8 font-sans text-sm lg:text-base">
-          <li><a href="#home" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#home')}>Home</a></li>
-          <li><a href="#solutions" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#solutions')}>Solutions</a></li>
-          <li><a href="#nvidia" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#nvidia')}>Demo</a></li>
-          <li><a href="#contact" className="hover:text-gray-300 transition-colors" onClick={() => scrollToSection('#contact')}>Contact</a></li>
+          <li><a href="/home" className="hover:text-gray-300 transition-colors">Home</a></li>
+          <li><a href="/home#solutions" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}>Solutions</a></li>
+          <li><a href="/" className="hover:text-gray-300 transition-colors">About</a></li>
+          <li><a href="/home#nvidia" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}>Demo</a></li>
+          <li><a href="/home#contact" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}>Contact</a></li>
         </ul>
 
         {/* Auth Buttons */}
@@ -107,30 +137,35 @@ export default function Nav() {
         >
           <div className="px-4 py-4 space-y-3">
             <a 
-              href="#home" 
+              href="/home" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={() => scrollToSection('#home')}
             >
               Home
             </a>
             <a 
-              href="#solutions" 
+              href="/home#solutions" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={() => scrollToSection('#solutions')}
+              onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}
             >
               Solutions
             </a>
             <a 
-              href="#nvidia" 
+              href="/" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={() => scrollToSection('#nvidia')}
+            >
+              About
+            </a>
+            <a 
+              href="/home#nvidia" 
+              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
+              onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}
             >
               Demo
             </a>
             <a 
-              href="#contact" 
+              href="/home#contact" 
               className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={() => scrollToSection('#contact')}
+              onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}
             >
               Contact
             </a>
