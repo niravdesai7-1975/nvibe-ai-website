@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import LogoSlider from './LogoSlider'
 
 export default function AboutSection() {
   return (
@@ -41,17 +42,29 @@ export default function AboutSection() {
             
             {/* Founder Info */}
             <div className="text-center lg:text-left max-w-lg lg:max-w-xl lg:-mt-8">
-              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+              <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-6">
                 After <strong>engineering AI at Salesforce</strong> and scaling it to <strong>millions of customers</strong> and over <strong>$1.2 billion in ARR</strong>, Nirav is now bringing that same <strong>high-performance AI innovation</strong> directly to companies of all sizes.
-                <br /><br />
-                    He believes the era of costly, slow <strong>"keep-the-lights-on" technology is over</strong>.
-                <br /><br />
-                The <strong>next chapter belongs</strong> to companies <strong>bold enough to lead — and thrive — in the third industrial AI revolution</strong>.
               </p>
+              
+              {/* YouTube Video */}
+              <div className="mt-6 w-full">
+                <div className="relative w-full rounded-lg overflow-hidden shadow-lg" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/gwXBj6MrVdY"
+                    title="NVibe AI Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Client Logos Slider */}
+      <LogoSlider />
 
       {/* Mission Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">

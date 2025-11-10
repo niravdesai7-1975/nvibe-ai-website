@@ -57,13 +57,33 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Tech Stack Visual Section */}
+          {/* Right Column - Video and Tech Stack */}
           <motion.div
             className="flex flex-col gap-6"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
+            {/* YouTube Video Card */}
+            <motion.div
+              className="bg-gray-900 p-4 rounded-xl border border-gray-700 overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/gwXBj6MrVdY"
+                  title="NVibe AI Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </motion.div>
+
+            {/* Tech Stack Visual Section */}
             <motion.div
               className="bg-gray-900 p-6 rounded-xl border border-gray-700 flex items-center gap-4"
               whileHover={{ scale: 1.05, y: -5 }}
