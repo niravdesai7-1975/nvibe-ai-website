@@ -31,7 +31,7 @@ export default function LogoSlider() {
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <div className="py-12 bg-white overflow-hidden">
+    <div className="py-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <h3 className="text-center text-gray-600 text-sm font-semibold uppercase tracking-wider mb-8">
           Trusted by Industry Leaders
