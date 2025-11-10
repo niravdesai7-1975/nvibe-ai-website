@@ -1,8 +1,16 @@
 'use client';
 import { useState } from 'react';
 
+interface Logo {
+  name: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export default function LogoSlider() {
-  const logos = [
+  const logos: Logo[] = [
     {
       name: 'Campbells',
       src: '/images/campbells-logo.png',
@@ -67,7 +75,7 @@ export default function LogoSlider() {
   );
 }
 
-function LogoItem({ logo }: { logo: typeof logos[0] }) {
+function LogoItem({ logo }: { logo: Logo }) {
   const [imageError, setImageError] = useState(false);
 
   return (
