@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import LogoSlider from './LogoSlider'
+import YouTubePlayer from './YouTubePlayer'
 
 export default function AboutSection() {
   return (
@@ -48,13 +49,11 @@ export default function AboutSection() {
               
               {/* YouTube Video */}
               <div className="mt-6 w-full">
-                <div className="relative w-full rounded-lg overflow-hidden shadow-lg" style={{ paddingBottom: '56.25%' }}>
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/gwXBj6MrVdY"
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <YouTubePlayer 
+                    videoId="gwXBj6MrVdY" 
                     title="NVibe AI Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+                    playbackRate={1.25}
                   />
                 </div>
               </div>
