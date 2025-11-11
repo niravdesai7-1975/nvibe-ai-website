@@ -44,12 +44,12 @@ export default function AboutSection() {
                 </div>
                 
                 {/* Bio Text */}
-                <div className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4 space-y-3">
-                  <p className="font-semibold text-base sm:text-lg">
-                    At NVibe, we build AI Factories. It&apos;s the engineer in me—clean code, measurable outcomes, and a bias for action over abstraction—turning hype into <strong>net 3%</strong> and <strong>gross 10-15% revenue growth</strong>.
+                <div className="text-gray-700 leading-relaxed text-base mb-4 space-y-3">
+                  <p>
+                    At NVibe, we build AI Factories—prioritizing <strong>measurable outcomes</strong> and <strong>action over abstraction</strong>—to convert hype into <strong>net 3% and gross 10-15% revenue growth</strong>.
                   </p>
                   <p>
-                    After engineering Salesforce&apos;s GenAI engine, scaling to <strong>150M+ users</strong> and <strong>$1.2B ARR</strong> with <strong>90% automated speed surges</strong>, we&apos;ve built modular AI factories at NVibe tailored for business transformation—secure, air-gapped twins that crank profit tokens without the wait for gigafactories.
+                    After engineering Salesforce&apos;s GenAI engine, scaling to <strong>150M+ users</strong> and <strong>$1.2B ARR</strong> with <strong>90% automated speed surges</strong>, we&apos;ve built modular AI factories at NVibe tailored for business transformation—<strong>secure, air-gapped twins</strong> that crank profit tokens without the wait for gigafactories.
                   </p>
                 </div>
               </div>
