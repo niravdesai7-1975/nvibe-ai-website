@@ -31,9 +31,9 @@ export default function LogoSlider() {
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <div className="py-6 bg-white overflow-hidden">
+    <div className="py-3 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <h3 className="text-center text-gray-600 text-sm font-semibold uppercase tracking-wider mb-8">
+        <h3 className="text-center text-gray-600 text-sm font-semibold uppercase tracking-wider mb-4">
           Trusted by Industry Leaders
         </h3>
         <div className="relative">
@@ -45,7 +45,7 @@ export default function LogoSlider() {
           <div 
             className="flex group"
             style={{
-              animation: 'scroll 30s linear infinite'
+              animation: 'scroll 15s linear infinite'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.animationPlayState = 'paused';
