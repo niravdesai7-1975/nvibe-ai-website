@@ -7,11 +7,11 @@ export default function AboutSection() {
   return (
         <div className="min-h-screen bg-gray-100 text-gray-900">
       {/* Founder Section */}
-      <section className="pt-20 pb-8 px-4 sm:px-6 lg:px-8">
+      <section className="pt-24 pb-2 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8">
             {/* Left Column: Profile Pic + Bio Text */}
-            <div className="w-full lg:w-2/5 flex-shrink-0">
+            <div className="w-full lg:w-2/5 flex-shrink-0 pl-0 lg:pl-0">
               <div className="text-left">
                 {/* Profile Image */}
                 <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full border border-black p-2 bg-black mb-4">
@@ -28,25 +28,29 @@ export default function AboutSection() {
                 
                 {/* Name and Title */}
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1">Nirav Desai</h3>
-                <h4 className="text-base sm:text-lg lg:text-xl text-green-400 font-bold mb-4">Founder & CTO</h4>
-                
-                {/* Bio Text */}
-                <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4">
-                  After <strong>engineering AI at Salesforce</strong> and scaling it to <strong>millions of customers</strong> and over <strong>$1.2 billion in ARR</strong>, Nirav is now bringing that same <strong>high-performance AI innovation</strong> directly to companies of all sizes.
-                </p>
-                
-                {/* Social Links */}
-                <div className="flex justify-start gap-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <h4 className="text-base sm:text-lg lg:text-xl text-green-400 font-bold">Founder & CTO</h4>
+                  {/* Social Links */}
                   <a 
                     href="https://www.linkedin.com/in/ndesai730/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors border border-gray-300"
+                    className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors border border-gray-300 flex-shrink-0"
                   >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                   </a>
+                </div>
+                
+                {/* Bio Text */}
+                <div className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4 space-y-3">
+                  <p className="font-semibold text-base sm:text-lg">
+                    At NVibe, we build AI Factories. It&apos;s the engineer in me—clean code, measurable outcomes, and a bias for action over abstraction—turning hype into <strong>net 3%</strong> and <strong>gross 10-15% revenue growth</strong>.
+                  </p>
+                  <p>
+                    After engineering Salesforce&apos;s GenAI engine, scaling to <strong>150M+ users</strong> and <strong>$1.2B ARR</strong> with <strong>90% automated speed surges</strong>, we&apos;ve built modular AI factories at NVibe tailored for business transformation—secure, air-gapped twins that crank profit tokens without the wait for gigafactories.
+                  </p>
                 </div>
               </div>
             </div>
