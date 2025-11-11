@@ -60,8 +60,8 @@ export default function AboutSection() {
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <YouTubePlayer 
                   videoId="gwXBj6MrVdY" 
-                  title="NVibe AI Video"
-                  playbackRate={1.25}
+                  title="NVibe AI Product Demo"
+                  playbackRate={1.3}
                 />
               </div>
             </div>
