@@ -49,7 +49,7 @@ export default function AboutSection() {
                     At NVibe, we build AI Factories—prioritizing <strong>measurable outcomes</strong> and <strong>action over abstraction</strong>—to convert hype into <strong>net 3% and gross 10-15% revenue growth</strong>.
                   </p>
                   <p>
-                    After engineering Salesforce&apos;s GenAI engine, scaling to <strong>150M+ users</strong> and <strong>$1.2B ARR</strong> with <strong>90% automated speed surges</strong>, we&apos;ve built modular AI factories at NVibe tailored for business transformation—<strong>secure, air-gapped twins</strong> that crank profit tokens without the wait for gigafactories.
+                    After engineering Salesforce&apos;s GenAI engine, scaling to <strong>1M+ users</strong> and <strong>$1.2B ARR</strong> with <strong>90% automated speed surges</strong>, we&apos;ve built modular AI factories at NVibe tailored for business transformation—<strong>secure, air-gapped twins</strong> that crank profit tokens without the wait for gigafactories.
                   </p>
                 </div>
               </div>
