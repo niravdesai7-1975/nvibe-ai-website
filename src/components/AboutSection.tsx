@@ -46,7 +46,7 @@ export default function AboutSection() {
                 {/* Bio Text */}
                 <div className="text-gray-700 leading-relaxed text-base mb-4 space-y-3">
                   <p>
-                    Having engineered Salesforce&apos;s AI—scaling to <strong>1M+ users</strong> and <strong>$1.2B ARR</strong>, I have consistently seen sales-to-cash bottlenecks silently eroding <strong>3-5% ARR</strong>. At NVibe, we have solved that problem with an <strong>API- and AI-first accelerator</strong> to drive <strong>3%+ revenue growth</strong> across your <strong>finance, sales-to-order, and quote-to-cash processes</strong>.
+                    Having engineered Salesforce&apos;s AI—scaling to <strong>1M+ users</strong> and <strong>$1.2B ARR</strong>, I have consistently seen a disconnect between finance and sales-to-cash bottlenecks silently eroding <strong>3-5% ARR</strong>. At NVibe, we have solved that problem with an <strong>API- and AI-first accelerator</strong> to drive <strong>3%+ revenue growth</strong> across your <strong>finance, sales-to-order, and quote-to-cash processes</strong>.
                   </p>
                 </div>
               </div>
