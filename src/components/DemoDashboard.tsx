@@ -14,13 +14,15 @@ import {
   Mail,
   Calendar,
   ArrowUpRight,
-  ArrowDownRight
+  ArrowDownRight,
+  Bot,
+  ExternalLink
 } from 'lucide-react'
 import { useAuth } from '@/contexts/MockAuthContext'
 
 export default function DemoDashboard() {
   const { user, signOut } = useAuth()
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState('zia')
 
   const metrics = [
     {
@@ -85,6 +87,7 @@ export default function DemoDashboard() {
   ]
 
   const tabs = [
+    { id: 'zia', label: 'Zia AI Demo', icon: Bot },
     { id: 'overview', label: 'Overview', icon: BarChart3 },
     { id: 'analytics', label: 'Analytics', icon: TrendingUp },
     { id: 'settings', label: 'Settings', icon: Settings }
@@ -135,6 +138,41 @@ export default function DemoDashboard() {
             ))}
           </nav>
         </div>
+
+        {/* Zia AI Demo Tab */}
+        {activeTab === 'zia' && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-4"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Zia — AI Customer Support Agent</h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  Powered by a fine-tuned Llama 3 8B model running on NVibe&apos;s H100 inference engine
+                </p>
+              </div>
+              <a
+                href="https://demo.nvibe.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Open full screen <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+            <div className="rounded-xl overflow-hidden border shadow-sm bg-white" style={{ height: '75vh' }}>
+              <iframe
+                src="https://demo.nvibe.ai"
+                className="w-full h-full"
+                title="Zia AI Customer Support Demo"
+                allow="clipboard-write"
+                loading="lazy"
+              />
+            </div>
+          </motion.div>
+        )}
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (
