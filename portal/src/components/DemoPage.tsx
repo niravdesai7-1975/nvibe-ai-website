@@ -19,7 +19,7 @@ export default function DemoPage() {
           </div>
         </div>
         <a
-          href="https://demo.nvibe.ai"
+          href="https://zia.nvibe.ai"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-secondary flex items-center gap-2"
@@ -46,13 +46,13 @@ export default function DemoPage() {
       {/* iframe */}
       <div className="flex-1 card overflow-hidden min-h-0 relative">
         <iframe
-          src="https://demo.nvibe.ai"
+          src="https://zia.nvibe.ai"
           className="w-full h-full border-0"
           title="NVibe AI Demo"
           allow="clipboard-write"
         />
         <a
-          href="https://demo.nvibe.ai"
+          href="https://zia.nvibe.ai"
           target="_blank"
           rel="noopener noreferrer"
           className="absolute top-3 right-3 bg-white border border-gray-200 rounded-lg p-1.5 shadow-sm hover:shadow-md transition-shadow text-gray-500 hover:text-gray-900"
