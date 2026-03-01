@@ -8,26 +8,19 @@ const ZIA_URL = "https://zia.nvibe.ai";
 export default function DemoPage() {
   const [status, setStatus] = useState<"checking" | "online" | "offline">("checking");
 
-  const check = async () => {
+  const check = () => {
     setStatus("checking");
-    try {
-      const res = await fetch(`https://zia.nvibe.ai/healthz`, {
-        cache: "no-store",
-        signal: AbortSignal.timeout(5000),
-      });
-      setStatus(res.ok ? "online" : "offline");
-    } catch {
-      // Network error, timeout, or CORS block — treat as offline
-      // If CORS blocks us the server is actually up (Streamlit doesn't set CORS headers)
-      // so we check the error type
-      try {
-        const res = await fetch(ZIA_URL, { mode: "no-cors", cache: "no-store", signal: AbortSignal.timeout(5000) });
-        // no-cors opaque response means server responded — it's up
-        setStatus(res.type === "opaque" ? "online" : "offline");
-      } catch {
-        setStatus("offline");
-      }
-    }
+    // Probe Streamlit's favicon — loads as an <img> so CORS doesn't block it.
+    // Streamlit returns the actual PNG when running; Cloudflare returns an HTML
+    // error page (522/521) which the browser cannot decode as an image → onerror.
+    const img = new window.Image();
+    const timer = setTimeout(() => {
+      img.src = "";
+      setStatus("offline");
+    }, 6000);
+    img.onload = () => { clearTimeout(timer); setStatus("online"); };
+    img.onerror = () => { clearTimeout(timer); setStatus("offline"); };
+    img.src = `https://zia.nvibe.ai/favicon.png?t=${Date.now()}`;
   };
 
   useEffect(() => { check(); }, []);
