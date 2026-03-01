@@ -11,12 +11,22 @@ export default function DemoPage() {
   const check = async () => {
     setStatus("checking");
     try {
-      // Use a no-cors fetch — if the server is up it won't throw,
-      // if it's down (522/connection refused) it will throw
-      await fetch(ZIA_URL, { mode: "no-cors", cache: "no-store" });
-      setStatus("online");
+      const res = await fetch(`https://zia.nvibe.ai/healthz`, {
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000),
+      });
+      setStatus(res.ok ? "online" : "offline");
     } catch {
-      setStatus("offline");
+      // Network error, timeout, or CORS block — treat as offline
+      // If CORS blocks us the server is actually up (Streamlit doesn't set CORS headers)
+      // so we check the error type
+      try {
+        const res = await fetch(ZIA_URL, { mode: "no-cors", cache: "no-store", signal: AbortSignal.timeout(5000) });
+        // no-cors opaque response means server responded — it's up
+        setStatus(res.type === "opaque" ? "online" : "offline");
+      } catch {
+        setStatus("offline");
+      }
     }
   };
 
