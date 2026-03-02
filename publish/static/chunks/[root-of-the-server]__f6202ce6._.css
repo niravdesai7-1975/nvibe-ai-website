@@ -702,6 +702,14 @@ img, video {
   min-height: 100vh;
 }
 
+.min-h-\[600px\] {
+  min-height: 600px;
+}
+
+.min-h-\[calc\(100vh-4rem\)\] {
+  min-height: calc(100vh - 4rem);
+}
+
 .w-1\.5 {
   width: .375rem;
 }
@@ -961,6 +969,10 @@ img, video {
   overflow-y: auto;
 }
 
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -985,6 +997,11 @@ img, video {
 .rounded-t-xl {
   border-top-left-radius: .75rem;
   border-top-right-radius: .75rem;
+}
+
+.rounded-b-lg {
+  border-bottom-right-radius: .5rem;
+  border-bottom-left-radius: .5rem;
 }
 
 .border {

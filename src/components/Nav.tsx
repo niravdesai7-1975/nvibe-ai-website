@@ -49,7 +49,7 @@ export default function Nav() {
                 key={link.name}
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${
-                  pathname === link.href
+                  pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-green-600'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}

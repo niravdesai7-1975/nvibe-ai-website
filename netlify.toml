@@ -21,6 +21,12 @@
     Referrer-Policy = "origin-when-cross-origin"
     X-XSS-Protection = "1; mode=block"
 
+# Allow same-origin framing for benchmark report so /benchmarks page can embed it in an iframe
+[[headers]]
+  for = "/benchmarks.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
 [[headers]]
   for = "/_next/static/*"
   [headers.values]
