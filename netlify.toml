@@ -1,5 +1,6 @@
 [build]
-  command = "npm run build"
+  # Use standard webpack build on Netlify (--turbopack can fail in CI)
+  command = "npm run build:netlify"
   # Next.js static export uses distDir: 'publish', so the built site lives in publish/ not .next
   publish = "publish"
 
