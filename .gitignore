@@ -115,3 +115,6 @@ config.local.json
 
 # Nested git repository
 nvibe-website/demo/
+portal/node_modules/
+portal/.next/
+portal/out/

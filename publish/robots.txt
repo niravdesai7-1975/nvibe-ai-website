@@ -1,0 +1,23 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Crawl-delay: 1
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+Sitemap: https://nvibe.ai/sitemap.xml

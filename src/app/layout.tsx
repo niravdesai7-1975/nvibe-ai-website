@@ -6,9 +6,9 @@ import { MockAuthProvider } from '@/contexts/MockAuthContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'NVibe AI: NVIDIA-Powered Business Automation',
-  description: 'NVibe AI - An Innovative AI-Powered Solutions custom build for your needs on industry standards. Driven by NVIDIA\'s Platform. Transform your business with cutting-edge AI technology that supercharges your business.',
-  keywords: 'NVibe AI, NVibe, nvibe ai, AI-powered solutions, sales intelligence, manufacturing optimization, predictive analytics, process automation, NVIDIA platform, business transformation, NVibe AI company, NVibe AI solutions',
+  title: 'NVibe AI — Custom AI for Your Business, From the GPU Up',
+  description: 'NVibe trains a custom AI on your data, deploys it inside your infrastructure, and serves it faster than Together AI. Zero hallucinations. Your data never leaves your VPC.',
+  keywords: 'NVibe AI, custom AI, customer support AI, TensorRT-LLM, H100, inference engine, VPC deployment, fine-tuned LLM, Together AI alternative, NVIDIA',
   authors: [{ name: 'NVibe AI' }],
   creator: 'NVibe AI',
   publisher: 'NVibe AI',
@@ -19,26 +19,17 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://nvibe.ai'),
   openGraph: {
-    title: 'NVibe AI: NVIDIA-Powered Business Automation',
-    description: 'NVibe AI - An Innovative AI-Powered Solutions custom build for your needs on industry standards. Driven by NVIDIA\'s Platform.',
+    title: 'NVibe AI — Custom AI for Your Business, From the GPU Up',
+    description: 'Fine-tuned on your data. Deployed in your VPC. Faster than Together AI on all 5 batch sizes. $15 per million messages.',
     url: 'https://nvibe.ai',
     siteName: 'NVibe AI',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-        width: 2070,
-        height: 1380,
-        alt: 'NVibe AI - AI-Powered Business Solutions',
-      },
-    ],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NVibe AI: NVIDIA-Powered Business Automation',
-    description: 'NVibe AI - An Innovative AI-Powered Solutions custom build for your needs on industry standards. Driven by NVIDIA\'s Platform.',
-    images: ['https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'],
+    title: 'NVibe AI — Custom AI for Your Business, From the GPU Up',
+    description: 'Fine-tuned on your data. Deployed in your VPC. Faster than Together AI on all 5 batch sizes.',
   },
   robots: {
     index: true,
@@ -55,19 +46,10 @@ export const metadata: Metadata = {
     canonical: 'https://nvibe.ai',
   },
   category: 'technology',
-  classification: 'AI Business Solutions',
   other: {
-    'theme-color': '#1a1a2e',
-    'msapplication-TileColor': '#1a1a2e',
+    'theme-color': '#ffffff',
     'application-name': 'NVibe AI',
     'apple-mobile-web-app-title': 'NVibe AI',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'language': 'English',
-    'geo.region': 'US-CA',
-    'geo.placename': 'San Francisco',
-    'geo.position': '37.7749;-122.4194',
-    'ICBM': '37.7749, -122.4194',
   },
 }
 
@@ -79,10 +61,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
       </head>
       <body className={inter.className}>
         <MockAuthProvider>

@@ -1,1 +1,5 @@
-{}
+{
+  "/benchmarks/page": "app/benchmarks/page.js",
+  "/page": "app/page.js",
+  "/platform/page": "app/platform/page.js"
+}

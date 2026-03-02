@@ -1,226 +1,162 @@
-'use client';
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
-import { Menu, X, User, LogOut } from 'lucide-react';
-import { useAuth } from '@/contexts/MockAuthContext';
-import LoginModal from './LoginModal';
-import RegisterModal from './RegisterModal';
+'use client'
+
+import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { Menu, X, User, LogOut } from 'lucide-react'
+import { useAuth } from '@/contexts/MockAuthContext'
+import LoginModal from './LoginModal'
+import RegisterModal from './RegisterModal'
+
+const navLinks = [
+  { name: 'Platform', href: '/platform' },
+  { name: 'Benchmarks', href: '/benchmarks' },
+  { name: 'Demo', href: '/demo' },
+]
 
 export default function Nav() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const { user, signOut } = useAuth();
-  const pathname = usePathname();
-  const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+  const { user, signOut } = useAuth()
+  const pathname = usePathname()
+  const router = useRouter()
 
-  // Handle hash scrolling when component mounts or pathname changes
-  useEffect(() => {
-    if (pathname === '/home' && typeof window !== 'undefined') {
-      const hash = window.location.hash;
-      if (hash) {
-        setTimeout(() => {
-          const element = document.querySelector(hash);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
-      }
-    }
-  }, [pathname]);
-
-  const scrollToSection = (href: string) => {
-    setIsMobileMenuOpen(false);
-    // If we're on the home page, scroll to the section
-    if (pathname === '/home') {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+  const scrollToContact = () => {
+    setIsMobileMenuOpen(false)
+    if (pathname === '/') {
+      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
     } else {
-      // If we're on another page, navigate to home with anchor
-      router.push(`/home${href}`);
+      router.push('/#contact')
     }
-  };
+  }
 
   return (
-    <motion.nav
-      className="fixed top-0 w-full bg-black text-white z-10"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-    >
-      <div className="flex items-center justify-between px-4 sm:px-6 py-4">
-        {/* Logo */}
-        <motion.a
-          href="/"
-          className="flex items-center space-x-2 cursor-pointer"
-          whileHover={{ scale: 1.05 }}
-          onClick={(e) => {
-            if (pathname !== '/') {
-              e.preventDefault();
-              router.push('/');
-            }
-          }}
-        >
-          <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-            <span className="text-black font-bold text-sm">N</span>
-          </div>
-          <span className="text-lg sm:text-xl font-bold text-green-500">NVibe AI</span>
-        </motion.a>
-        
-        {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex gap-6 lg:gap-8 font-sans text-sm lg:text-base">
-          <li><a href="/home" className="hover:text-gray-300 transition-colors">Home</a></li>
-          <li><a href="/home#solutions" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}>Solutions</a></li>
-          <li><a href="/" className="hover:text-gray-300 transition-colors">About</a></li>
-          <li><a href="/home#nvidia" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}>Demo</a></li>
-          <li><a href="/home#contact" className="hover:text-gray-300 transition-colors" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}>Contact</a></li>
-        </ul>
+    <>
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
+          {/* Logo */}
+          <a href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">N</span>
+            </div>
+            <span className="text-lg font-bold text-gray-900">NVibe AI</span>
+          </a>
 
-        {/* Auth Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
-          {user ? (
-            <div className="flex items-center space-x-4">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
               <a
-                href="/demo"
-                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href
+                    ? 'text-green-600'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
               >
-                <User className="w-4 h-4" />
-                <span>Dashboard</span>
+                {link.name}
               </a>
-              <button
-                onClick={signOut}
-                className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white transition-colors"
-              >
-                <LogOut className="w-4 h-4" />
-                <span>Sign Out</span>
-              </button>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setIsLoginOpen(true)}
-                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => setIsRegisterOpen(true)}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-              >
-                Sign Up
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-white p-2"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </motion.button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-black/95 border-t border-white/10"
-        >
-          <div className="px-4 py-4 space-y-3">
-            <a 
-              href="/home" 
-              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-            >
-              Home
-            </a>
-            <a 
-              href="/home#solutions" 
-              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#solutions'); }}
-            >
-              Solutions
-            </a>
-            <a 
-              href="/" 
-              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-            >
-              About
-            </a>
-            <a 
-              href="/home#nvidia" 
-              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#nvidia'); }}
-            >
-              Demo
-            </a>
-            <a 
-              href="/home#contact" 
-              className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}
+            ))}
+            <button
+              onClick={scrollToContact}
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
             >
               Contact
-            </a>
+            </button>
+          </div>
+
+          {/* Desktop auth */}
+          <div className="hidden md:flex items-center gap-3">
             {user ? (
               <>
-                <a 
-                  href="/demo" 
-                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2"
+                <a
+                  href="/demo"
+                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
                 >
+                  <User className="w-4 h-4" />
                   Dashboard
                 </a>
-                <button 
+                <button
                   onClick={signOut}
-                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2 w-full text-left"
+                  className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
                 >
-                  Sign Out
+                  <LogOut className="w-4 h-4" />
                 </button>
               </>
             ) : (
               <>
-                <button 
+                <button
                   onClick={() => setIsLoginOpen(true)}
-                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2 w-full text-left"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Sign In
                 </button>
-                <button 
+                <button
                   onClick={() => setIsRegisterOpen(true)}
-                  className="block text-white/80 hover:text-white transition-colors duration-200 font-medium py-2 w-full text-left"
+                  className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
                 >
                   Sign Up
                 </button>
               </>
             )}
           </div>
-        </motion.div>
-      )}
 
-      {/* Auth Modals */}
-      <LoginModal 
-        isOpen={isLoginOpen} 
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-gray-600"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="block py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <button
+              onClick={scrollToContact}
+              className="block py-2 text-sm font-medium text-gray-600 hover:text-gray-900 w-full text-left"
+            >
+              Contact
+            </button>
+            <div className="pt-3 border-t border-gray-100 space-y-2">
+              {user ? (
+                <>
+                  <a href="/demo" className="block py-2 text-sm font-medium text-green-600" onClick={() => setIsMobileMenuOpen(false)}>Dashboard</a>
+                  <button onClick={() => { signOut(); setIsMobileMenuOpen(false); }} className="block py-2 text-sm text-gray-500 w-full text-left">Sign Out</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => { setIsLoginOpen(true); setIsMobileMenuOpen(false); }} className="block py-2 text-sm text-gray-600 w-full text-left">Sign In</button>
+                  <button onClick={() => { setIsRegisterOpen(true); setIsMobileMenuOpen(false); }} className="block py-2 text-sm font-medium text-green-600 w-full text-left">Sign Up</button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Auth Modals — kept exactly as-is */}
+      <LoginModal
+        isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
-        onSwitchToRegister={() => {
-          setIsLoginOpen(false)
-          setIsRegisterOpen(true)
-        }}
+        onSwitchToRegister={() => { setIsLoginOpen(false); setIsRegisterOpen(true); }}
       />
-      <RegisterModal 
-        isOpen={isRegisterOpen} 
+      <RegisterModal
+        isOpen={isRegisterOpen}
         onClose={() => setIsRegisterOpen(false)}
-        onSwitchToLogin={() => {
-          setIsRegisterOpen(false)
-          setIsLoginOpen(true)
-        }}
+        onSwitchToLogin={() => { setIsRegisterOpen(false); setIsLoginOpen(true); }}
       />
-    </motion.nav>
-  );
+    </>
+  )
 }

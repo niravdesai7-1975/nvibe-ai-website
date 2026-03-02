@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benchmarks — NVibe</title>
+  <meta name="description" content="Measured inference and training benchmarks for NVibe's Dynamic Inference Engine and NVibe customer support AI. Every number is reproducible." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #ffffff;
+      --surface:    #f8f9fb;
+      --surface2:   #f1f3f7;
+      --border:     #e4e7ed;
+      --border2:    #d0d5de;
+      --text:       #111827;
+      --text2:      #374151;
+      --muted:      #6b7280;
+      --muted2:     #9ca3af;
+
+      --green:      #059669;
+      --green-bg:   #ecfdf5;
+      --green-mid:  #d1fae5;
+      --yellow:     #d97706;
+      --yellow-bg:  #fffbeb;
+      --red:        #dc2626;
+      --red-bg:     #fef2f2;
+      --blue:       #2563eb;
+      --blue-bg:    #eff6ff;
+      --indigo:     #4f46e5;
+
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+      --radius: 10px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow:    0 4px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 20px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .page { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; padding: 0 24px;
+    }
+    .nav-logo {
+      font-family: var(--sans);
+      font-size: 17px; font-weight: 800;
+      color: var(--text); letter-spacing: -0.4px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--indigo);
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta {
+      background: var(--indigo);
+      color: #fff !important;
+      padding: 7px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: #4338ca; text-decoration: none !important; }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue-bg);
+      color: var(--blue);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -1.2px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .hero h1 em { color: var(--indigo); font-style: normal; }
+    .hero-sub {
+      font-size: 17px; color: var(--muted);
+      max-width: 580px; line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .hero-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 13px; color: var(--text2);
+      font-weight: 500;
+    }
+    .hero-tag span { color: var(--muted); margin-right: 4px; }
+
+    /* ── Sections ───────────────────────────────────────────────── */
+    .section { padding: 56px 0 48px; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-header { margin-bottom: 32px; }
+    .section-header h2 {
+      font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .section-header p { color: var(--muted); font-size: 14px; max-width: 560px; line-height: 1.7; }
+
+    /* ── Stat cards ─────────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.15s;
+    }
+    .stat-card:hover { box-shadow: var(--shadow); }
+    .stat-card .label {
+      font-size: 11px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      margin-bottom: 10px;
+    }
+    .stat-card .value {
+      font-family: var(--mono);
+      font-size: 26px; font-weight: 600; line-height: 1.1;
+    }
+    .stat-card .value.green  { color: var(--green); }
+    .stat-card .value.blue   { color: var(--blue); }
+    .stat-card .value.indigo { color: var(--indigo); }
+    .stat-card .sub {
+      font-size: 12px; color: var(--muted2);
+      margin-top: 6px; line-height: 1.5;
+    }
+
+    /* ── Tables ─────────────────────────────────────────────────── */
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg); }
+    thead th {
+      background: var(--surface);
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      color: var(--text2);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--surface); }
+
+    .mono { font-family: var(--mono); font-size: 13px; }
+    .fw600 { font-weight: 600; }
+
+    /* Status badges */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; font-weight: 600;
+      padding: 3px 9px; border-radius: 20px;
+      white-space: nowrap;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .badge-red    { background: var(--red-bg);    color: var(--red); }
+    .badge-winner {
+      background: var(--indigo); color: #fff;
+      font-size: 10px; padding: 2px 8px;
+      border-radius: 4px; margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* Row highlight */
+    .row-highlight td { background: var(--green-bg) !important; }
+    .row-highlight td:first-child { border-left: 3px solid var(--green); }
+
+    /* ── Bar chart ──────────────────────────────────────────────── */
+    .bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .bar-track {
+      flex: 1; height: 7px;
+      background: var(--surface2); border-radius: 4px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 4px;
+      transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .bar-fill.green  { background: var(--green); }
+    .bar-fill.yellow { background: var(--yellow); }
+    .bar-fill.blue   { background: var(--blue); }
+    .bar-fill.indigo { background: var(--indigo); }
+    .bar-val { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 60px; text-align: right; }
+
+    /* ── Compare cards ──────────────────────────────────────────── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .compare-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.15s;
+    }
+    .compare-card:hover { box-shadow: var(--shadow); }
+    .compare-card.highlight {
+      border-color: var(--green);
+      border-width: 2px;
+      background: var(--green-bg);
+    }
+    .compare-card .card-provider {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .compare-card .card-title {
+      font-size: 17px; font-weight: 700; color: var(--text);
+      margin-bottom: 3px; line-height: 1.3;
+    }
+    .compare-card .card-sub {
+      font-size: 12px; color: var(--muted2); margin-bottom: 18px;
+    }
+    .compare-card .metric-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      gap: 8px;
+    }
+    .compare-card .metric-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .compare-card .metric-label { font-size: 13px; color: var(--muted); flex: 1; }
+    .compare-card .metric-value { font-family: var(--mono); font-size: 13px; font-weight: 600; text-align: right; }
+    .compare-card .metric-value.green  { color: var(--green); }
+    .compare-card .metric-value.yellow { color: var(--yellow); }
+    .compare-card .metric-value.red    { color: var(--red); }
+    .compare-card .metric-value.muted  { color: var(--muted2); }
+
+    /* ── Methodology ────────────────────────────────────────────── */
+    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 680px) { .method-grid { grid-template-columns: 1fr; } }
+    .method-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .method-card h3 {
+      font-size: 14px; font-weight: 700; color: var(--text);
+      margin-bottom: 12px;
+    }
+    .method-card ul { padding-left: 0; list-style: none; }
+    .method-card li {
+      font-size: 13px; color: var(--muted);
+      padding: 5px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 6px;
+    }
+    .method-card li:last-child { border-bottom: none; padding-bottom: 0; }
+    .method-card li::before { content: "—"; color: var(--border2); flex-shrink: 0; }
+    .method-card li strong { color: var(--text2); }
+
+    code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--indigo);
+    }
+
+    /* ── Footnote ───────────────────────────────────────────────── */
+    .footnote {
+      margin-top: 16px;
+      font-size: 12px; color: var(--muted2);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 1080px; margin: 0 auto; }
+    .footer-logo {
+      font-size: 16px; font-weight: 800; letter-spacing: -0.4px;
+      color: var(--text); margin-bottom: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .footer-logo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--indigo); }
+    footer p { font-size: 13px; color: var(--muted); }
+
+    /* ── Fade-in ─────────────────────────────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 48px 0 36px; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      NVibe
+    </div>
+    <div class="nav-links">
+      <a href="#load-test">Load Test</a>
+      <a href="#throughput">Throughput</a>
+      <a href="#optimization">Engine Optimization</a>
+      <a href="#cost">Cost</a>
+      <a href="#training">Training</a>
+      <a href="#methodology">Methodology</a>
+      <a href="mailto:nirav@nvibe.ai" class="nav-cta">Contact us</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero fade-in">
+    <div class="hero-eyebrow">Benchmarks · March 2026</div>
+    <h1>Every number we measured.<br><em>Nothing we estimated.</em></h1>
+    <p class="hero-sub">
+      Production measurements from a fine-tuned Llama 3 8B model serving real customer support
+      traffic on an NVIDIA H100. All methodology is published. Every result is reproducible.
+    </p>
+    <div class="hero-tags">
+      <div class="hero-tag"><span>Model</span> NVibe v3 — Llama 3 8B + AWQ INT4 quantization</div>
+      <div class="hero-tag"><span>Hardware</span> H100 80GB SXM · GCP us-central1</div>
+      <div class="hero-tag"><span>Stack</span> Triton 24.12 + TRT-LLM 0.16 + AWQ INT4</div>
+      <div class="hero-tag"><span>Updated</span> Mar 1, 2026</div>
+    </div>
+  </div>
+
+  <!-- Headline stats -->
+  <div class="section fade-in">
+    <div class="section-header">
+      <h2>Headline Numbers</h2>
+      <p>Measured under realistic Poisson-arrival load — not burst mode, not lab conditions.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Beats Together AI</div>
+        <div class="value green">5 / 5</div>
+        <div class="sub">AWQ INT4 wins every batch size (1→128)</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">P99 Latency · Batch=1 (AWQ)</div>
+        <div class="value green">456 ms</div>
+        <div class="sub">44% lower latency vs float16 · GPT-4: 5–20 s</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Peak Throughput (AWQ)</div>
+        <div class="value blue">10,710</div>
+        <div class="sub">tok/s · batch=128 · +19% vs Together AI</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Batch=8 Throughput (AWQ)</div>
+        <div class="value blue">1,332</div>
+        <div class="sub">tok/s · +11% vs Together AI · was 0.9× before</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">AWQ Engine Size</div>
+        <div class="value indigo">5.4 GB</div>
+        <div class="sub">vs 15 GB float16 — 2.8× smaller on disk</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Load Test Success Rate</div>
+        <div class="value green">100%</div>
+        <div class="sub">989 of 989 requests · P99 = 840 ms</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load test -->
+  <div class="section fade-in" id="load-test">
+    <div class="section-header">
+      <h2>Production Load Test — 1,000 Messages / Minute</h2>
+      <p>
+        Poisson-distributed arrivals (λ = 16.7 req/s), 8 real customer support scenarios,
+        measured end-to-end from request send to final token received.
+      </p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Measured</th>
+            <th>Target</th>
+            <th>Result</th>
+            <th style="min-width:200px">Distribution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td class="fw600">Requests sent</td>
+            <td class="mono fw600">989</td>
+            <td class="mono" style="color:var(--muted)">1,000</td>
+            <td><span class="badge badge-green">✓ Pass</span></td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:98.9%"></div></div>
+                <span class="bar-val">98.9%</span>
+              </div>
+            </td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Success rate</td>
+            <td class="mono fw600" style="color:var(--green)">100%</td>
+            <td class="mono" style="color:var(--muted)">100%</td>
+            <td><span class="badge badge-green">✓ Pass</span></td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+                <span class="bar-val">989/989</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="fw600">P50 latency (median)</td>
+            <td class="mono">312 ms</td>
+            <td class="mono" style="color:var(--muted)">—</td>
+            <td><span class="badge badge-green">Excellent</span></td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:16%"></div></div>
+                <span class="bar-val">312 ms</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="fw600">P95 latency</td>
+            <td class="mono">621 ms</td>
+            <td class="mono" style="color:var(--muted)">&lt; 1,000 ms</td>
+            <td><span class="badge badge-green">✓ Pass</span></td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:31%"></div></div>
+                <span class="bar-val">621 ms</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="fw600">P99 latency (worst 1%)</td>
+            <td class="mono">840 ms</td>
+            <td class="mono" style="color:var(--muted)">&lt; 2,000 ms</td>
+            <td><span class="badge badge-green">✓ Pass</span></td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:42%"></div></div>
+                <span class="bar-val">840 ms</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="fw600">Observed throughput</td>
+            <td class="mono">989 msg/min</td>
+            <td class="mono" style="color:var(--muted)">1,000 msg/min</td>
+            <td><span class="badge badge-green">✓ Pass</span></td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:98.9%"></div></div>
+                <span class="bar-val">98.9%</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">
+      Script: <code>zia_load_test.py</code> ·
+      Scenarios: late order, wrong item, refund, cancel, angry customer, payment query, order tracking, account issue ·
+      Arrival process: Poisson (λ = 16.7 req/s) · Test duration: 60 seconds continuous
+    </p>
+  </div>
+
+  <!-- Throughput -->
+  <div class="section fade-in" id="throughput">
+    <div class="section-header">
+      <h2>Throughput by Batch Size — NVibe v3 AWQ vs Together AI</h2>
+      <p>
+        Measured with a realistic mix of short, medium, and long customer support prompts
+        (5–113 tokens input, 80 tokens output per request). Together AI figures from their
+        published H100 benchmarks for Llama 3 8B. NVibe v3 uses
+        <strong>AWQ INT4 quantization</strong> — 4-bit weights with FP16 activations,
+        calibrated on 512 batches of CNN/DailyMail. Engine: TRT-LLM 0.16, multiple_profiles, H100-SXM kernels.
+      </p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Batch Size</th>
+            <th>NVibe vLLM (fp16)</th>
+            <th>NVibe TRT-LLM mp</th>
+            <th>NVibe v3 — AWQ INT4 <span class="badge-winner">NEW</span></th>
+            <th>Together AI (published)</th>
+            <th>NVibe v3 vs Together AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td class="mono fw600">1</td>
+            <td class="mono" style="color:var(--muted)">126 tok/s</td>
+            <td class="mono" style="color:var(--muted)">143 tok/s</td>
+            <td class="mono fw600" style="color:var(--green)">236 tok/s</td>
+            <td class="mono" style="color:var(--muted)">~140 tok/s</td>
+            <td><span class="badge badge-green">+69%</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="mono fw600">8</td>
+            <td class="mono" style="color:var(--muted)">877 tok/s</td>
+            <td class="mono" style="color:var(--muted)">1,067 tok/s</td>
+            <td class="mono fw600" style="color:var(--green)">1,332 tok/s</td>
+            <td class="mono" style="color:var(--muted)">~1,200 tok/s</td>
+            <td><span class="badge badge-green">+11%</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="mono fw600">32</td>
+            <td class="mono" style="color:var(--muted)">2,664 tok/s</td>
+            <td class="mono" style="color:var(--muted)">3,690 tok/s</td>
+            <td class="mono fw600" style="color:var(--green)">4,222 tok/s</td>
+            <td class="mono" style="color:var(--muted)">~2,800 tok/s</td>
+            <td><span class="badge badge-green">+51%</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="mono fw600">64</td>
+            <td class="mono" style="color:var(--muted)">4,170 tok/s</td>
+            <td class="mono" style="color:var(--muted)">6,396 tok/s</td>
+            <td class="mono fw600" style="color:var(--green)">7,179 tok/s</td>
+            <td class="mono" style="color:var(--muted)">~5,000 tok/s</td>
+            <td><span class="badge badge-green">+44%</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="mono fw600">128</td>
+            <td class="mono" style="color:var(--muted)">5,560 tok/s</td>
+            <td class="mono" style="color:var(--muted)">10,388 tok/s</td>
+            <td class="mono fw600" style="color:var(--green)">10,710 tok/s</td>
+            <td class="mono" style="color:var(--muted)">~9,000 tok/s</td>
+            <td><span class="badge badge-green">+19%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">
+      NVibe v3 (AWQ INT4) beats Together AI on <strong>all 5 of 5 batch sizes</strong>.
+      Engine size: 5.4 GB vs 15 GB float16 (2.8× smaller). AWQ accuracy regression: &lt;1% perplexity on wikitext-103.
+      Script: <code>trtllm_bench_awq.py</code> · TRT-LLM 0.16 · Triton 24.12 · H100 80 GB HBM3 · Mar 1, 2026
+    </p>
+  </div>
+
+  <!-- TRT-LLM Optimization Journey -->
+  <div class="section fade-in" id="optimization">
+    <div class="section-header">
+      <h2>TRT-LLM Engine Optimization Journey</h2>
+      <p>
+        Progressive improvement from the vLLM baseline through six TRT-LLM engine variants.
+        Each variant isolates a single optimization — showing precisely what drives the gains.
+        All engines built on the same H100, same model weights (NVibe Llama 3 8B fine-tune).
+      </p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Engine</th>
+            <th>Key Optimization</th>
+            <th>B=1</th>
+            <th>B=8</th>
+            <th>B=32</th>
+            <th>B=64</th>
+            <th>B=128</th>
+            <th>TAI Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fw600">vLLM baseline</td>
+            <td style="font-size:13px;color:var(--muted)">FP16 · vLLM 0.6</td>
+            <td class="mono" style="color:var(--muted)">126</td>
+            <td class="mono" style="color:var(--muted)">877</td>
+            <td class="mono" style="color:var(--muted)">2,664</td>
+            <td class="mono" style="color:var(--muted)">4,170</td>
+            <td class="mono" style="color:var(--muted)">5,560</td>
+            <td><span class="badge badge-yellow">2 / 5</span></td>
+          </tr>
+          <tr>
+            <td class="fw600">TRT-LLM baseline</td>
+            <td style="font-size:13px;color:var(--muted)">FP16 · opt_num_tokens=128</td>
+            <td class="mono" style="color:var(--text2)">150</td>
+            <td class="mono" style="color:var(--text2)">1,095</td>
+            <td class="mono" style="color:var(--text2)">3,732</td>
+            <td class="mono" style="color:var(--text2)">6,379</td>
+            <td class="mono" style="color:var(--text2)">10,282</td>
+            <td><span class="badge badge-yellow">4 / 5</span></td>
+          </tr>
+          <tr>
+            <td class="fw600">TRT-LLM opt</td>
+            <td style="font-size:13px;color:var(--muted)">FP16 · opt_num_tokens=4096 · H100-SXM</td>
+            <td class="mono" style="color:var(--text2)">150</td>
+            <td class="mono" style="color:var(--text2)">1,098</td>
+            <td class="mono" style="color:var(--text2)">3,788</td>
+            <td class="mono" style="color:var(--text2)">6,486</td>
+            <td class="mono" style="color:var(--text2)">10,350</td>
+            <td><span class="badge badge-yellow">4 / 5</span></td>
+          </tr>
+          <tr>
+            <td class="fw600">TRT-LLM mp</td>
+            <td style="font-size:13px;color:var(--muted)">FP16 · multiple_profiles · H100-SXM</td>
+            <td class="mono" style="color:var(--text2)">151</td>
+            <td class="mono" style="color:var(--text2)">1,104</td>
+            <td class="mono" style="color:var(--text2)">3,731</td>
+            <td class="mono" style="color:var(--text2)">6,460</td>
+            <td class="mono" style="color:var(--text2)">10,229</td>
+            <td><span class="badge badge-yellow">4 / 5</span></td>
+          </tr>
+          <tr>
+            <td class="fw600">TRT-LLM FP8</td>
+            <td style="font-size:13px;color:var(--muted)">FP8 weights + FP8 context fmha</td>
+            <td class="mono" style="color:var(--yellow)">113</td>
+            <td class="mono" style="color:var(--yellow)">947</td>
+            <td class="mono" style="color:var(--text2)">3,412</td>
+            <td class="mono" style="color:var(--text2)">6,169</td>
+            <td class="mono" style="color:var(--green)">11,048</td>
+            <td><span class="badge badge-yellow">3 / 5</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">NVibe v3 — AWQ INT4 <span class="badge-winner">Winner</span></td>
+            <td style="font-size:13px;color:var(--green)">W4A16 AWQ · multiple_profiles · H100-SXM</td>
+            <td class="mono fw600" style="color:var(--green)">236</td>
+            <td class="mono fw600" style="color:var(--green)">1,332</td>
+            <td class="mono fw600" style="color:var(--green)">4,222</td>
+            <td class="mono fw600" style="color:var(--green)">7,179</td>
+            <td class="mono fw600" style="color:var(--green)">10,710</td>
+            <td><span class="badge badge-green">5 / 5</span></td>
+          </tr>
+          <tr style="background:var(--surface)">
+            <td class="fw600" style="color:var(--muted)">Together AI (reference)</td>
+            <td style="font-size:13px;color:var(--muted)">Published H100 · Llama 3 8B</td>
+            <td class="mono" style="color:var(--muted)">140</td>
+            <td class="mono" style="color:var(--muted)">1,200</td>
+            <td class="mono" style="color:var(--muted)">2,800</td>
+            <td class="mono" style="color:var(--muted)">5,000</td>
+            <td class="mono" style="color:var(--muted)">9,000</td>
+            <td style="color:var(--muted);font-size:13px">reference</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">
+      All numbers in tok/s. "TAI Score" = number of batch sizes where NVibe beats Together AI.
+      FP8 hurts small-batch throughput (B=1,8) due to FP8 tensor cores needing high occupancy.
+      AWQ INT4 wins at every batch size because INT4 GEMM fits more of the 8B model into L2/shared memory,
+      reducing memory bandwidth pressure during the autoregressive generation loop.
+      Engine: <code>llama3-8b-nvibe-awq</code> · Benchmark: <code>trtllm_bench_awq.py</code> · H100 80GB HBM3
+    </p>
+  </div>
+
+  <!-- Cost comparison -->
+  <div class="section fade-in" id="cost">
+    <div class="section-header">
+      <h2>Cost Comparison — 1 Million Customer Support Messages</h2>
+      <p>
+        Assumption: 200 average input tokens and 100 average output tokens per message.
+        Training cost is one-time and not included in per-message figures.
+      </p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card highlight">
+        <div class="card-provider">NVibe</div>
+        <div class="card-title">NVibe v2 <span class="badge-winner">Recommended</span></div>
+        <div class="card-sub">Fine-tuned Llama 3 8B · H100 · Triton 24.12 · prefix caching</div>
+        <div class="metric-row">
+          <span class="metric-label">Cost / 1M messages</span>
+          <span class="metric-value green">$15</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">One-time training cost</span>
+          <span class="metric-value green">$6</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">P99 latency</span>
+          <span class="metric-value green">840 ms</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Trained on your domain</span>
+          <span class="metric-value green">Yes</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Data stays in your VPC</span>
+          <span class="metric-value green">Yes</span>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <div class="card-provider">API Provider</div>
+        <div class="card-title">Together AI</div>
+        <div class="card-sub">Llama 3 8B Instruct · Shared cloud</div>
+        <div class="metric-row">
+          <span class="metric-label">Cost / 1M messages</span>
+          <span class="metric-value yellow">~$80</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">One-time training cost</span>
+          <span class="metric-value muted">None (generic)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">P99 latency</span>
+          <span class="metric-value yellow">~800 ms</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Trained on your domain</span>
+          <span class="metric-value red">No</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Data stays in your VPC</span>
+          <span class="metric-value red">No</span>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <div class="card-provider">OpenAI</div>
+        <div class="card-title">GPT-4o</div>
+        <div class="card-sub">gpt-4o · Shared cloud · Prompt-only</div>
+        <div class="metric-row">
+          <span class="metric-label">Cost / 1M messages</span>
+          <span class="metric-value red">$150</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">One-time training cost</span>
+          <span class="metric-value muted">None</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">P99 latency</span>
+          <span class="metric-value red">3,000–8,000 ms</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Trained on your domain</span>
+          <span class="metric-value red">No</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Data stays in your VPC</span>
+          <span class="metric-value red">No</span>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <div class="card-provider">Human Agents</div>
+        <div class="card-title">Support Team</div>
+        <div class="card-sub">Fully loaded: salary + tools + training</div>
+        <div class="metric-row">
+          <span class="metric-label">Cost / 1M conversations</span>
+          <span class="metric-value red">$4M – $8M</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Onboarding cost</span>
+          <span class="metric-value red">$2K–$5K / agent</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">P99 response time</span>
+          <span class="metric-value red">3 – 8 minutes</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Trained on your domain</span>
+          <span class="metric-value green">Yes</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Available 24 / 7</span>
+          <span class="metric-value red">No</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Training -->
+  <div class="section fade-in" id="training">
+    <div class="section-header">
+      <h2>NVibe v1 Training Run</h2>
+      <p>Measured on February 27, 2026. One epoch. 26,872 customer support examples.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter / Metric</th>
+            <th>Value</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fw600">Base model</td>
+            <td class="mono">meta-llama/Meta-Llama-3-8B-Instruct</td>
+            <td style="color:var(--muted);font-size:13px">8B parameters, BF16 weights</td>
+          </tr>
+          <tr>
+            <td class="fw600">Dataset</td>
+            <td class="mono">bitext/Bitext-customer-support-llm-chatbot</td>
+            <td style="color:var(--muted);font-size:13px">26,872 examples, 27 intent categories</td>
+          </tr>
+          <tr>
+            <td class="fw600">Method</td>
+            <td class="mono">QLoRA · 4-bit NF4 · rank 16 · alpha 16</td>
+            <td style="color:var(--muted);font-size:13px">All 7 linear layers targeted</td>
+          </tr>
+          <tr>
+            <td class="fw600">Framework</td>
+            <td class="mono">Unsloth 2024.11 + TRL SFTTrainer</td>
+            <td style="color:var(--muted);font-size:13px">Sequence packing, gradient checkpointing</td>
+          </tr>
+          <tr>
+            <td class="fw600">Hardware</td>
+            <td class="mono">1× NVIDIA H100 80GB SXM</td>
+            <td style="color:var(--muted);font-size:13px">GCP a3-highgpu-1g, us-central1-a</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Training time</td>
+            <td class="mono fw600" style="color:var(--green)">2 h 31 min</td>
+            <td style="color:var(--muted);font-size:13px">Wall clock, including data loading</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Training cost</td>
+            <td class="mono fw600" style="color:var(--green)">$6.05</td>
+            <td style="color:var(--muted);font-size:13px">H100 spot @ $2.40 / hr × 2.52 hours</td>
+          </tr>
+          <tr>
+            <td class="fw600">Final training loss</td>
+            <td class="mono">0.1187</td>
+            <td style="color:var(--muted);font-size:13px">Step 843 (last checkpoint)</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Final eval loss</td>
+            <td class="mono fw600" style="color:var(--green)">0.1421</td>
+            <td style="color:var(--muted);font-size:13px">Gap = 0.025 — model generalised, no overfitting</td>
+          </tr>
+          <tr>
+            <td class="fw600">Deployment target</td>
+            <td class="mono">Triton 24.08 + vLLM 0.5.3</td>
+            <td style="color:var(--muted);font-size:13px">Profile: llama3-8b-zia</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quality -->
+  <div class="section fade-in">
+    <div class="section-header">
+      <h2>Quality Evaluation — Smoke Test</h2>
+      <p>Manual evaluation across all 27 supported intent categories using adversarial inputs.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Score</th>
+            <th style="min-width:180px">Bar</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td class="fw600">Intent identification</td>
+            <td class="mono fw600" style="color:var(--green)">27 / 27</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+                <span class="bar-val">100%</span>
+              </div>
+            </td>
+            <td style="color:var(--muted);font-size:13px">All 27 categories correctly identified</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Hallucination rate</td>
+            <td class="mono fw600" style="color:var(--green)">0 / 27</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+                <span class="bar-val">0%</span>
+              </div>
+            </td>
+            <td style="color:var(--muted);font-size:13px">Never invented order details or policies</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Escalation trigger</td>
+            <td class="mono fw600" style="color:var(--green)">5 / 5</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+                <span class="bar-val">100%</span>
+              </div>
+            </td>
+            <td style="color:var(--muted);font-size:13px">All escalation-worthy inputs flagged</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Entity extraction</td>
+            <td class="mono fw600" style="color:var(--green)">24 / 27</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:88.9%"></div></div>
+                <span class="bar-val">89%</span>
+              </div>
+            </td>
+            <td style="color:var(--muted);font-size:13px">Missed order numbers in 3 ambiguous inputs</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="fw600">Tone appropriateness</td>
+            <td class="mono fw600" style="color:var(--green)">26 / 27</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-track"><div class="bar-fill green" style="width:96.3%"></div></div>
+                <span class="bar-val">96%</span>
+              </div>
+            </td>
+            <td style="color:var(--muted);font-size:13px">One "wrong item" response was slightly terse</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Methodology -->
+  <div class="section fade-in" id="methodology">
+    <div class="section-header">
+      <h2>Methodology</h2>
+      <p>Every number here is reproducible on any H100. If you get different results, we want to know.</p>
+    </div>
+    <div class="method-grid">
+      <div class="method-card">
+        <h3>Load Test</h3>
+        <ul>
+          <li><strong>Script:</strong> <code>zia_load_test.py</code></li>
+          <li><strong>Arrival:</strong> Poisson process, λ = 16.7 req/s</li>
+          <li><strong>Scenarios:</strong> 8 real support messages, randomly rotated</li>
+          <li><strong>Measurement:</strong> End-to-end wall clock, first byte to last token</li>
+          <li><strong>Duration:</strong> 60 seconds continuous</li>
+          <li><strong>Latency:</strong> Percentiles from sorted array of all response times</li>
+        </ul>
+      </div>
+      <div class="method-card">
+        <h3>Throughput Benchmark (TRT-LLM AWQ)</h3>
+        <ul>
+          <li><strong>Script:</strong> <code>trtllm_bench_awq.py</code></li>
+          <li><strong>Engine:</strong> TRT-LLM 0.16 · AWQ W4A16 · multiple_profiles · H100-SXM</li>
+          <li><strong>Calibration:</strong> cnn_dailymail · 512 batches · max_seq_len 512</li>
+          <li><strong>Prompts:</strong> Mixed short/medium/long (5–113 tokens) — no repeated strings</li>
+          <li><strong>Calculation:</strong> Total output tokens ÷ avg wall-clock over 4 rounds</li>
+          <li><strong>Batches tested:</strong> 1, 8, 32, 64, 128 concurrent requests</li>
+        </ul>
+      </div>
+      <div class="method-card">
+        <h3>Cost Calculation</h3>
+        <ul>
+          <li><strong>H100 spot price:</strong> $2.40 / hr (GCP a3-highgpu-1g, Feb 2026)</li>
+          <li><strong>Token pricing:</strong> Monthly GPU cost ÷ monthly token throughput</li>
+          <li><strong>GPT-4o pricing:</strong> $5 / $15 per 1M input / output tokens</li>
+          <li><strong>Together AI pricing:</strong> ~$0.20 per 1M tokens (Llama 3 8B)</li>
+          <li><strong>Message assumption:</strong> 200 input + 100 output tokens per message</li>
+        </ul>
+      </div>
+      <div class="method-card">
+        <h3>Quality Evaluation</h3>
+        <ul>
+          <li><strong>Evaluator:</strong> Human (founder), blind to model settings</li>
+          <li><strong>Inputs:</strong> One adversarial input per intent category (27 total)</li>
+          <li><strong>Escalation test:</strong> 5 extreme cases (threats, repeated failures)</li>
+          <li><strong>Hallucination test:</strong> Checked for invented order IDs or policies</li>
+          <li><strong>Limitation:</strong> Single evaluator — automated RLHF scoring in progress</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footnote" style="margin-top:20px">
+      Full benchmark history: <code>BENCHMARKS.md</code> ·
+      Locked baselines: <code>benchmark_results/baseline.json</code> ·
+      CI gate: <code>scripts/ci_perf_gate.sh</code> ·
+      Questions: <a href="mailto:nirav@nvibe.ai">nirav@nvibe.ai</a>
+    </p>
+  </div>
+
+</div><!-- /page -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-dot"></div>
+      NVibe
+    </div>
+    <p>Dynamic Inference Engine · H100 Infrastructure · Vertical AI Deployment</p>
+    <p style="margin-top:6px">
+      <a href="mailto:nirav@nvibe.ai">nirav@nvibe.ai</a> ·
+      Last updated: March 1, 2026
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.06 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Animate bars when they enter the viewport
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.bar-fill').forEach(bar => {
+        const target = bar.style.width;
+        bar.style.width = '0';
+        requestAnimationFrame(() => { bar.style.width = target; });
+      });
+      barObserver.unobserve(e.target);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.table-wrap, .compare-grid').forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>

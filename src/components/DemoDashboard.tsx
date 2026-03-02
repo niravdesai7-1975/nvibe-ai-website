@@ -87,7 +87,7 @@ export default function DemoDashboard() {
   ]
 
   const tabs = [
-    { id: 'zia', label: 'Zia AI Demo', icon: Bot },
+    { id: 'zia', label: 'NVibe AI Demo', icon: Bot },
     { id: 'overview', label: 'Overview', icon: BarChart3 },
     { id: 'analytics', label: 'Analytics', icon: TrendingUp },
     { id: 'settings', label: 'Settings', icon: Settings }
@@ -148,7 +148,7 @@ export default function DemoDashboard() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">Zia — AI Customer Support Agent</h2>
+                <h2 className="text-xl font-semibold text-gray-900">NVibe — AI Customer Support Agent</h2>
                 <p className="text-sm text-gray-500 mt-1">
                   Powered by a fine-tuned Llama 3 8B model running on NVibe&apos;s H100 inference engine
                 </p>
@@ -166,7 +166,7 @@ export default function DemoDashboard() {
               <iframe
                 src="https://demo.nvibe.ai"
                 className="w-full h-full"
-                title="Zia AI Customer Support Demo"
+                title="NVibe AI Customer Support Demo"
                 allow="clipboard-write"
                 loading="lazy"
               />
