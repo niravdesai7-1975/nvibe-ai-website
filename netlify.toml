@@ -1,11 +1,18 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  # Next.js static export uses distDir: 'publish', so the built site lives in publish/ not .next
+  publish = "publish"
 
 [build.environment]
   NODE_VERSION = "18"
 
-# Serve the static benchmark report so the /benchmarks page iframe can load it (must come before SPA catch-all)
+# Redirect /benchmarks to the static report so the report always loads
+[[redirects]]
+  from = "/benchmarks"
+  to = "/benchmarks.html"
+  status = 302
+
+# Serve the static benchmark report (must come before SPA catch-all)
 [[redirects]]
   from = "/benchmarks.html"
   to = "/benchmarks.html"
