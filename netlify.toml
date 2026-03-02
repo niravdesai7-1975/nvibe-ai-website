@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Serve the static benchmark report so the /benchmarks page iframe can load it (must come before SPA catch-all)
+[[redirects]]
+  from = "/benchmarks.html"
+  to = "/benchmarks.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
