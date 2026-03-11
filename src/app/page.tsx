@@ -1,5 +1,3 @@
-'use client'
-
 import Nav from '@/components/Nav'
 import HeroSection from '@/components/HeroSection'
 import ProblemSection from '@/components/ProblemSection'
