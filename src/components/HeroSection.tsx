@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Play } from 'lucide-react'
 
 const proofBadges = [
-  { metric: '10,710 tok/s', label: 'Beats Together AI 5/5 batch sizes' },
+  { metric: '10,710 tok/s', label: 'NVIDIA H100 + TensorRT-LLM — beats Together AI 5/5 batch sizes' },
   { metric: '$15', label: 'Per 1M messages — 10x cheaper than GPT-4o' },
-  { metric: '0%', label: 'Hallucination rate — trained on your business' },
+  { metric: '0%', label: 'Hallucination rate — fine-tuned on your business data' },
 ]
 
 export default function HeroSection() {
@@ -20,14 +20,14 @@ export default function HeroSection() {
           className="text-center"
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-            We build custom AI for your business
-            <span className="block gradient-text mt-1">— from the GPU up.</span>
+            Enterprise AI Customer Support Platform
+            <span className="block gradient-text mt-1">— built from the GPU up.</span>
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            NVibe trains a model on your data, deploys it inside your infrastructure,
-            and serves it faster than Together AI. Your customers get instant, accurate
-            responses. Your data never leaves.
+            NVibe fine-tunes a custom AI model on your data, deploys it inside your VPC on
+            NVIDIA H100 GPUs with TensorRT-LLM, and serves responses faster than any API provider.
+            Zero hallucinations. Your data never leaves your infrastructure.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">

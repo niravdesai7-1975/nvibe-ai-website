@@ -33,10 +33,10 @@ export default function CostSection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Every Salesforce customer I worked with in the last 20 years complain about one thing
+            The real cost of Salesforce Service Cloud — and the AI customer support alternative
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
-            We are paying ridiculous millions of dollars to Salesforce on license, build and maintain with little value in return to our business. NVibe solves this at a nominal price — no ongoing license and no consulting or maintenance cost.
+            Every Salesforce customer I worked with in the last 20 years says the same thing: millions in licensing, consulting, and maintenance for an AI customer service platform that wasn&apos;t built for AI. NVibe is the Salesforce Service Cloud alternative — AI-native, on-premise, and priced at $99/agent/month.
           </p>
         </motion.div>
 

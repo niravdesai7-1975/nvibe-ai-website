@@ -7,22 +7,22 @@ import { AlertTriangle, ShieldOff, Rocket } from 'lucide-react'
 const problems = [
   {
     icon: AlertTriangle,
-    title: 'Generic AI hallucinates your business',
-    description: 'GPT-4 has never seen your refund policy. It guesses. NVibe is trained on your actual data — 0% hallucination rate across 27 adversarial tests.',
+    title: 'Generic LLMs hallucinate your business data',
+    description: 'GPT-4 has never seen your refund policy. It guesses. NVibe fine-tunes a custom AI model on your actual data using NVIDIA NeMo — 0% hallucination rate across 27 adversarial tests.',
     color: 'text-red-500',
     bg: 'bg-red-50',
   },
   {
     icon: ShieldOff,
-    title: 'API providers leak your data',
-    description: 'Every API call sends customer data to someone else\'s server. NVibe runs entirely inside your VPC. Nothing leaves your network.',
+    title: 'Third-party AI APIs leak customer data',
+    description: 'Every API call to a cloud LLM sends customer data to someone else\'s server. NVibe runs enterprise AI customer support entirely inside your VPC on NVIDIA H100 GPUs. Nothing leaves your network.',
     color: 'text-orange-500',
     bg: 'bg-orange-50',
   },
   {
     icon: Rocket,
-    title: 'Production AI is 10x harder than prototypes',
-    description: '87% of AI projects never reach production (Gartner 2025). NVibe goes from your data to a live, load-tested deployment in 3 weeks.',
+    title: 'Enterprise AI deployment is 10x harder than prototypes',
+    description: '87% of enterprise AI projects never reach production (Gartner 2025). NVibe goes from your data to a live, load-tested AI customer service deployment in 3 weeks.',
     color: 'text-blue-500',
     bg: 'bg-blue-50',
   },
@@ -42,10 +42,10 @@ export default function ProblemSection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Why most AI deployments fail
+            Why most enterprise AI customer support deployments fail
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-            Three structural problems that no API provider solves.
+            Three structural problems that no generic AI API provider solves.
           </p>
         </motion.div>
 

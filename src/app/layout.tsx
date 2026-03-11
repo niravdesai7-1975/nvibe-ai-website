@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: '%s | NVibe AI',
   },
   description: 'Replace Salesforce Service Cloud with an AI-native customer support platform. Custom AI trained on your data, deployed inside your VPC. Zero hallucinations. $15/1M messages — 10x cheaper than GPT-4o. Book a demo.',
-  keywords: 'AI customer support platform, enterprise AI customer service, on-premise AI customer support, private AI deployment, custom AI support software, AI customer service without hallucinations, Salesforce Service Cloud alternative, self-hosted AI support, VPC AI deployment, fine-tuned LLM customer support',
+  keywords: 'AI customer support platform, enterprise AI customer service, on-premise AI customer support, AI customer service software, AI help desk software, conversational AI customer support, Salesforce Service Cloud alternative, self-hosted AI support, VPC AI deployment, fine-tuned LLM customer support, AI support agent, zero hallucination AI, NVIDIA H100 inference, TensorRT-LLM, NVIDIA NeMo fine-tuning, NVIDIA Triton Inference Server, NVIDIA GPU inference, enterprise AI deployment, private AI deployment, custom AI support software',
   authors: [{ name: 'NVibe AI' }],
   creator: 'NVibe AI',
   publisher: 'NVibe AI',

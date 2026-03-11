@@ -19,7 +19,7 @@ export default function FounderSection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Built by Salesforce AI engineer, not a generalist
+            Built by a Salesforce AI engineer with NVIDIA GPU expertise — not a generalist
           </h2>
         </motion.div>
 
@@ -72,9 +72,9 @@ export default function FounderSection() {
             </blockquote>
 
             <p className="text-gray-600 leading-relaxed">
-              The result: an inference engine that beats Together AI on all 5 batch sizes,
-              a custom training pipeline that produces zero-hallucination models,
-              and a production stack that runs entirely inside your VPC.
+              The result: an NVIDIA TensorRT-LLM inference engine that beats Together AI on all 5 batch sizes,
+              an NVIDIA NeMo fine-tuning pipeline that produces zero-hallucination AI customer support models,
+              and a production stack served via NVIDIA Triton that runs entirely inside your VPC.
             </p>
           </motion.div>
 

@@ -45,10 +45,10 @@ export default function WowFeatures() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            What AI-native support looks like
+            What enterprise AI-native customer support looks like
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
-            Intelligence that&apos;s visible, not just functional. Sierra ($10B valuation) and
+            AI customer service intelligence that&apos;s visible, not just functional. Sierra ($10B valuation) and
             Decagon ($65M Series B) won enterprise deals by making AI reasoning auditable.
           </p>
         </motion.div>

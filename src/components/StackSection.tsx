@@ -7,27 +7,27 @@ const layers = [
   {
     number: 5,
     name: 'Analytics & Insights',
-    detail: 'Resolution rates, efficiency, and quality metrics that drive improvement',
+    detail: 'AI resolution rates, CSAT, agent efficiency, and cost savings metrics in real-time',
   },
   {
     number: 4,
     name: 'Workflow & Actions',
-    detail: 'Route, escalate, refund, and more — AI takes the right actions automatically',
+    detail: 'Route, escalate, refund, and more — AI support agent takes the right actions automatically',
   },
   {
     number: 3,
     name: 'Knowledge & Retrieval',
-    detail: 'Find answers from your docs, policies, and past resolutions',
+    detail: 'RAG-powered search across your docs, policies, and past resolutions — zero hallucinations',
   },
   {
     number: 2,
-    name: 'Understanding',
-    detail: 'Intent, sentiment, and meaning — tuned to your business and your customers',
+    name: 'Fine-Tuned Understanding',
+    detail: 'NVIDIA NeMo fine-tuning on your business data — intent, sentiment, and domain-specific meaning',
   },
   {
     number: 1,
-    name: 'Infrastructure & API',
-    detail: 'Real-time, thread-based backend with AI built in from the ground up',
+    name: 'NVIDIA GPU Inference Infrastructure',
+    detail: 'NVIDIA H100 GPUs + TensorRT-LLM + NVIDIA Triton Inference Server — private VPC deployment',
   },
 ]
 
@@ -45,10 +45,10 @@ export default function StackSection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Five layers. Built from the ground up.
+            Five layers. Built from the GPU up.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
-            We build an innovative, high-performing solution by designing and innovating at every layer — infrastructure, understanding, knowledge, workflow, and analytics — so each layer is built to perform together.
+            Every layer of the AI customer support stack — NVIDIA GPU inference, NeMo fine-tuning, RAG retrieval, intelligent workflows, and analytics — engineered to work together for enterprise-grade performance.
           </p>
         </motion.div>
 
