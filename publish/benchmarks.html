@@ -76,23 +76,35 @@
       font-size: 17px; font-weight: 800;
       color: var(--text); letter-spacing: -0.4px;
       display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
     }
-    .nav-logo-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--indigo);
+    .nav-logo:hover { text-decoration: none; }
+    .nav-logo-box {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #059669;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-logo-box span { color: #fff; font-weight: 700; font-size: 14px; }
+    .nav-home-back {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: 13px; font-weight: 500;
+      border-right: 1px solid var(--border); padding-right: 16px; margin-right: 4px;
+    }
+    .nav-home-back:hover { color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
     .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links a.active { color: #059669; }
     .nav-cta {
-      background: var(--indigo);
+      background: #059669;
       color: #fff !important;
       padding: 7px 16px;
       border-radius: 7px;
       font-size: 13px;
       font-weight: 600;
     }
-    .nav-cta:hover { background: #4338ca; text-decoration: none !important; }
+    .nav-cta:hover { background: #047857; text-decoration: none !important; }
 
     /* ── Hero ───────────────────────────────────────────────────── */
     .hero {
@@ -362,9 +374,14 @@
 <!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="nav-logo-dot"></div>
-      NVibe
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-box"><span>N</span></div>
+        NVibe AI
+      </a>
+      <a href="/" class="nav-home-back" title="Back to home">
+        ← Home
+      </a>
     </div>
     <div class="nav-links">
       <a href="#load-test">Load Test</a>

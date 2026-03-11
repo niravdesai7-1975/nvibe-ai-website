@@ -2,95 +2,52 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { 
-  BarChart3, 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
-  Settings, 
+import {
+  BarChart3,
+  TrendingUp,
+  Users,
+  DollarSign,
+  Settings,
   LogOut,
   User,
-  Building,
-  Mail,
-  Calendar,
   ArrowUpRight,
   ArrowDownRight,
   Bot,
-  ExternalLink
+  ExternalLink,
+  UserPlus,
+  Briefcase,
+  Headphones,
 } from 'lucide-react'
 import { useAuth } from '@/contexts/MockAuthContext'
+import LeadsTab from '@/components/demo/LeadsTab'
+import SalesTab from '@/components/demo/SalesTab'
+import SupportTab from '@/components/demo/SupportTab'
 
 export default function DemoDashboard() {
   const { user, signOut } = useAuth()
-  const [activeTab, setActiveTab] = useState('zia')
+  const [activeTab, setActiveTab] = useState('leads')
 
   const metrics = [
-    {
-      title: 'Revenue Growth',
-      value: '+12.5%',
-      change: '+2.3%',
-      trend: 'up',
-      icon: TrendingUp,
-      color: 'text-green-600'
-    },
-    {
-      title: 'Cost Savings',
-      value: '10-12%',
-      change: '+1.8%',
-      trend: 'up',
-      icon: DollarSign,
-      color: 'text-blue-600'
-    },
-    {
-      title: 'Customer Retention',
-      value: '94.2%',
-      change: '+0.5%',
-      trend: 'up',
-      icon: Users,
-      color: 'text-purple-600'
-    },
-    {
-      title: 'CLV Growth',
-      value: '10-15%',
-      change: '+3.2%',
-      trend: 'up',
-      icon: BarChart3,
-      color: 'text-orange-600'
-    }
+    { title: 'Revenue Growth', value: '+12.5%', change: '+2.3%', trend: 'up', icon: TrendingUp, color: 'text-green-600' },
+    { title: 'Cost Savings', value: '10-12%', change: '+1.8%', trend: 'up', icon: DollarSign, color: 'text-blue-600' },
+    { title: 'Customer Retention', value: '94.2%', change: '+0.5%', trend: 'up', icon: Users, color: 'text-purple-600' },
+    { title: 'CLV Growth', value: '10-15%', change: '+3.2%', trend: 'up', icon: BarChart3, color: 'text-orange-600' },
   ]
 
   const recentActivities = [
-    {
-      action: 'AI Model Optimization',
-      description: 'Updated pricing algorithm for Q4',
-      time: '2 hours ago',
-      status: 'completed'
-    },
-    {
-      action: 'Data Integration',
-      description: 'Connected new CRM system',
-      time: '5 hours ago',
-      status: 'completed'
-    },
-    {
-      action: 'Performance Analysis',
-      description: 'Generated monthly report',
-      time: '1 day ago',
-      status: 'completed'
-    },
-    {
-      action: 'System Update',
-      description: 'Applied security patches',
-      time: '2 days ago',
-      status: 'completed'
-    }
+    { action: 'AI Model Optimization', description: 'Updated pricing algorithm for Q4', time: '2 hours ago' },
+    { action: 'Data Integration', description: 'Connected new CRM system', time: '5 hours ago' },
+    { action: 'Performance Analysis', description: 'Generated monthly report', time: '1 day ago' },
+    { action: 'System Update', description: 'Applied security patches', time: '2 days ago' },
   ]
 
   const tabs = [
-    { id: 'zia', label: 'NVibe AI Demo', icon: Bot },
+    { id: 'leads', label: 'Leads', icon: UserPlus },
+    { id: 'sales', label: 'Sales Pipeline', icon: Briefcase },
+    { id: 'support', label: 'Customer Support', icon: Headphones },
+    { id: 'nvibe-bot', label: 'NVibe Bot', icon: Bot },
     { id: 'overview', label: 'Overview', icon: BarChart3 },
-    { id: 'analytics', label: 'Analytics', icon: TrendingUp },
-    { id: 'settings', label: 'Settings', icon: Settings }
+    { id: 'settings', label: 'Settings', icon: Settings },
   ]
 
   return (
@@ -99,9 +56,7 @@ export default function DemoDashboard() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">NVibe AI Dashboard</h1>
-            </div>
+            <h1 className="text-2xl font-bold text-gray-900">NVibe AI Dashboard</h1>
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-600">
                 Welcome, {user?.user_metadata?.name || user?.email}
@@ -120,13 +75,13 @@ export default function DemoDashboard() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tabs */}
-        <div className="mb-8">
-          <nav className="flex space-x-8">
+        <div className="mb-8 overflow-x-auto">
+          <nav className="flex space-x-6 min-w-max border-b border-gray-200">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm ${
+                className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap -mb-px ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -139,16 +94,33 @@ export default function DemoDashboard() {
           </nav>
         </div>
 
-        {/* Zia AI Demo Tab */}
-        {activeTab === 'zia' && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
-          >
+        {/* Leads Tab */}
+        {activeTab === 'leads' && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            <LeadsTab />
+          </motion.div>
+        )}
+
+        {/* Sales Pipeline Tab */}
+        {activeTab === 'sales' && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            <SalesTab />
+          </motion.div>
+        )}
+
+        {/* Customer Support Tab */}
+        {activeTab === 'support' && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            <SupportTab />
+          </motion.div>
+        )}
+
+        {/* NVibe Bot Tab */}
+        {activeTab === 'nvibe-bot' && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">NVibe — AI Customer Support Agent</h2>
+                <h2 className="text-xl font-semibold text-gray-900">NVibe Bot — AI Support Agent</h2>
                 <p className="text-sm text-gray-500 mt-1">
                   Powered by a fine-tuned Llama 3 8B model running on NVibe&apos;s H100 inference engine
                 </p>
@@ -166,7 +138,7 @@ export default function DemoDashboard() {
               <iframe
                 src="https://demo.nvibe.ai"
                 className="w-full h-full"
-                title="NVibe AI Customer Support Demo"
+                title="NVibe Bot — AI Customer Support Demo"
                 allow="clipboard-write"
                 loading="lazy"
               />
@@ -177,7 +149,6 @@ export default function DemoDashboard() {
         {/* Overview Tab */}
         {activeTab === 'overview' && (
           <div className="space-y-8">
-            {/* Metrics Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {metrics.map((metric, index) => (
                 <motion.div
@@ -192,11 +163,9 @@ export default function DemoDashboard() {
                       <p className="text-sm font-medium text-gray-600">{metric.title}</p>
                       <p className="text-2xl font-bold text-gray-900 mt-1">{metric.value}</p>
                       <div className="flex items-center mt-2">
-                        {metric.trend === 'up' ? (
-                          <ArrowUpRight className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <ArrowDownRight className="w-4 h-4 text-red-500" />
-                        )}
+                        {metric.trend === 'up'
+                          ? <ArrowUpRight className="w-4 h-4 text-green-500" />
+                          : <ArrowDownRight className="w-4 h-4 text-red-500" />}
                         <span className={`text-sm font-medium ${metric.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
                           {metric.change}
                         </span>
@@ -210,43 +179,27 @@ export default function DemoDashboard() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Recent Activity */}
             <div className="bg-white rounded-xl shadow-sm border">
               <div className="p-6 border-b">
                 <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
               </div>
-              <div className="p-6">
-                <div className="space-y-4">
-                  {recentActivities.map((activity, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-center space-x-4"
-                    >
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <p className="font-medium text-gray-900">{activity.action}</p>
-                        <p className="text-sm text-gray-600">{activity.description}</p>
-                      </div>
-                      <span className="text-sm text-gray-500">{activity.time}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Analytics Tab */}
-        {activeTab === 'analytics' && (
-          <div className="space-y-8">
-            <div className="bg-white rounded-xl shadow-sm border p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Analytics</h3>
-              <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500">Analytics charts would be integrated here</p>
+              <div className="p-6 space-y-4">
+                {recentActivities.map((activity, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-center space-x-4"
+                  >
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-900">{activity.action}</p>
+                      <p className="text-sm text-gray-600">{activity.description}</p>
+                    </div>
+                    <span className="text-sm text-gray-500">{activity.time}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
@@ -269,44 +222,23 @@ export default function DemoDashboard() {
                     <p className="text-sm text-gray-600">{user?.email}</p>
                   </div>
                 </div>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <input
-                      type="text"
-                      value={user?.user_metadata?.name || ''}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      readOnly
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <input
-                      type="email"
-                      value={user?.email || ''}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      readOnly
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
-                    <input
-                      type="text"
-                      value={user?.user_metadata?.company || ''}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      readOnly
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Member Since</label>
-                    <input
-                      type="text"
-                      value={user?.created_at ? new Date(user.created_at).toLocaleDateString() : ''}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      readOnly
-                    />
-                  </div>
+                  {[
+                    { label: 'Full Name', type: 'text', value: user?.user_metadata?.name || '' },
+                    { label: 'Email', type: 'email', value: user?.email || '' },
+                    { label: 'Company', type: 'text', value: user?.user_metadata?.company || '' },
+                    { label: 'Member Since', type: 'text', value: user?.created_at ? new Date(user.created_at).toLocaleDateString() : '' },
+                  ].map((field) => (
+                    <div key={field.label}>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{field.label}</label>
+                      <input
+                        type={field.type}
+                        value={field.value}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        readOnly
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
