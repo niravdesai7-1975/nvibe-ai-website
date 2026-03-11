@@ -9,6 +9,7 @@ import RegisterModal from './RegisterModal'
 
 const navLinks = [
   { name: 'Platform', href: '/platform' },
+  { name: 'Salesforce Alternative', href: '/salesforce-alternative' },
   { name: 'Benchmarks', href: '/benchmarks.html' },
   { name: 'Demo', href: '/demo' },
 ]
