@@ -84,12 +84,12 @@ export default function CTASection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            3 pilot slots this quarter
+            Join our design partner program
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-            We work closely with each design partner. This is not self-serve.
-            Book a 20-minute call — we&apos;ll walk through the demo, discuss your use case,
-            and tell you what we need to get started.
+            We&apos;re working with select companies to deploy NVibe in production.
+            First 3 months free, dedicated founder support.
+            Book a 20-minute call — we&apos;ll walk through the demo and discuss your use case.
           </p>
         </motion.div>
 

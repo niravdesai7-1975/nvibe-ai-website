@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 
 const proofBadges = [
-  { metric: '10,710 tok/s', label: 'NVIDIA H100 + TensorRT-LLM — beats Together AI 5/5 batch sizes' },
-  { metric: '$15', label: 'Per 1M messages — 10x cheaper than GPT-4o' },
-  { metric: '0%', label: 'Hallucination rate — fine-tuned on your business data' },
+  { metric: '10,710', label: 'Tokens/sec — NVIDIA H100 + TensorRT-LLM' },
+  { metric: '743ms', label: 'P99 response latency — production verified' },
+  { metric: '70%+', label: 'Automated resolution rate — out of the box' },
 ]
 
 export default function HeroSection() {
@@ -19,23 +19,27 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-            Enterprise AI Customer Support Platform
-            <span className="block gradient-text mt-1">— built from the GPU up.</span>
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 border border-green-200 text-green-700 text-sm font-medium mb-8">
+            <Sparkles className="w-4 h-4" />
+            B2B/B2C AI Accelerator
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+            Enterprise AI for every conversation
+            <span className="block gradient-text mt-1">— support, sales, and procurement.</span>
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            NVibe fine-tunes a custom AI model on your data, deploys it inside your VPC on
-            NVIDIA H100 GPUs with TensorRT-LLM, and serves responses faster than any API provider.
-            Zero hallucinations. Your data never leaves your infrastructure.
+            Fine-tuned on your data. Deployed in your VPC. Live in 4–12 weeks.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#benchmarks-preview" className="btn-primary inline-flex items-center justify-center gap-2">
-              See Benchmarks <ArrowRight className="w-5 h-5" />
+            <a href="#contact" className="btn-primary inline-flex items-center justify-center gap-2">
+              Book a 20-minute demo <ArrowRight className="w-5 h-5" />
             </a>
-            <a href="#contact" className="btn-secondary inline-flex items-center justify-center gap-2">
-              Book a Demo
+            <a href="https://demo.nvibe.ai" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center justify-center gap-2">
+              Try the platform →
             </a>
           </div>
         </motion.div>

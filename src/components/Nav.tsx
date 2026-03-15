@@ -9,9 +9,10 @@ import RegisterModal from './RegisterModal'
 
 const navLinks = [
   { name: 'Platform', href: '/platform' },
-  { name: 'Salesforce Alternative', href: '/salesforce-alternative' },
+  { name: 'Solutions', href: '/solutions' },
   { name: 'Benchmarks', href: '/benchmarks.html' },
-  { name: 'Demo', href: '/demo' },
+  { name: 'Trust', href: '/trust' },
+  { name: 'About', href: '/about' },
 ]
 
 export default function Nav() {
@@ -92,12 +93,12 @@ export default function Nav() {
                 >
                   Sign In
                 </button>
-                <button
-                  onClick={() => setIsRegisterOpen(true)}
+                <a
+                  href="https://demo.nvibe.ai"
                   className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
                 >
-                  Sign Up
-                </button>
+                  Try Demo →
+                </a>
               </>
             )}
           </div>
@@ -139,7 +140,7 @@ export default function Nav() {
               ) : (
                 <>
                   <button onClick={() => { setIsLoginOpen(true); setIsMobileMenuOpen(false); }} className="block py-2 text-sm text-gray-600 w-full text-left">Sign In</button>
-                  <button onClick={() => { setIsRegisterOpen(true); setIsMobileMenuOpen(false); }} className="block py-2 text-sm font-medium text-green-600 w-full text-left">Sign Up</button>
+                  <a href="https://demo.nvibe.ai" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm font-medium text-green-600 w-full text-left">Try Demo →</a>
                 </>
               )}
             </div>

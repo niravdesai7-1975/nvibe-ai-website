@@ -20,8 +20,8 @@ export default function Footer() {
               <span className="text-xl font-bold">NVibe AI</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-md mb-6">
-              Custom AI for your business — from the GPU up. Trained on your data,
-              deployed in your VPC, faster than Together AI on all 5 batch sizes.
+              Enterprise AI capabilities your competitors pay millions for —
+              turning every B2B conversation into revenue. At SaaS pricing.
             </p>
             <div className="space-y-2">
               {[
@@ -47,8 +47,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { name: 'Platform', href: '/platform' },
+                { name: 'Solutions', href: '/solutions' },
                 { name: 'Benchmarks', href: '/benchmarks' },
-                { name: 'Demo', href: '/demo' },
+                { name: 'Trust', href: '/trust' },
+                { name: 'Demo', href: 'https://demo.nvibe.ai' },
               ].map((link) => (
                 <li key={link.name}>
                   <a href={link.href} className="text-gray-500 hover:text-white transition-colors text-sm">
@@ -63,7 +65,7 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-sm mb-4">Get Started</h3>
             <p className="text-gray-500 text-sm mb-4">
-              3 pilot slots this quarter. Direct founder access.
+              Design partner program — first 3 months free.
             </p>
             <a
               href="/#contact"
