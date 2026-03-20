@@ -269,20 +269,21 @@ export function LiveRevenueDemo() {
 
 // ── MiniAgentDemo ────────────────────────────────────────────────────────────
 
-export function MiniAgentDemo() {
+export function MiniAgentDemo({ steps: customSteps }: { steps?: Step[] } = {}) {
+  const stepsToUse = customSteps ?? ADK_MINI_STEPS
   const [step, setStep] = useState(-1)
   const [started, setStarted] = useState(false)
   const [ref, vis] = useVisible(0.3)
 
   useEffect(() => { if (vis && !started) { setStarted(true); setStep(0) } }, [vis, started])
   useEffect(() => {
-    if (step < 0 || step >= ADK_MINI_STEPS.length) return
-    const delay = step === 0 ? 600 : step === ADK_MINI_STEPS.length - 1 ? 900 : 650 + Math.random() * 250
-    const t = setTimeout(() => { if (step < ADK_MINI_STEPS.length - 1) setStep(step + 1) }, delay)
+    if (step < 0 || step >= stepsToUse.length) return
+    const delay = step === 0 ? 600 : step === stepsToUse.length - 1 ? 900 : 650 + Math.random() * 250
+    const t = setTimeout(() => { if (step < stepsToUse.length - 1) setStep(step + 1) }, delay)
     return () => clearTimeout(t)
-  }, [step])
+  }, [step, stepsToUse.length])
 
-  const done = step === ADK_MINI_STEPS.length - 1
+  const done = step === stepsToUse.length - 1
 
   return (
     <div ref={ref} style={{
@@ -313,7 +314,7 @@ export function MiniAgentDemo() {
         </div>
       </div>
       <div style={{ padding: '6px 0' }}>
-        {ADK_MINI_STEPS.map((s, i) => (
+        {stepsToUse.map((s, i) => (
           <DarkStepRow key={i} s={s} active={i === step && !done} complete={i < step || done} pending={i > step && !done} compact />
         ))}
       </div>

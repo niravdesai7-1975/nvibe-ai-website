@@ -1,8 +1,7 @@
 import Nav from '@/components/Nav'
 import HeroSection from '@/components/HeroSection'
 import PlatformOverview from '@/components/PlatformOverview'
-import SolutionTabs from '@/components/SolutionTabs'
-import ComparisonSection from '@/components/ComparisonSection'
+import IndustriesSection from '@/components/IndustriesSection'
 import PerformanceSection from '@/components/PerformanceSection'
 import FiveQuoteChallenge from '@/components/FiveQuoteChallenge'
 import CTASection from '@/components/CTASection'
@@ -14,8 +13,7 @@ export default function Home() {
       <Nav />
       <HeroSection />
       <PlatformOverview />
-      <SolutionTabs />
-      <ComparisonSection />
+      <IndustriesSection />
       <PerformanceSection />
       <FiveQuoteChallenge />
       <CTASection />
