@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { LiveRevenueDemo } from './AgentDemos'
 
 export default function PlatformOverview() {
   const [isMobile, setIsMobile] = useState(false)
@@ -16,37 +15,8 @@ export default function PlatformOverview() {
     <section style={{ padding: isMobile ? '48px 16px' : '72px 24px', background: '#ffffff' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: isMobile ? 36 : 52 }}>
-          <span style={{ display: 'inline-block', padding: '5px 14px', borderRadius: 20, background: '#f0fdf4', color: '#16a34a', fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase' as const, border: '1px solid #bbf7d0' }}>
-            The Platform
-          </span>
-          <h2 style={{ fontSize: 'clamp(24px, 4vw, 40px)', fontWeight: 800, marginTop: 16, letterSpacing: -1, color: '#202124' }}>
-            Not just quoting. A complete revenue engine.
-          </h2>
-          <p style={{ fontSize: isMobile ? 15 : 17, color: '#3c4043', marginTop: 14, maxWidth: 620, margin: '14px auto 0', lineHeight: 1.75 }}>
-            The quote you saw above is just the start. Every customer support message hides a revenue signal your team is walking past. Watch NVibe catch it.
-          </p>
-        </div>
-
-        {/* Revenue Engine demo */}
-        <div style={{ width: '100%' }}>
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 20, padding: '4px 12px', marginBottom: 12 }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#16a34a', boxShadow: '0 0 6px rgba(22,163,74,0.5)' }} />
-              <span style={{ fontSize: 11, fontWeight: 700, color: '#16a34a', textTransform: 'uppercase' as const, letterSpacing: 1.5 }}>Revenue Engine</span>
-            </div>
-            <div style={{ fontSize: 'clamp(16px, 3vw, 26px)', fontWeight: 800, color: '#202124', letterSpacing: -0.5, lineHeight: 1.2 }}>
-              Support message <span style={{ color: '#16a34a' }}>→</span> issue resolved +{' '}
-              <span style={{ background: 'linear-gradient(135deg, #16a34a, #15803d)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>$120K opportunity</span>{' '}
-              routed to sales
-            </div>
-          </div>
-          <LiveRevenueDemo />
-        </div>
-
         {/* Trust strip */}
-        <div style={{ marginTop: 52, background: '#f9fafb', borderRadius: 16, border: '1px solid #e8eaed', overflow: 'hidden' }}>
+        <div style={{ background: '#f9fafb', borderRadius: 16, border: '1px solid #e8eaed', overflow: 'hidden' }}>
           <div style={{ padding: isMobile ? '20px 20px' : '28px 36px', borderBottom: '1px solid #e8eaed', display: 'flex', alignItems: 'center', gap: 14 }}>
             <span style={{ fontSize: 28, flexShrink: 0 }}>🔒</span>
             <span style={{ fontSize: 'clamp(18px, 3vw, 40px)', fontWeight: 800, color: '#202124', letterSpacing: -1, lineHeight: 1.15 }}>

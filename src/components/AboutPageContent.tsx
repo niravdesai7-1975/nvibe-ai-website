@@ -82,8 +82,74 @@ export default function AboutPageContent() {
         </div>
       </section>
 
+      {/* Traction & Partners */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Traction</h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-10">
+              NVibe is currently working with 12 design partners across industries — from industrial distribution to healthcare — co-building the platform with real catalogs, real quoting workflows, and real revenue data.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+              {[
+                { num: '12', label: 'Design Partners' },
+                { num: '24+', label: 'Industries Served' },
+                { num: '3', label: 'AI Agents Shipping' },
+                { num: '25yr', label: 'Enterprise Experience' },
+              ].map(s => (
+                <div key={s.label} className="text-center p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <div className="text-2xl font-bold text-green-600">{s.num}</div>
+                  <div className="text-sm text-gray-500 mt-1 font-medium">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Backed by</h3>
+            <div className="flex flex-wrap gap-3">
+              {['NVIDIA Inception Partner', 'Google Cloud Partner', 'SOC 2 Type II', 'HIPAA Ready', 'VPC-Native'].map(b => (
+                <div key={b} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200">
+                  <span className="w-2 h-2 rounded-full bg-green-600" />
+                  <span className="text-sm text-gray-600 font-semibold">{b}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Hiring */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">
+              Building the founding team
+            </h2>
+            <p className="text-gray-500 mb-6">
+              If you want to build enterprise AI that actually ships — not demos, not decks — reach out.
+            </p>
+            <a
+              href="mailto:nirav@nvibe.ai"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg border border-gray-200 hover:border-green-500 hover:text-green-600 transition-colors"
+            >
+              nirav@nvibe.ai <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

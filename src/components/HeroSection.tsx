@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { LiveQuoteDemo } from './AgentDemos'
+import { LiveQuoteDemo, LiveRevenueDemo } from './AgentDemos'
 
 const GREEN = '#16a34a'
 
@@ -50,11 +50,11 @@ export default function HeroSection() {
     }}>
       <div style={{ position: 'absolute', inset: 0, opacity: 0.4, backgroundImage: 'linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
         {/* ── Company positioning ── */}
-        <div style={{ textAlign: 'center', marginBottom: isMobile ? 36 : 56 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #e8eaed', padding: '7px 16px', borderRadius: 20, marginBottom: 28, boxShadow: '0 1px 2px rgba(60,64,67,0.3)' }}>
+        <div style={{ textAlign: 'center', marginBottom: isMobile ? 36 : 48 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #e8eaed', padding: '7px 16px', borderRadius: 20, marginBottom: 24, boxShadow: '0 1px 2px rgba(60,64,67,0.3)' }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: GREEN, boxShadow: `0 0 6px ${GREEN}88` }} />
             <span style={{ fontSize: isMobile ? 12 : 13, color: '#3c4043', fontWeight: 500 }}>Trained on your business. Deployed in your VPC.</span>
           </div>
@@ -64,7 +64,7 @@ export default function HeroSection() {
             <span style={{ background: 'linear-gradient(135deg, #1a73e8, #137333)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>your revenue.</span>
           </h1>
 
-          <p style={{ fontSize: isMobile ? 16 : 19, color: '#3c4043', maxWidth: 600, margin: '0 auto 32px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: isMobile ? 16 : 19, color: '#3c4043', maxWidth: 600, margin: '0 auto 28px', lineHeight: 1.7 }}>
             Quote AI. Revenue AI. Support AI. One platform trained on your catalog, your rules, your customers — not generic models.
           </p>
 
@@ -76,23 +76,47 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ── Live demo ── */}
-        <div style={{ marginBottom: 8 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #e8eaed', padding: '7px 16px', borderRadius: 20, marginBottom: 16, boxShadow: '0 1px 2px rgba(60,64,67,0.15)' }}>
+        {/* ── Cost ticker ── */}
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #e8eaed', padding: '7px 16px', borderRadius: 20, boxShadow: '0 1px 2px rgba(60,64,67,0.15)' }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#c5221f', boxShadow: '0 0 6px rgba(197,34,31,0.88)', flexShrink: 0 }} />
             <span style={{ fontSize: isMobile ? 12 : 13, color: '#3c4043', fontWeight: 500 }}>Your team loses <SmallTicker /> every day to manual quoting</span>
           </div>
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 20, padding: '4px 12px', marginBottom: 10 }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN, boxShadow: `0 0 6px ${GREEN}80` }} />
-              <span style={{ fontSize: 11, fontWeight: 700, color: GREEN, textTransform: 'uppercase' as const, letterSpacing: 1.5 }}>Quote AI — Live Demo</span>
+        </div>
+
+        {/* ── Two demos side by side ── */}
+        <div style={{ display: 'flex', gap: 20, flexDirection: isMobile ? 'column' : 'row' as const, alignItems: 'flex-start' }}>
+
+          {/* Quote AI demo */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ marginBottom: 14 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 20, padding: '4px 12px', marginBottom: 8 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN, boxShadow: `0 0 6px ${GREEN}80` }} />
+                <span style={{ fontSize: 10, fontWeight: 700, color: GREEN, textTransform: 'uppercase' as const, letterSpacing: 1.5 }}>Quote AI</span>
+              </div>
+              <div style={{ fontSize: 'clamp(15px, 2.5vw, 21px)', fontWeight: 800, color: '#202124', letterSpacing: -0.5, lineHeight: 1.2 }}>
+                A real quote. 8 steps.{' '}
+                <span style={{ background: `linear-gradient(135deg, ${GREEN}, #15803d)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Under 3 minutes.</span>
+              </div>
             </div>
-            <div style={{ fontSize: 'clamp(16px, 3vw, 24px)', fontWeight: 800, color: '#202124', letterSpacing: -0.5, lineHeight: 1.2 }}>
-              A real quote. 8 steps.{' '}
-              <span style={{ background: `linear-gradient(135deg, ${GREEN}, #15803d)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Under 3 minutes.</span>
-            </div>
+            <LiveQuoteDemo />
           </div>
-          <LiveQuoteDemo />
+
+          {/* Revenue AI demo */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ marginBottom: 14 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 20, padding: '4px 12px', marginBottom: 8 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN, boxShadow: `0 0 6px ${GREEN}80` }} />
+                <span style={{ fontSize: 10, fontWeight: 700, color: GREEN, textTransform: 'uppercase' as const, letterSpacing: 1.5 }}>Revenue AI</span>
+              </div>
+              <div style={{ fontSize: 'clamp(15px, 2.5vw, 21px)', fontWeight: 800, color: '#202124', letterSpacing: -0.5, lineHeight: 1.2 }}>
+                Support message <span style={{ color: GREEN }}>→</span> issue resolved +{' '}
+                <span style={{ background: `linear-gradient(135deg, ${GREEN}, #15803d)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>$120K opportunity</span>
+              </div>
+            </div>
+            <LiveRevenueDemo />
+          </div>
+
         </div>
 
         {/* ── CTA + trust badges ── */}
@@ -103,7 +127,7 @@ export default function HeroSection() {
             </a>
           </div>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' as const }}>
-            {['NVIDIA Inception', 'SOC 2 Type II', 'HIPAA Ready', 'VPC-Native'].map(b => (
+            {['NVIDIA Inception Partner', 'Google Cloud Partner', '12 Design Partners', 'SOC 2 Type II', 'HIPAA Ready', 'VPC-Native'].map(b => (
               <div key={b} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 14px', borderRadius: 8, background: '#ffffff', border: '1px solid #e8eaed', boxShadow: '0 1px 2px rgba(60,64,67,0.3)' }}>
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#137333' }} />
                 <span style={{ fontSize: 12, color: '#5f6368', fontWeight: 600, letterSpacing: 0.5 }}>{b}</span>
