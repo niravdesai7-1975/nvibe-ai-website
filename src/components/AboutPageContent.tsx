@@ -20,11 +20,11 @@ export default function AboutPageContent() {
           >
             <p className="text-sm font-semibold text-green-600 uppercase tracking-widest mb-4">Our Mission</p>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6">
-              Enterprise revenue runs on<br />
-              <span className="gradient-text">people doing work AI should do.</span>
+              B2B revenue operations is a<br />
+              <span className="gradient-text">$30 trillion market still running on Excel.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              We're fixing the most expensive inefficiency in B2B — the gap between a customer signal and a revenue outcome. Quotes that take days. Pipeline that goes undetected. Support tickets that never become opportunities.
+              Quotes that take days. Revenue signals no one catches. Support tickets that never become opportunities. That's the problem we're fixing — with AI trained on your business, deployed in your cloud, running your revenue.
             </p>
           </motion.div>
         </div>
