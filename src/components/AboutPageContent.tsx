@@ -125,10 +125,10 @@ export default function AboutPageContent() {
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Building the founding team</h3>
                 <p className="text-sm text-gray-500 leading-relaxed mb-4">If you want to build enterprise AI that actually ships — not demos, not decks — and you have depth in ML, infrastructure, or enterprise GTM, let&apos;s talk.</p>
                 <a
-                  href="mailto:team@nvibe.ai"
+                  href="mailto:nirav@nvibe.ai"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700"
                 >
-                  team@nvibe.ai <ArrowRight className="w-4 h-4" />
+                  nirav@nvibe.ai <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
