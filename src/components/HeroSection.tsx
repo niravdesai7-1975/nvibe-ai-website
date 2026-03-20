@@ -1,68 +1,68 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { LiveQuoteDemo } from './AgentDemos'
 
-const proofBadges = [
-  { metric: '10,710', label: 'Tokens/sec — NVIDIA H100 + TensorRT-LLM' },
-  { metric: '743ms', label: 'P99 response latency — production verified' },
-  { metric: '70%+', label: 'Automated resolution rate — out of the box' },
-]
+function SmallTicker() {
+  const [n, setN] = useState(7420)
+  useEffect(() => {
+    const i = setInterval(() => setN(p => p + Math.floor(12 + Math.random() * 8)), 800)
+    return () => clearInterval(i)
+  }, [])
+  return <span style={{ fontFamily: 'monospace', color: '#c5221f', fontWeight: 700 }}>${n.toLocaleString()}</span>
+}
 
 export default function HeroSection() {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 border border-green-200 text-green-700 text-sm font-medium mb-8">
-            <Sparkles className="w-4 h-4" />
-            B2B/B2C AI Accelerator
+    <section style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      padding: '120px 24px 72px', position: 'relative',
+      background: 'linear-gradient(180deg, #EFF6FF 0%, #ffffff 100%)',
+    }}>
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.4, backgroundImage: 'linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+
+      <div style={{ textAlign: 'center', marginBottom: 52, position: 'relative', zIndex: 1, maxWidth: 800, width: '100%' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #e8eaed', padding: '7px 16px', borderRadius: 20, marginBottom: 28, boxShadow: '0 1px 2px rgba(60,64,67,0.3)' }}>
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#c5221f', boxShadow: '0 0 6px rgba(197,34,31,0.88)' }} />
+          <span style={{ fontSize: 13, color: '#3c4043', fontWeight: 500 }}>Your team loses <SmallTicker /> every day to manual quoting</span>
+        </div>
+        <h1 style={{ fontSize: 'clamp(38px, 6vw, 56px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: -2, margin: '0 auto 22px', color: '#202124' }}>
+          A real quote. 8 steps.{' '}
+          <span style={{ background: 'linear-gradient(135deg, #1a73e8, #137333)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Under 3 minutes.</span>
+        </h1>
+        <p style={{ fontSize: 18, color: '#3c4043', maxWidth: 560, margin: '0 auto', lineHeight: 1.75 }}>
+          Every hour your team spends on manual quotes is revenue leaking out the door. NVibe closes that gap — automatically.
+        </p>
+      </div>
+
+      <div style={{ maxWidth: 640, width: '100%', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 20, padding: '4px 12px', marginBottom: 12 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#16a34a', boxShadow: '0 0 6px rgba(22,163,74,0.5)' }} />
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#16a34a', textTransform: 'uppercase' as const, letterSpacing: 1.5 }}>AI Quote Engine</span>
           </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-            Enterprise AI for every conversation
-            <span className="block gradient-text mt-1">— support, sales, and procurement.</span>
-          </h1>
-
-          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Fine-tuned on your data. Deployed in your VPC. Live in 4–12 weeks.
-          </p>
-
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact" className="btn-primary inline-flex items-center justify-center gap-2">
-              Book a 20-minute demo <ArrowRight className="w-5 h-5" />
-            </a>
-            <a href="https://demo.nvibe.ai" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center justify-center gap-2">
-              Try the platform →
-            </a>
+          <div style={{ fontSize: 'clamp(18px, 3vw, 26px)', fontWeight: 800, color: '#202124', letterSpacing: -0.5, lineHeight: 1.2 }}>
+            Email in <span style={{ color: '#16a34a' }}>→</span> quote out in{' '}
+            <span style={{ background: 'linear-gradient(135deg, #16a34a, #15803d)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>3 minutes</span>
           </div>
-        </motion.div>
+        </div>
+        <LiveQuoteDemo />
+      </div>
 
-        {/* Proof badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6"
-        >
-          {proofBadges.map((badge) => (
-            <div
-              key={badge.metric}
-              className="text-center p-6 rounded-xl border border-gray-100 bg-gray-50/50"
-            >
-              <p className="font-mono text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
-                {badge.metric}
-              </p>
-              <p className="mt-2 text-sm text-gray-500">{badge.label}</p>
+      <div style={{ textAlign: 'center', marginTop: 48, position: 'relative', zIndex: 1 }}>
+        <div style={{ marginBottom: 32 }}>
+          <a href="#contact" style={{ display: 'inline-block', padding: '17px 38px', borderRadius: 10, background: '#16a34a', color: '#ffffff', fontSize: 16, fontWeight: 600, textDecoration: 'none', boxShadow: '0 2px 8px rgba(22,163,74,0.3)' }}>
+            Send Us Your 5 Messiest Quotes
+          </a>
+        </div>
+        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' as const }}>
+          {['NVIDIA Inception', 'SOC 2 Type II', 'HIPAA Ready', 'VPC-Native'].map(b => (
+            <div key={b} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 16px', borderRadius: 8, background: '#ffffff', border: '1px solid #e8eaed', boxShadow: '0 1px 2px rgba(60,64,67,0.3)' }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#137333' }} />
+              <span style={{ fontSize: 12, color: '#5f6368', fontWeight: 600, letterSpacing: 0.5 }}>{b}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

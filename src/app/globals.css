@@ -73,3 +73,10 @@ body {
 .animate-ticker {
   animation: ticker 30s linear infinite;
 }
+
+/* ── Agent demo animations ── */
+@keyframes tickerBlink   { 0%, 90%, 100% { opacity: 1 } 95% { opacity: 0.5 } }
+@keyframes rowSlide      { from { opacity: 0; transform: translateX(-12px) } to { opacity: 1; transform: translateX(0) } }
+@keyframes fadeSlideUp   { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes tabProgress   { from { width: 0% } to { width: 100% } }
+@keyframes cardEntrance  { from { opacity: 0; transform: translateY(28px) scale(0.97) } to { opacity: 1; transform: translateY(0) scale(1) } }

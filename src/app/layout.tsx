@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+// Inter loaded via <link> in <head> instead
+// import { Inter } from 'next/font/google'
 import './globals.css'
 import { MockAuthProvider } from '@/contexts/MockAuthContext'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
@@ -204,7 +205,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </head>
-      <body className={inter.className}>
+      <body>
         <MockAuthProvider>
           {children}
         </MockAuthProvider>

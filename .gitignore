@@ -118,3 +118,8 @@ nvibe-website/demo/
 portal/node_modules/
 portal/.next/
 portal/out/
+.claude/
+publish_backup_*/
+publish/cache/
+publish/trace
+*.mov
