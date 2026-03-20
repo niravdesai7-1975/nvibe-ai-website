@@ -54,10 +54,10 @@ export default function IndustriesSection() {
             Industries
           </span>
           <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, marginTop: 16, letterSpacing: -1, color: '#202124', maxWidth: 720, margin: '16px auto 0' }}>
-            B2B revenue operations is a $30 trillion market still running on Excel.
+            B2B revenue operations is a $30 trillion market.
           </h2>
           <p style={{ fontSize: isMobile ? 15 : 17, color: '#3c4043', marginTop: 16, maxWidth: 640, margin: '16px auto 0', lineHeight: 1.75 }}>
-            Quotes that take days. Revenue signals no one catches. Support tickets that never become opportunities. That&apos;s the problem we&apos;re fixing — with AI trained on your business, deployed in your cloud, running your revenue.
+            <span style={{ color: '#16a34a', fontWeight: 700 }}>Quotes, Revenue Ops, and Support</span> still handled the way they were 20 years ago. That&apos;s the problem we&apos;re fixing — with AI trained on your business, deployed in your cloud, running your revenue.
           </p>
         </div>
 

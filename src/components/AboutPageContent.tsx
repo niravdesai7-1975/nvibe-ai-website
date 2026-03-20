@@ -21,10 +21,10 @@ export default function AboutPageContent() {
             <p className="text-sm font-semibold text-green-600 uppercase tracking-widest mb-4">Our Mission</p>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6">
               B2B revenue operations is a<br />
-              <span className="gradient-text">$30 trillion market still running on Excel.</span>
+              <span className="gradient-text">$30 trillion market.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Quotes that take days. Revenue signals no one catches. Support tickets that never become opportunities. That's the problem we're fixing — with AI trained on your business, deployed in your cloud, running your revenue.
+              <span className="text-green-600 font-bold">Quotes, Revenue Ops, and Support</span> still handled the way they were 20 years ago. That&apos;s the problem we&apos;re fixing — with AI trained on your business, deployed in your cloud, running your revenue.
             </p>
           </motion.div>
         </div>
