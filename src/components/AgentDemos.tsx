@@ -2,6 +2,18 @@
 
 import { useState, useEffect, useRef } from 'react'
 
+// ── Mobile hook ───────────────────────────────────────────────────────────────
+function useIsMobile() {
+  const [m, setM] = useState(false)
+  useEffect(() => {
+    const check = () => setM(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return m
+}
+
 // ── Step data ────────────────────────────────────────────────────────────────
 
 const ADK_QUOTE_STEPS = [
@@ -141,6 +153,7 @@ export function LiveQuoteDemo() {
   const [step, setStep] = useState(-1)
   const [started, setStarted] = useState(false)
   const [ref, vis] = useVisible(0.3)
+  const isMobile = useIsMobile()
 
   useEffect(() => { if (vis && !started) { setStarted(true); setStep(0) } }, [vis, started])
   useEffect(() => {
@@ -160,22 +173,22 @@ export function LiveQuoteDemo() {
         : '0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3)',
       transition: 'box-shadow 1s ease',
     }}>
-      <div style={{ padding: '12px 18px', background: '#161922', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ padding: isMobile ? '10px 14px' : '12px 18px', background: '#161922', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
           <TerminalDots />
-          <span style={{ fontSize: 12, fontFamily: 'monospace', color: 'rgba(255,255,255,0.35)', letterSpacing: 0.5 }}>nvibe · quote-agent · DIE-v2</span>
+          {!isMobile && <span style={{ fontSize: 12, fontFamily: 'monospace', color: 'rgba(255,255,255,0.35)', letterSpacing: 0.5 }}>nvibe · quote-agent · DIE-v2</span>}
         </div>
         <StatusChip done={done} active={step >= 0} label={done ? 'Quote Delivered' : step >= 0 ? 'Processing' : 'Ready'} />
       </div>
-      <div style={{ padding: '12px 22px 10px', background: '#0d1117', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+      <div style={{ padding: isMobile ? '10px 14px 8px' : '12px 22px 10px', background: '#0d1117', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 5 }}>Customer Request</div>
-        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontFamily: 'monospace', lineHeight: 1.65 }}>
+        <div style={{ fontSize: isMobile ? 11 : 12, color: 'rgba(255,255,255,0.55)', fontFamily: 'monospace', lineHeight: 1.65 }}>
           &quot;Need 200 1/2&quot; copper fittings, 50 PVC elbows, 10 ball valves — need quote ASAP&quot;
         </div>
       </div>
       <div style={{ padding: '8px 0' }}>
         {ADK_QUOTE_STEPS.map((s, i) => (
-          <DarkStepRow key={i} s={s} active={i === step && !done} complete={i < step || done} pending={i > step && !done} />
+          <DarkStepRow key={i} s={s} active={i === step && !done} complete={i < step || done} pending={i > step && !done} compact={isMobile} />
         ))}
       </div>
       {done && (
@@ -200,6 +213,7 @@ export function LiveRevenueDemo() {
   const [step, setStep] = useState(-1)
   const [started, setStarted] = useState(false)
   const [ref, vis] = useVisible(0.25)
+  const isMobile = useIsMobile()
 
   useEffect(() => { if (vis && !started) { setStarted(true); setStep(0) } }, [vis, started])
   useEffect(() => {
@@ -219,22 +233,22 @@ export function LiveRevenueDemo() {
         : '0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3)',
       transition: 'box-shadow 1s ease',
     }}>
-      <div style={{ padding: '12px 18px', background: '#161922', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ padding: isMobile ? '10px 14px' : '12px 18px', background: '#161922', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
           <TerminalDots />
-          <span style={{ fontSize: 12, fontFamily: 'monospace', color: 'rgba(255,255,255,0.35)', letterSpacing: 0.5 }}>nvibe · revenue-agent · DIE-v2</span>
+          {!isMobile && <span style={{ fontSize: 12, fontFamily: 'monospace', color: 'rgba(255,255,255,0.35)', letterSpacing: 0.5 }}>nvibe · revenue-agent · DIE-v2</span>}
         </div>
         <StatusChip done={done} active={step >= 0} label={done ? 'Revenue Captured' : step >= 0 ? 'Processing' : 'Ready'} />
       </div>
-      <div style={{ padding: '12px 22px 10px', background: '#0d1117', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+      <div style={{ padding: isMobile ? '10px 14px 8px' : '12px 22px 10px', background: '#0d1117', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 5 }}>Customer Message</div>
-        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontFamily: 'monospace', lineHeight: 1.65 }}>
+        <div style={{ fontSize: isMobile ? 11 : 12, color: 'rgba(255,255,255,0.55)', fontFamily: 'monospace', lineHeight: 1.65 }}>
           &quot;Our valve regulator keeps tripping on Line 3. Also, we&apos;re opening a second warehouse in Q3.&quot;
         </div>
       </div>
       <div style={{ padding: '8px 0' }}>
         {ADK_REV_STEPS.map((s, i) => (
-          <DarkStepRow key={i} s={s} active={i === step && !done} complete={i < step || done} pending={i > step && !done} />
+          <DarkStepRow key={i} s={s} active={i === step && !done} complete={i < step || done} pending={i > step && !done} compact={isMobile} />
         ))}
       </div>
       {done && (
