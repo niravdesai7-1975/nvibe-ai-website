@@ -8,10 +8,10 @@ import { MockAuthProvider } from '@/contexts/MockAuthContext'
 
 export const metadata: Metadata = {
   title: {
-    default: 'NVibe AI — AI Customer Support Platform | On-Premise VPC Deployment',
+    default: 'NVibe AI — Three AIs That Run Your Revenue | Quote AI, Revenue AI, Support AI',
     template: '%s | NVibe AI',
   },
-  description: 'Replace Salesforce Service Cloud with an AI-native customer support platform. Custom AI trained on your data, deployed inside your VPC. Zero hallucinations. $15/1M messages — 10x cheaper than GPT-4o. Book a demo.',
+  description: 'Three AIs that run your revenue — Quote AI, Revenue AI, Support AI. Custom AI trained on your data, deployed inside your VPC. Zero hallucinations. Book a demo.',
   keywords: 'AI customer support platform, enterprise AI customer service, on-premise AI customer support, AI customer service software, AI help desk software, conversational AI customer support, Salesforce Service Cloud alternative, self-hosted AI support, VPC AI deployment, fine-tuned LLM customer support, AI support agent, zero hallucination AI, NVIDIA H100 inference, TensorRT-LLM, NVIDIA NeMo fine-tuning, NVIDIA Triton Inference Server, NVIDIA GPU inference, enterprise AI deployment, private AI deployment, custom AI support software',
   authors: [{ name: 'NVibe AI' }],
   creator: 'NVibe AI',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://nvibe.ai'),
   openGraph: {
-    title: 'NVibe AI — AI Customer Support Platform | On-Premise VPC Deployment',
-    description: 'AI-native customer support trained on your data, deployed in your VPC. Zero hallucinations. $15/1M messages. 10x cheaper than GPT-4o. Built by ex-Salesforce AI engineer.',
+    title: 'NVibe AI — Three AIs That Run Your Revenue | Quote AI, Revenue AI, Support AI',
+    description: 'Three AIs that run your revenue — Quote AI, Revenue AI, Support AI. Custom AI trained on your data, deployed inside your VPC. Zero hallucinations.',
     url: 'https://nvibe.ai',
     siteName: 'NVibe AI',
     locale: 'en_US',
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
         url: 'https://nvibe.ai/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'NVibe AI — AI Customer Support Platform',
+        alt: 'NVibe AI — Three AIs That Run Your Revenue',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NVibe AI — AI Customer Support Platform | On-Premise VPC',
-    description: 'Zero hallucinations. Deployed in your VPC. $15/1M messages. Replace Salesforce Service Cloud with AI-native support.',
+    title: 'NVibe AI — Three AIs That Run Your Revenue',
+    description: 'Three AIs that run your revenue — Quote AI, Revenue AI, Support AI. Deployed in your VPC. Zero hallucinations.',
     images: ['https://nvibe.ai/og-image.png'],
   },
   robots: {
@@ -72,7 +72,7 @@ const organizationSchema = {
   name: 'NVibe AI',
   url: 'https://nvibe.ai',
   logo: 'https://nvibe.ai/logo.svg',
-  description: 'AI-native customer support platform. Custom AI trained on your data, deployed inside your VPC. Zero hallucinations.',
+  description: 'Three AIs that run your revenue — Quote AI, Revenue AI, Support AI. Custom AI trained on your data, deployed inside your VPC.',
   foundingDate: '2024',
   address: {
     '@type': 'PostalAddress',
