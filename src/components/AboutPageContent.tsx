@@ -83,7 +83,7 @@ export default function AboutPageContent() {
               In 2023, Nirav founded NVibe AI — because generic AI falls short in the enterprise. A model that doesn&apos;t know your 10,000 SKUs, your margin rules, your customer history, or your compliance requirements can&apos;t run your revenue. It can write an email. That&apos;s not the problem.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed mb-5">
-              The problem is that Fortune 500 sales teams are still quoting in Excel, missing revenue signals in support tickets, and losing deals because a three-minute job takes three days. That's not a people problem. That's a tooling problem — and it's worth trillions.
+              The problem is that Fortune 500 sales teams are still quoting in Excel, missing revenue signals in support tickets, and losing deals because a three-minute job takes three days. That&apos;s not a people problem. That&apos;s a tooling problem — and it&apos;s worth trillions.
             </p>
             <blockquote className="border-l-4 border-green-500 pl-6 py-3">
               <p className="text-xl text-gray-800 italic leading-relaxed">
@@ -146,7 +146,7 @@ export default function AboutPageContent() {
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">The team</h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              We are enterprise operators turned founders. Our team has shipped AI products to some of the world's largest companies and has seen firsthand where the gaps are — and what it takes to close them.
+              We are enterprise operators turned founders. Our team has shipped AI products to some of the world&apos;s largest companies and has seen firsthand where the gaps are — and what it takes to close them.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6">
