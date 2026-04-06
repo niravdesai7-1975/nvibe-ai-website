@@ -19,10 +19,35 @@
   status = 200
 
 
-# Serve the About page
+# Serve static pages (must come before SPA catch-all)
 [[redirects]]
   from = "/about"
   to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/platform"
+  to = "/platform.html"
+  status = 200
+
+[[redirects]]
+  from = "/solutions"
+  to = "/solutions.html"
+  status = 200
+
+[[redirects]]
+  from = "/trust"
+  to = "/trust.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo"
+  to = "/demo.html"
+  status = 200
+
+[[redirects]]
+  from = "/salesforce-alternative"
+  to = "/salesforce-alternative.html"
   status = 200
 
 [[redirects]]
