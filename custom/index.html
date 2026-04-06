@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NVibe AI — Commercial Intelligence for MedTech & Life Sciences</title>
+<title>NVibe AI — Commercial Intelligence for MedTech</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -137,6 +137,36 @@
   .approval-flag { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 12px; background: #fef3cd; border-radius: 6px; font-size: 12px; color: #080707; font-weight: 600; border: 1px solid #e4c767; }
   .approval-dot { width: 8px; height: 8px; border-radius: 50%; background: #ea001e; }
 
+  /* ── WATERFALL TEASER ── */
+  .waterfall { padding: 72px 40px 64px; background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%); }
+  .waterfall-inner { max-width: 960px; margin: 0 auto; text-align: center; }
+  .waterfall-flow { display: grid; grid-template-columns: 3fr auto 3fr auto 3fr; align-items: start; margin-top: 40px; gap: 0; }
+  .wf-zone { position: relative; padding: 16px 8px 20px; border-radius: 12px; }
+  .wf-zone.deal { background: linear-gradient(180deg, rgba(243,112,33,0.07) 0%, rgba(243,112,33,0.02) 100%); border: 1.5px solid rgba(243,112,33,0.2); }
+  .wf-zone-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #9aa0a6; margin-bottom: 14px; }
+  .wf-zone.deal .wf-zone-label { color: #F37021; }
+  .wf-steps { display: flex; gap: 4px; justify-content: center; }
+  .wf-step { flex: 1; padding: 16px 6px 14px; border-radius: 10px; background: #eef0f2; text-align: center; transition: all 0.25s; min-width: 0; }
+  .wf-step-num { font-size: 20px; font-weight: 900; color: #b0b5bd; margin-bottom: 4px; line-height: 1; }
+  .wf-step-name { font-size: 10px; font-weight: 600; color: #6b7280; line-height: 1.3; letter-spacing: 0.2px; }
+  .wf-zone.deal .wf-step { background: #fff; border: 1.5px solid rgba(243,112,33,0.25); box-shadow: 0 2px 8px rgba(243,112,33,0.08); }
+  .wf-zone.deal .wf-step-num { font-size: 24px; color: #F37021; }
+  .wf-zone.deal .wf-step-name { color: #2A3F3E; font-weight: 700; font-size: 11px; }
+  .wf-zone-divider { display: flex; align-items: center; justify-content: center; padding: 0 2px; color: #d1d5db; font-size: 18px; margin-top: 30px; }
+  .wf-zone-divider::after { content: '›'; font-weight: 300; }
+  .wf-deal-marker { margin-top: 14px; display: inline-block; padding: 6px 16px; border-radius: 20px; background: #2A3F3E; font-size: 11px; font-weight: 700; color: #FF8C42; letter-spacing: 0.5px; }
+  .wf-hook { margin-top: 28px; font-size: 17px; color: #5f6368; line-height: 1.75; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .wf-hook strong { color: #202124; font-weight: 700; }
+
+  @media (max-width: 768px) {
+    .waterfall { padding: 48px 16px 40px; }
+    .waterfall-flow { grid-template-columns: 1fr; gap: 12px; }
+    .wf-zone-divider { display: none; }
+    .wf-zone { padding: 14px 12px 16px; }
+    .wf-step { padding: 12px 4px 10px; }
+    .wf-step-num { font-size: 18px; }
+  }
+
   /* ── PILLARS SECTION ── */
   .pillars { padding: 52px 40px; background: #fff; }
   .pillars-inner { max-width: 1300px; margin: 0 auto; }
@@ -250,7 +280,7 @@
 <!-- ════════════ HERO ════════════ -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Commercial Intelligence for MedTech & Life Sciences</div>
+    <div class="hero-badge">Commercial Intelligence for MedTech</div>
     <h1>Your reps see 20% of the evidence.<br><em>We deliver the other 80%.</em></h1>
     <p class="hero-sub">
       AI that learns from your contracts, GPO tiers, and competitive landscape — then delivers win probability, optimal pricing, and deal reasoning inside Salesforce, exactly when your rep is making the call.
@@ -441,6 +471,54 @@
   </div>
 </section>
 
+<!-- ════════════ WATERFALL TEASER ════════════ -->
+<section class="waterfall">
+  <div class="waterfall-inner">
+    <div class="section-badge">The Pricing Waterfall</div>
+    <h2 class="section-title">Margin leaks at 9 steps. Most teams only manage one.</h2>
+    <p class="section-sub" style="margin: 12px auto 0; text-align: center;">MedTech pricing follows a 9-step waterfall from list price to pocket margin. Your reps control Step 5. NVibe covers all nine.</p>
+
+    <div class="waterfall-flow">
+      <!-- Contract Zone -->
+      <div class="wf-zone contract">
+        <div class="wf-zone-label">Contract Zone</div>
+        <div class="wf-steps">
+          <div class="wf-step"><div class="wf-step-num">1</div><div class="wf-step-name">List Price</div></div>
+          <div class="wf-step"><div class="wf-step-num">2</div><div class="wf-step-name">GPO Price</div></div>
+          <div class="wf-step"><div class="wf-step-num">3</div><div class="wf-step-name">IDN Price</div></div>
+        </div>
+      </div>
+
+      <div class="wf-zone-divider"></div>
+
+      <!-- Deal Zone -->
+      <div class="wf-zone deal">
+        <div class="wf-zone-label">Deal Zone — Where NVibe Lives</div>
+        <div class="wf-steps">
+          <div class="wf-step"><div class="wf-step-num">4</div><div class="wf-step-name">Volume Price</div></div>
+          <div class="wf-step"><div class="wf-step-num">5</div><div class="wf-step-name">Deal Price</div></div>
+          <div class="wf-step"><div class="wf-step-num">6</div><div class="wf-step-name">Approved Price</div></div>
+        </div>
+        <div class="wf-deal-marker">Where most margin leaks</div>
+      </div>
+
+      <div class="wf-zone-divider"></div>
+
+      <!-- Execution Zone -->
+      <div class="wf-zone execution">
+        <div class="wf-zone-label">Execution Zone</div>
+        <div class="wf-steps">
+          <div class="wf-step"><div class="wf-step-num">7</div><div class="wf-step-name">Invoice Price</div></div>
+          <div class="wf-step"><div class="wf-step-num">8</div><div class="wf-step-name">Pocket Price</div></div>
+          <div class="wf-step"><div class="wf-step-num">9</div><div class="wf-step-name">Pocket Margin</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="wf-hook"><strong>Step 5 is where your rep decides the discount.</strong> It's also where 60% of controllable margin walks out the door. NVibe puts evidence at that moment — and visibility across all nine.</p>
+  </div>
+</section>
+
 <!-- ════════════ 4 PILLARS ════════════ -->
 <section class="pillars">
   <div class="pillars-inner">
@@ -490,7 +568,7 @@
     <div style="text-align: center;">
       <div class="section-badge">Built For</div>
       <h2 class="section-title">Who this is for</h2>
-      <p class="section-sub" style="margin: 12px auto 0;">The people who own pricing decisions, revenue outcomes, and commercial execution at MedTech and Life Sciences companies.</p>
+      <p class="section-sub" style="margin: 12px auto 0;">The people who own pricing decisions, revenue outcomes, and commercial execution at MedTech companies.</p>
     </div>
     <div class="personas-grid">
       <div class="persona-card">
@@ -624,7 +702,7 @@
 <!-- ════════════ FOOTER ════════════ -->
 <footer class="footer">
   <p>© 2024 NVibe AI. NVIDIA Inception Partner · Google Cloud Partner · Salesforce Partner · SOC 2 Type II · HIPAA Ready</p>
-  <p style="font-size: 12px; color: #b0b0b0; margin-top: 6px;">Built for MedTech. Applicable across Life Sciences.</p>
+  <p style="font-size: 12px; color: #b0b0b0; margin-top: 6px;">Built for MedTech.</p>
 </footer>
 
 </body>
