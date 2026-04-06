@@ -17,14 +17,14 @@
   .nav-links { display: flex; gap: 32px; align-items: center; }
   .nav-links a { font-size: 14px; font-weight: 500; color: #5f6368; transition: color 0.2s; }
   .nav-links a:hover { color: #202124; }
-  .nav-cta { padding: 10px 22px; border-radius: 8px; background: #1A2B2A; color: #F37021 !important; font-weight: 600; font-size: 14px; border: 1px solid rgba(243,112,33,0.3); }
+  .nav-cta { padding: 10px 22px; border-radius: 8px; background: #2A3F3E; color: #F37021 !important; font-weight: 600; font-size: 14px; border: 1px solid rgba(243,112,33,0.3); }
   .nav-cta:hover { background: #243836; }
 
   /* ── HERO ── */
   .hero { padding: 96px 40px 36px; text-align: center; background: linear-gradient(180deg, #EFF6FF 0%, #fff 100%); position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; opacity: 0.35; background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px); background-size: 48px 48px; }
   .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); margin-bottom: 14px; box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .hero-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #2A3F3E; color: #FF8C42; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); margin-bottom: 14px; box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
   .hero h1 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 900; line-height: 1.05; letter-spacing: -2.5px; margin-bottom: 16px; color: #202124; }
   .hero h1 em { font-style: normal; background: linear-gradient(135deg, #F37021, #e05a10); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .hero-sub { font-size: 19px; color: #3c4043; max-width: 680px; margin: 0 auto 10px; line-height: 1.6; font-weight: 500; }
@@ -140,7 +140,7 @@
   /* ── PILLARS SECTION ── */
   .pillars { padding: 52px 40px; background: #fff; }
   .pillars-inner { max-width: 1300px; margin: 0 auto; }
-  .section-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .section-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #2A3F3E; color: #FF8C42; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
   .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -1px; color: #202124; margin-top: 16px; }
   .section-sub { font-size: 17px; color: #3c4043; margin-top: 12px; max-width: 640px; line-height: 1.75; }
   .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 28px; }
@@ -185,7 +185,7 @@
   .cta-inner { max-width: 800px; margin: 0 auto; text-align: center; }
   .cta h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1.5px; color: #202124; margin-bottom: 16px; line-height: 1.15; }
   .cta-sub { font-size: 18px; color: #3c4043; line-height: 1.65; max-width: 600px; margin: 0 auto 32px; }
-  .cta-btn { display: inline-block; padding: 18px 42px; border-radius: 10px; background: #1A2B2A; color: #F37021; font-size: 17px; font-weight: 700; box-shadow: 0 4px 14px rgba(26,43,42,0.3); transition: background 0.2s; border: 1px solid rgba(243,112,33,0.3); }
+  .cta-btn { display: inline-block; padding: 18px 42px; border-radius: 10px; background: #2A3F3E; color: #F37021; font-size: 17px; font-weight: 700; box-shadow: 0 4px 14px rgba(26,43,42,0.3); transition: background 0.2s; border: 1px solid rgba(243,112,33,0.3); }
   .cta-btn:hover { background: #243836; }
   .cta-checks { display: flex; gap: 24px; justify-content: center; margin-top: 20px; }
   .cta-check { font-size: 13px; color: #F37021; font-weight: 600; }
@@ -198,10 +198,22 @@
   .footer { padding: 40px; text-align: center; border-top: 1px solid #e8eaed; }
   .footer p { font-size: 13px; color: #9ca3af; }
 
+  /* ── MOBILE NAV ── */
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: #202124; margin: 5px 0; transition: 0.3s; border-radius: 2px; }
+  .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .nav { padding: 0 16px; }
-    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 20px; gap: 0; border-bottom: 1px solid #e8eaed; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid #f0f0f0; }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-links .nav-cta { text-align: center; margin-top: 8px; padding: 12px; border-radius: 8px; }
     .hero { padding: 100px 16px 40px; }
     .sf-embed { padding: 0 16px 60px; }
     .sf-topnav-tabs { display: none; }
@@ -224,6 +236,9 @@
 <!-- ════════════ NAV ════════════ -->
 <nav class="nav">
   <div class="nav-logo"><div class="nav-logo-icon">N</div> NVibe AI</div>
+  <button class="nav-toggle" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-links">
     <a href="/about">About</a>
     <a href="/trust">Trust</a>

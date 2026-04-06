@@ -97,7 +97,7 @@
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     .nav-links a.active { color: #F37021; }
     .nav-cta {
-      background: #1A2B2A;
+      background: #2A3F3E;
       color: #F37021 !important;
       padding: 7px 16px;
       border-radius: 7px;
@@ -114,8 +114,8 @@
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #1A2B2A;
-      color: #F37021;
+      background: #2A3F3E;
+      color: #FF8C42;
       font-size: 12px; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
       padding: 8px 20px; border-radius: 20px;
@@ -364,9 +364,21 @@
     .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
+    /* ── Mobile nav ─────────────────────────────────────────────── */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #202124; margin: 5px 0; transition: 0.3s; border-radius: 2px; }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
     /* ── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 600px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 56px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 20px; gap: 0; border-bottom: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid #f0f0f0; }
+      .nav-links a:last-child { border-bottom: none; }
+      .nav-links .nav-cta { text-align: center; margin-top: 8px; padding: 12px; border-radius: 7px; }
       .hero { padding: 48px 0 36px; }
       .stat-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -381,6 +393,9 @@
       <div class="nav-logo-box"><span>N</span></div>
       NVibe AI
     </a>
+    <button class="nav-toggle" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
       <a href="/about">About</a>
       <a href="/trust">Trust</a>
