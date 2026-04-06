@@ -1,6 +1,6 @@
 [build]
   # Run Next.js build (keeps plugin happy + all existing pages), then overlay custom HTML
-  command = "npm run build:netlify && cp custom/index.html custom/about.html publish/"
+  command = "npm run build:netlify && cp custom/index.html custom/about.html custom/trust.html custom/benchmarks.html publish/"
   publish = "publish"
 
 [build.environment]
