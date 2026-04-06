@@ -1,6 +1,6 @@
 [build]
   # Use standard webpack build on Netlify (--turbopack can fail in CI)
-  command = "echo Deploying pre-built static files"
+  command = "mkdir -p /tmp/custom && cp publish/index.html publish/about.html /tmp/custom/ && npm run build:netlify && cp /tmp/custom/index.html /tmp/custom/about.html publish/"
   # Next.js static export uses distDir: 'publish', so the built site lives in publish/ not .next
   publish = "publish"
 
