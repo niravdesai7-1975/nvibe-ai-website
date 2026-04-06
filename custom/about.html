@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — NVibe AI | Commercial Intelligence for MedTech</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: #202124; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+
+  /* NAV */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e8eaed; padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-size: 18px; font-weight: 700; color: #111827; display: flex; align-items: center; gap: 8px; }
+  .nav-logo-icon { width: 32px; height: 32px; background: #16a34a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: #5f6368; transition: color 0.2s; }
+  .nav-links a:hover { color: #202124; }
+  .nav-links a.active { color: #202124; font-weight: 600; }
+  .nav-cta { padding: 10px 22px; border-radius: 8px; background: #1A2B2A; color: #F37021 !important; font-weight: 600; font-size: 14px; border: 1px solid rgba(243,112,33,0.3); }
+  .nav-cta:hover { background: #243836; }
+
+  /* PAGE HERO */
+  .page-hero { padding: 96px 40px 52px; background: linear-gradient(180deg, #EFF6FF 0%, #fff 100%); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; opacity: 0.35; background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px); background-size: 48px 48px; }
+  .page-hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); margin-bottom: 20px; box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .page-hero h1 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 900; line-height: 1.08; letter-spacing: -2px; color: #202124; margin-bottom: 20px; }
+  .page-hero h1 em { font-style: normal; background: linear-gradient(135deg, #F37021, #e05a10); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .page-hero-sub { font-size: 18px; color: #3c4043; line-height: 1.7; max-width: 900px; font-weight: 500; }
+
+  /* SECTIONS */
+  .section-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); margin-bottom: 16px; box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .section-label { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); margin-bottom: 16px; box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .section-title { font-size: clamp(24px, 3vw, 34px); font-weight: 800; letter-spacing: -1px; color: #202124; margin-bottom: 16px; line-height: 1.15; }
+  .section-title em { font-style: normal; background: linear-gradient(135deg, #F37021, #e05a10); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .section-body { font-size: 16px; color: #3c4043; line-height: 1.75; }
+  .section-body + .section-body { margin-top: 16px; }
+
+
+  /* WHY */
+  .why { padding: 64px 40px; background: #f9fafb; border-top: 1px solid #e8eaed; border-bottom: 1px solid #e8eaed; }
+  .why-inner { max-width: 900px; margin: 0 auto; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+  .why-card { background: #fff; border-radius: 14px; border: 1px solid #e8eaed; padding: 24px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .why-card:hover { border-color: rgba(243,112,33,0.3); box-shadow: 0 4px 12px rgba(243,112,33,0.06); }
+  .why-card-icon { font-size: 22px; margin-bottom: 10px; }
+  .why-card h3 { font-size: 16px; font-weight: 700; color: #202124; margin-bottom: 8px; }
+  .why-card p { font-size: 14px; color: #5f6368; line-height: 1.65; }
+  .why-pullquote { margin-top: 36px; padding: 24px 28px; border-left: 3px solid #F37021; background: #fff; border-radius: 0 10px 10px 0; font-size: 16px; color: #3c4043; line-height: 1.7; font-style: italic; }
+  .why-pullquote strong { display: block; margin-top: 12px; font-size: 13px; color: #F37021; font-style: normal; font-weight: 600; }
+
+  /* TRACTION */
+  .traction { padding: 64px 40px; background: #fff; border-bottom: 1px solid #e8eaed; }
+  .traction-inner { max-width: 900px; margin: 0 auto; }
+  .traction-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+  .traction-stat { background: #f9fafb; border-radius: 14px; border: 1px solid #e8eaed; padding: 24px 16px; text-align: center; }
+  .traction-stat .value { font-size: 38px; font-weight: 900; color: #1A2B2A; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+  .traction-stat .value em { font-style: normal; color: #F37021; }
+  .traction-stat .label { font-size: 13px; color: #5f6368; font-weight: 500; line-height: 1.4; }
+  .traction-note { margin-top: 14px; font-size: 13px; color: #9ca3af; text-align: center; font-style: italic; }
+
+  /* BUILT WITH */
+  .built-with { padding: 40px; background: #f9fafb; border-top: 1px solid #e8eaed; border-bottom: 1px solid #e8eaed; }
+  .built-with-inner { max-width: 900px; margin: 0 auto; }
+  .built-with-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #9ca3af; margin-bottom: 16px; }
+  .built-with-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; background: #fff; border: 1px solid #e8eaed; font-size: 13px; font-weight: 600; color: #3c4043; }
+  .badge.green { border-color: rgba(22,163,74,0.3); color: #16a34a; }
+  .badge.orange { border-color: rgba(243,112,33,0.3); color: #c05c10; }
+
+  /* TEAM */
+  .team { padding: 64px 40px; background: #fff; }
+  .team-inner { max-width: 900px; margin: 0 auto; }
+  .team-card { display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: start; background: #f9fafb; border: 1px solid #e8eaed; border-radius: 14px; padding: 24px; margin-top: 28px; }
+  .team-avatar { width: 52px; height: 52px; border-radius: 10px; background: #1A2B2A; display: flex; align-items: center; justify-content: center; color: #F37021; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+  .team-info h3 { font-size: 17px; font-weight: 700; color: #202124; margin-bottom: 3px; }
+  .team-info .role { font-size: 12px; color: #F37021; font-weight: 600; letter-spacing: 0.3px; margin-bottom: 10px; }
+  .team-info p { font-size: 14px; color: #5f6368; line-height: 1.65; }
+
+  /* HIRING */
+  .hiring { padding: 64px 40px; background: #f9fafb; border-top: 1px solid #e8eaed; }
+  .hiring-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .hiring h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -1px; color: #202124; margin-top: 16px; margin-bottom: 16px; line-height: 1.15; }
+  .hiring p { font-size: 16px; color: #3c4043; line-height: 1.7; margin-bottom: 24px; }
+  .hiring-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+  .hiring-tag { padding: 7px 14px; border-radius: 20px; background: #fff; border: 1px solid #e8eaed; font-size: 13px; font-weight: 500; color: #5f6368; }
+  .hiring-email { display: inline-block; padding: 14px 32px; border-radius: 10px; background: #1A2B2A; color: #F37021; font-size: 16px; font-weight: 700; border: 1px solid rgba(243,112,33,0.3); box-shadow: 0 4px 14px rgba(26,43,42,0.3); transition: background 0.2s; }
+  .hiring-email:hover { background: #243836; }
+
+  /* FOOTER */
+  .footer { padding: 40px; text-align: center; border-top: 1px solid #e8eaed; }
+  .footer p { font-size: 13px; color: #9ca3af; }
+  .footer p + p { margin-top: 6px; font-size: 12px; color: #b0b0b0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 96px 20px 40px; }
+    .why, .traction, .team, .hiring, .built-with { padding-left: 20px; padding-right: 20px; }
+    .founder-inner { grid-template-columns: 1fr; gap: 24px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .traction-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">N</div> NVibe AI</a>
+  <div class="nav-links">
+    <a href="index.html">Platform</a>
+    <a href="about.html" class="active">About</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">About NVibe AI</div>
+    <h1>Commercial Intelligence.<br><em>Delivered where deals are won.</em></h1>
+    <p class="page-hero-sub">MedTech commercial teams sit on years of pricing history, GPO contracts, and competitive signals — but none of it is connected at the moment deals are made. NVibe closes that gap, delivering the right intelligence inside Salesforce exactly when your rep needs it.</p>
+  </div>
+</section>
+
+<!-- WHY NVIBE -->
+<section class="why">
+  <div class="why-inner">
+    <div class="section-label">Why NVibe Exists</div>
+    <h2 class="section-title">MedTech commercial complexity is unlike anything <em>horizontal AI is built to handle.</em></h2>
+    <p class="section-body">In 2023, Nirav founded NVibe AI because generic AI falls short in MedTech's structured, regulated, and contract-driven commercial environment. The problem isn't that AI can't write an email or summarize a document. The problem is that the data that would actually change deal outcomes exists — it's just inaccessible at the point of decision.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-icon">📋</div>
+        <h3>GPO Pricing Floors</h3>
+        <p>Reps negotiate without knowing their own GPO floor price. NVibe surfaces your contracted minimums alongside historical deal patterns — before they enter the room.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🏥</div>
+        <h3>IDN Contract Intelligence</h3>
+        <p>IDN terms are buried in legal folders nobody opens at deal time. NVibe reads your contracts and delivers the relevant terms inside Salesforce when they matter.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">⚔️</div>
+        <h3>Competitive Displacement Windows</h3>
+        <p>Competitor recalls, contract expirations, and formulary changes create 30–90 day windows. NVibe monitors signals across 12+ data sources and flags them in real time.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">📊</div>
+        <h3>Margin Performance</h3>
+        <p>Discount variance across your field sales team compounds quietly. NVibe shows what comparable deals actually closed at — and the probability cost of going deeper.</p>
+      </div>
+    </div>
+
+    <div class="why-pullquote">
+      "AI that lives outside your firewall, not trained on your business, stalls at the demo. We built NVibe for the reality of MedTech enterprise — VPC-native, fine-tuned on your contracts and GPO data, compliant, and deployable in days."
+      <strong>— Nirav Desai, Founder & CEO</strong>
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section class="traction">
+  <div class="traction-inner">
+    <div class="section-label">Traction</div>
+    <h2 class="section-title">Building with real data, real contracts, real deals.</h2>
+    <p class="section-body">NVibe is working with design partners across MedTech — co-building with real GPO tiers, real IDN contract data, and real negotiation workflows.</p>
+
+    <div class="traction-stats">
+      <div class="traction-stat">
+        <div class="value">12</div>
+        <div class="label">Design Partners in MedTech</div>
+      </div>
+      <div class="traction-stat">
+        <div class="value">+<em>18%</em></div>
+        <div class="label">Average Win Rate Lift across design partner deals</div>
+      </div>
+      <div class="traction-stat">
+        <div class="value">$<em>1.2B</em></div>
+        <div class="label">ARR shipped in prior AI platforms by our founding team</div>
+      </div>
+      <div class="traction-stat">
+        <div class="value"><em>Days</em></div>
+        <div class="label">Time to deploy — not months, not quarters</div>
+      </div>
+    </div>
+    <p class="traction-note">Partners are co-developing with real catalog and pricing data under NDA.</p>
+  </div>
+</section>
+
+<!-- BUILT WITH -->
+<section class="built-with">
+  <div class="built-with-inner">
+    <div class="built-with-label">Built with & Certified by</div>
+    <div class="built-with-badges">
+      <div class="badge green">⚡ NVIDIA Partner</div>
+      <div class="badge">☁️ Google Cloud Partner</div>
+      <div class="badge orange">☁️ Salesforce Partner</div>
+      <div class="badge">🔒 SOC 2 Type II</div>
+      <div class="badge">🏥 HIPAA Ready</div>
+      <div class="badge">🔐 VPC-Native</div>
+      <div class="badge">🔗 ERP-Integrated</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="team-inner">
+    <div class="section-label">The Team</div>
+    <h2 class="section-title">Enterprise operators turned founders.</h2>
+    <p class="section-body">We have shipped AI products to some of the world's largest companies and watched firsthand where the gaps are between what AI demos show and what actually runs in a regulated, complex enterprise environment. NVibe is built by people who know the difference.</p>
+
+    <div class="team-card">
+      <div class="team-avatar">N</div>
+      <div class="team-info">
+        <h3>Nirav Desai</h3>
+        <div class="role">Founder & CEO · 25 Years Enterprise AI & Analytics</div>
+        <p>Built and shipped AI and analytics at $1.2B ARR and 1M+ daily users across Salesforce and SAP ecosystems. Deep domain in CPQ, ERP, contract intelligence, and enterprise deployment. Former Salesforce Einstein & AgentForce product leader.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIRING -->
+<section class="hiring" id="contact">
+  <div class="hiring-inner">
+    <div class="section-badge">We're Hiring</div>
+    <h2>Building the founding team</h2>
+    <p>If you want to build enterprise AI that actually ships in MedTech — not demos, not decks — and you have depth in any of the following, let's talk.</p>
+    <div class="hiring-tags">
+      <div class="hiring-tag">Machine Learning</div>
+      <div class="hiring-tag">Healthcare Data Infrastructure</div>
+      <div class="hiring-tag">Salesforce / CRM Engineering</div>
+      <div class="hiring-tag">MedTech Commercial GTM</div>
+      <div class="hiring-tag">NLP / RAG Systems</div>
+      <div class="hiring-tag">Contract Intelligence</div>
+    </div>
+    <a href="mailto:nirav@nvibe.ai" class="hiring-email">nirav@nvibe.ai</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2024 NVibe AI. NVIDIA Inception Partner · Google Cloud Partner · Salesforce Partner · SOC 2 Type II · HIPAA Ready</p>
+  <p>Built for MedTech.</p>
+</footer>
+
+</body>
+</html>

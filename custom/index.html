@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVibe AI — Commercial Intelligence for MedTech & Life Sciences</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: #202124; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ── */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e8eaed; padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-size: 18px; font-weight: 700; color: #111827; display: flex; align-items: center; gap: 8px; }
+  .nav-logo-icon { width: 32px; height: 32px; background: #16a34a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: #5f6368; transition: color 0.2s; }
+  .nav-links a:hover { color: #202124; }
+  .nav-cta { padding: 10px 22px; border-radius: 8px; background: #1A2B2A; color: #F37021 !important; font-weight: 600; font-size: 14px; border: 1px solid rgba(243,112,33,0.3); }
+  .nav-cta:hover { background: #243836; }
+
+  /* ── HERO ── */
+  .hero { padding: 96px 40px 36px; text-align: center; background: linear-gradient(180deg, #EFF6FF 0%, #fff 100%); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; opacity: 0.35; background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px); background-size: 48px 48px; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); margin-bottom: 14px; box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .hero h1 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 900; line-height: 1.05; letter-spacing: -2.5px; margin-bottom: 16px; color: #202124; }
+  .hero h1 em { font-style: normal; background: linear-gradient(135deg, #F37021, #e05a10); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-sub { font-size: 19px; color: #3c4043; max-width: 680px; margin: 0 auto 10px; line-height: 1.6; font-weight: 500; }
+  .hero-trust { font-size: 12px; color: #9ca3af; font-weight: 500; letter-spacing: 0.3px; margin-top: 16px; }
+  .hero-trust strong { color: #6b7280; }
+
+  /* ── SALESFORCE EMBED SECTION — Lightning Design System ── */
+  .sf-embed { padding: 0 40px 48px; background: #fff; }
+  .sf-embed-inner { max-width: 1200px; margin: 0 auto; }
+  .sf-window { background: #f3f3f3; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06); }
+
+  /* SF Top nav bar — blue Salesforce header */
+  .sf-topnav { display: flex; align-items: center; gap: 12px; padding: 0 16px; height: 40px; background: #032d60; }
+  .sf-topnav-dots { display: flex; gap: 6px; }
+  .sf-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .sf-dot.r { background: #ef4444; } .sf-dot.y { background: #f59e0b; } .sf-dot.g { background: #22c55e; }
+  .sf-topnav-tabs { display: flex; gap: 0; margin-left: 12px; height: 100%; align-items: flex-end; }
+  .sf-topnav-tab { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; border-radius: 6px 6px 0 0; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .sf-topnav-tab.active { background: #f3f3f3; color: #032d60; }
+  .sf-topnav-tab .tab-icon { font-size: 12px; }
+
+  /* SF Opportunity header — white card */
+  .sf-opp-header { background: #fff; padding: 12px 20px; border-bottom: 1px solid #dddbda; display: flex; gap: 36px; align-items: center; }
+  .sf-header-item { font-size: 11px; color: #706e6b; }
+  .sf-header-item strong { color: #080707; font-weight: 600; display: block; font-size: 13px; margin-top: 2px; }
+  .sf-header-item a { color: #0070d2; text-decoration: none; }
+  .sf-header-item a:hover { text-decoration: underline; }
+
+  /* SF Path/stage bar */
+  .sf-path { display: flex; align-items: center; background: #fff; padding: 10px 20px; border-bottom: 1px solid #dddbda; gap: 0; }
+  .sf-stage { flex: 1; text-align: center; padding: 6px 4px; font-size: 11px; font-weight: 600; color: #fff; background: #0070d2; position: relative; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%, 8px 50%); }
+  .sf-stage:first-child { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%); border-radius: 4px 0 0 4px; }
+  .sf-stage.done { background: #2e844a; }
+  .sf-stage.current { background: #0070d2; }
+  .sf-stage.future { background: #ecebea; color: #706e6b; }
+
+  .sf-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; padding: 16px; }
+  .sf-main { display: flex; flex-direction: column; gap: 0; }
+  .sf-sidebar { display: flex; flex-direction: column; gap: 12px; }
+
+  /* SF Record detail tabs — Lightning style */
+  .sf-tabs { display: flex; gap: 0; background: #fff; border-radius: 8px 8px 0 0; border: 1px solid #dddbda; border-bottom: none; }
+  .sf-tab { padding: 12px 20px; font-size: 13px; color: #706e6b; font-weight: 500; border-bottom: 3px solid transparent; cursor: pointer; }
+  .sf-tab:hover { color: #080707; }
+  .sf-tab.active { color: #0070d2; border-bottom-color: #0070d2; font-weight: 600; }
+
+  /* NVibe Intelligence card — white card in Lightning style */
+  .nvibe-card { background: #fff; border-radius: 0 0 8px 8px; padding: 0; border: 1px solid #dddbda; border-top: none; }
+  .nvibe-card-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #ecebea; background: #fafaf9; }
+  .nvibe-card-title { display: flex; align-items: center; gap: 10px; }
+  .nvibe-icon { width: 32px; height: 32px; border-radius: 8px; background: #16a34a; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; }
+  .nvibe-card-title h3 { font-size: 14px; font-weight: 700; color: #080707; }
+  .nvibe-card-title p { font-size: 11px; color: #706e6b; }
+  .live-badge { padding: 3px 10px; border-radius: 10px; background: #fff; color: #706e6b; font-size: 11px; font-weight: 600; border: 1px solid #dddbda; }
+
+  .nvibe-insight { background: #f4f6f9; border-radius: 6px; padding: 14px 16px; font-size: 13px; color: #3e3e3c; line-height: 1.6; margin: 16px 20px; border-left: 3px solid #16a34a; }
+  .nvibe-insight strong { color: #080707; }
+  .nvibe-insight .highlight { color: #2e844a; font-weight: 700; }
+
+  /* Signal items — Lightning list style */
+  .signals-section { padding: 0 20px 8px; }
+  .signals-header { font-size: 13px; font-weight: 600; color: #080707; padding: 8px 0; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #ecebea; }
+  .signal { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #ecebea; }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon { width: 36px; height: 36px; border-radius: 8px; background: #f4f6f9; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; border: 1px solid #ecebea; }
+  .signal-dot { width: 6px; height: 6px; border-radius: 50%; background: #0070d2; display: inline-block; margin-right: 6px; }
+  .signal h4 { font-size: 13px; font-weight: 700; color: #080707; margin-bottom: 2px; }
+  .signal p { font-size: 12px; color: #706e6b; line-height: 1.5; }
+
+  /* Action buttons — Lightning pill style */
+  .action-btns { display: flex; gap: 8px; padding: 12px 20px 16px; flex-wrap: wrap; }
+  .action-btn { padding: 6px 14px; border-radius: 16px; background: #fff; color: #0070d2; font-size: 12px; font-weight: 500; border: 1px solid #dddbda; cursor: pointer; transition: background 0.15s; }
+  .action-btn:hover { background: #f4f6f9; }
+
+  /* Sidebar cards — Lightning card style */
+  .sidebar-card { background: #fff; border-radius: 8px; padding: 0; border: 1px solid #dddbda; overflow: hidden; }
+  .sidebar-card-head { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #fafaf9; border-bottom: 1px solid #ecebea; }
+  .sidebar-card-head .card-icon { width: 24px; height: 24px; border-radius: 6px; background: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0; }
+  .sidebar-card-head h3 { font-size: 13px; font-weight: 700; color: #080707; flex: 1; }
+  .sidebar-card-body { padding: 16px; }
+  .sidebar-label { font-size: 11px; color: #706e6b; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; margin-bottom: 8px; }
+
+  /* Win rate histogram */
+  .histogram { display: flex; align-items: flex-end; gap: 3px; height: 32px; margin-bottom: 10px; }
+  .hist-bar { flex: 1; border-radius: 2px 2px 0 0; background: #dddbda; min-height: 4px; }
+  .hist-bar.active { background: #0070d2; }
+  .hist-labels { display: flex; justify-content: space-between; font-size: 10px; color: #706e6b; margin-bottom: 12px; }
+
+  .deal-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #ecebea; }
+  .deal-row:last-child { border-bottom: none; }
+  .deal-row .label { font-size: 12px; color: #706e6b; }
+  .deal-row .value { font-size: 12px; color: #080707; font-weight: 700; }
+
+  /* Discount calculator */
+  .discount-value { font-size: 36px; font-weight: 800; color: #ea001e; text-align: right; margin-bottom: 4px; }
+  .slider-track { width: 100%; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #2e844a 0%, #2e844a 40%, #fe9339 60%, #ea001e 100%); margin: 8px 0; position: relative; }
+  .slider-thumb { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid #706e6b; position: absolute; top: -5px; left: 64%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+  .optimal-label { font-size: 11px; color: #2e844a; font-weight: 600; position: absolute; left: 40%; top: 14px; }
+  .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: #706e6b; margin-top: 18px; }
+
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .calc-cell { background: #f4f6f9; border-radius: 6px; padding: 10px; text-align: center; border: 1px solid #ecebea; }
+  .calc-cell .calc-label { font-size: 10px; color: #706e6b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .calc-cell .calc-value { font-size: 18px; font-weight: 800; }
+  .calc-cell .calc-value.blue { color: #0070d2; }
+  .calc-cell .calc-value.green { color: #2e844a; }
+  .calc-cell .calc-value.red { color: #ea001e; }
+  .calc-cell .calc-value.amber { color: #fe9339; }
+
+  .approval-flag { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 12px; background: #fef3cd; border-radius: 6px; font-size: 12px; color: #080707; font-weight: 600; border: 1px solid #e4c767; }
+  .approval-dot { width: 8px; height: 8px; border-radius: 50%; background: #ea001e; }
+
+  /* ── PILLARS SECTION ── */
+  .pillars { padding: 52px 40px; background: #fff; }
+  .pillars-inner { max-width: 1300px; margin: 0 auto; }
+  .section-badge { display: inline-block; padding: 8px 20px; border-radius: 20px; background: #1A2B2A; color: #F37021; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(243,112,33,0.25); box-shadow: 0 2px 8px rgba(26,43,42,0.3), inset 0 1px 0 rgba(243,112,33,0.1); }
+  .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -1px; color: #202124; margin-top: 16px; }
+  .section-sub { font-size: 17px; color: #3c4043; margin-top: 12px; max-width: 640px; line-height: 1.75; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 28px; }
+  .pillar-card { background: #f9fafb; border-radius: 14px; border: 1px solid #e8eaed; padding: 20px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .pillar-card:hover { border-color: rgba(243,112,33,0.3); box-shadow: 0 4px 12px rgba(243,112,33,0.08); }
+  .pillar-icon { font-size: 24px; margin-bottom: 10px; }
+  .pillar-card h3 { font-size: 17px; font-weight: 700; color: #202124; margin-bottom: 8px; line-height: 1.3; }
+  .pillar-card p { font-size: 14px; color: #3c4043; line-height: 1.7; }
+  .pillar-tag { display: inline-block; margin-top: 12px; padding: 4px 10px; border-radius: 6px; background: #fef3e8; color: #F37021; font-size: 11px; font-weight: 600; }
+
+  /* ── PERSONAS SECTION ── */
+  .personas { padding: 52px 40px; background: #f9fafb; border-top: 1px solid #e8eaed; border-bottom: 1px solid #e8eaed; }
+  .personas-inner { max-width: 1100px; margin: 0 auto; }
+  .personas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+  .persona-card { background: #fff; border-radius: 14px; border: 1px solid #e8eaed; padding: 22px 20px; transition: border-color 0.2s; }
+  .persona-card:hover { border-color: rgba(243,112,33,0.3); }
+  .persona-role { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #F37021; margin-bottom: 8px; }
+  .persona-card h3 { font-size: 17px; font-weight: 700; color: #202124; margin-bottom: 6px; line-height: 1.3; }
+  .persona-card p { font-size: 13px; color: #5f6368; line-height: 1.65; }
+
+  /* ── PERFORMANCE SECTION ── */
+  .performance { padding: 52px 40px; background: #fff; border-bottom: 1px solid #e8eaed; }
+  .performance-inner { max-width: 1100px; margin: 0 auto; }
+  .perf-grid { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+  .perf-card { background: #f9fafb; border-radius: 14px; border: 1px solid #e8eaed; padding: 24px 20px; flex: 1; min-width: 220; text-align: left; }
+  .perf-value { font-size: 38px; font-weight: 800; font-family: 'Inter', monospace; line-height: 1; margin-bottom: 8px; }
+  .perf-card h3 { font-size: 15px; font-weight: 700; color: #202124; margin-bottom: 6px; }
+  .perf-card p { font-size: 13px; color: #5f6368; line-height: 1.6; }
+
+  /* ── PROOF OF WORK ── */
+  .proof { padding: 52px 40px; background: #fff; }
+  .proof-inner { max-width: 1000px; margin: 0 auto; }
+  .proof-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 28px; }
+  .proof-step { position: relative; padding: 28px 24px; background: #fff; border-radius: 14px; border: 1px solid #e8eaed; box-shadow: 0 1px 3px rgba(60,64,67,0.15); }
+  .proof-step-num { position: absolute; top: -14px; left: 22px; background: #fff; color: #F37021; font-size: 12px; font-weight: 800; padding: 5px 14px; border-radius: 20px; border: 1px solid #e8eaed; box-shadow: 0 1px 2px rgba(60,64,67,0.2); }
+  .proof-step h3 { font-size: 18px; font-weight: 700; color: #202124; margin-top: 12px; margin-bottom: 10px; }
+  .proof-step p { font-size: 14px; color: #3c4043; line-height: 1.7; }
+  .proof-arrow { display: flex; align-items: center; justify-content: center; width: 40px; font-size: 20px; color: #9ca3af; align-self: center; }
+
+  /* ── CTA SECTION ── */
+  .cta { padding: 52px 40px; background: #f9fafb; border-top: 1px solid #e8eaed; }
+  .cta-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .cta h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1.5px; color: #202124; margin-bottom: 16px; line-height: 1.15; }
+  .cta-sub { font-size: 18px; color: #3c4043; line-height: 1.65; max-width: 600px; margin: 0 auto 32px; }
+  .cta-btn { display: inline-block; padding: 18px 42px; border-radius: 10px; background: #1A2B2A; color: #F37021; font-size: 17px; font-weight: 700; box-shadow: 0 4px 14px rgba(26,43,42,0.3); transition: background 0.2s; border: 1px solid rgba(243,112,33,0.3); }
+  .cta-btn:hover { background: #243836; }
+  .cta-checks { display: flex; gap: 24px; justify-content: center; margin-top: 20px; }
+  .cta-check { font-size: 13px; color: #F37021; font-weight: 600; }
+  .cta-founder { margin-top: 40px; padding-top: 32px; border-top: 1px solid #e8eaed; }
+  .cta-founder p { font-size: 15px; color: #5f6368; line-height: 1.65; font-style: italic; max-width: 540px; margin: 0 auto 12px; }
+  .cta-founder .name { font-size: 14px; font-weight: 700; color: #202124; font-style: normal; }
+  .cta-founder .role { font-size: 13px; color: #F37021; font-style: normal; font-weight: 500; }
+
+  /* ── FOOTER ── */
+  .footer { padding: 40px; text-align: center; border-top: 1px solid #e8eaed; }
+  .footer p { font-size: 13px; color: #9ca3af; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 16px 40px; }
+    .sf-embed { padding: 0 16px 60px; }
+    .sf-topnav-tabs { display: none; }
+    .sf-opp-header { flex-wrap: wrap; gap: 16px; }
+    .sf-path { overflow-x: auto; flex-wrap: nowrap; }
+    .sf-stage { font-size: 9px; white-space: nowrap; }
+    .sf-content { grid-template-columns: 1fr; }
+    .sf-sidebar { padding: 0 16px 16px; }
+    .sf-main { padding: 16px; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .pillars-inner { max-width: 100%; }
+    .personas-grid { grid-template-columns: 1fr; }
+    .proof-steps { grid-template-columns: 1fr; gap: 16px; }
+    .proof-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav class="nav">
+  <div class="nav-logo"><div class="nav-logo-icon">N</div> NVibe AI</div>
+  <div class="nav-links">
+    <a href="#">Platform</a>
+    <a href="#">Solutions</a>
+    <a href="#">About</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Commercial Intelligence for MedTech & Life Sciences</div>
+    <h1>Your reps see 20% of the evidence.<br><em>We deliver the other 80%.</em></h1>
+    <p class="hero-sub">
+      AI that learns from your contracts, GPO tiers, and competitive landscape — then delivers win probability, optimal pricing, and deal reasoning inside Salesforce, exactly when your rep is making the call.
+    </p>
+    <p class="hero-trust">
+      <strong>NVIDIA Inception Partner</strong> · <strong>Google Cloud Partner</strong> · <strong>Salesforce Partner</strong> · SOC 2 Type II · HIPAA Ready · VPC-Native
+    </p>
+  </div>
+</section>
+
+<!-- ════════════ SALESFORCE EMBED — Lightning Design System ════════════ -->
+<section class="sf-embed">
+  <div class="sf-embed-inner">
+    <div class="sf-window">
+
+      <!-- Salesforce blue top nav -->
+      <div class="sf-topnav">
+        <div class="sf-topnav-dots">
+          <div class="sf-dot r"></div>
+          <div class="sf-dot y"></div>
+          <div class="sf-dot g"></div>
+        </div>
+        <div class="sf-topnav-tabs">
+          <div class="sf-topnav-tab"><span class="tab-icon">📋</span> Opportunities</div>
+          <div class="sf-topnav-tab active"><span class="tab-icon">🏥</span> Advocate Health — $4.2M</div>
+        </div>
+      </div>
+
+      <!-- Opportunity header -->
+      <div class="sf-opp-header">
+        <div class="sf-header-item">Account Name<br><strong><a href="#">Advocate Health</a></strong></div>
+        <div class="sf-header-item">Close Date<br><strong>5/8/2026</strong></div>
+        <div class="sf-header-item">Amount<br><strong>$4,200,000.00</strong></div>
+        <div class="sf-header-item">Opportunity Owner<br><strong>Rep: Sarah Mitchell</strong></div>
+      </div>
+
+      <!-- Sales path -->
+      <div class="sf-path">
+        <div class="sf-stage done">Qualification</div>
+        <div class="sf-stage done">Discovery</div>
+        <div class="sf-stage done">Needs Analysis</div>
+        <div class="sf-stage done">Value Proposition</div>
+        <div class="sf-stage done">Decision Makers</div>
+        <div class="sf-stage current">Negotiation</div>
+        <div class="sf-stage future">Closed</div>
+      </div>
+
+      <!-- Main content area -->
+      <div class="sf-content">
+        <!-- LEFT: Deal Intelligence tab -->
+        <div class="sf-main">
+          <div class="sf-tabs">
+            <div class="sf-tab">Activity</div>
+            <div class="sf-tab">Chatter</div>
+            <div class="sf-tab">Details</div>
+            <div class="sf-tab active">Deal Intelligence</div>
+            <div class="sf-tab">NVibe Intelligence</div>
+          </div>
+
+          <div class="nvibe-card">
+            <div class="nvibe-card-header">
+              <div class="nvibe-card-title">
+                <div class="nvibe-icon">N</div>
+                <div>
+                  <h3>NVibe Intelligence</h3>
+                  <p>AI-Powered Sales Intelligence · Medical Device</p>
+                </div>
+              </div>
+              <div class="live-badge">Live</div>
+            </div>
+            <div class="nvibe-insight">
+              HCA paid <span class="highlight">9%</span> last time. <strong>847</strong> deals close at <span class="highlight">10%</span> with <strong>90%</strong>. At <strong>16%</strong>, win rate drops to <strong>66%</strong> and you lose <span class="highlight">$1253K</span>.
+            </div>
+
+            <div class="signals-section">
+              <div class="signals-header">
+                🤝 Negotiation <span style="font-weight: 400; color: #706e6b; margin-left: 4px;">Discount optimization</span>
+                <span style="margin-left: auto; font-size: 12px; color: #706e6b; font-weight: 400; cursor: pointer;">View other stages ▾</span>
+              </div>
+
+              <div class="signal">
+                <div class="signal-icon">📈</div>
+                <div>
+                  <h4><span class="signal-dot"></span>HCA Q1 financials: strong</h4>
+                  <p>4.2% margin · CapEx up 8% · Nashville expansion active</p>
+                </div>
+              </div>
+              <div class="signal">
+                <div class="signal-icon" style="color: #ea001e;">✕</div>
+                <div>
+                  <h4><span class="signal-dot" style="background: #ea001e;"></span>ICU Medical: Plum 360 recall</h4>
+                  <p>FDA Class II. Competitive window open.</p>
+                </div>
+              </div>
+              <div class="signal">
+                <div class="signal-icon">📅</div>
+                <div>
+                  <h4><span class="signal-dot"></span>HealthTrust renewal: 66 days</h4>
+                  <p>Fleet commitment urgency.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="action-btns">
+              <div class="action-btn">📋 Clinical Use Cases</div>
+              <div class="action-btn">🤖 ROI Calculator</div>
+              <div class="action-btn">📝 Needs Assessment</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Sidebar panels -->
+        <div class="sf-sidebar">
+          <!-- Deal Overview -->
+          <div class="sidebar-card">
+            <div class="sidebar-card-head">
+              <span class="card-icon">N</span>
+              <h3>Deal Overview</h3>
+              <div class="live-badge" style="font-size: 10px;">Live</div>
+            </div>
+            <div class="sidebar-card-body">
+              <div class="sidebar-label">Win Rate by Discount</div>
+              <div class="histogram">
+                <div class="hist-bar" style="height: 30%;"></div>
+                <div class="hist-bar" style="height: 50%;"></div>
+                <div class="hist-bar" style="height: 70%;"></div>
+                <div class="hist-bar active" style="height: 95%;"></div>
+                <div class="hist-bar active" style="height: 100%;"></div>
+                <div class="hist-bar active" style="height: 90%;"></div>
+                <div class="hist-bar active" style="height: 75%;"></div>
+                <div class="hist-bar" style="height: 55%;"></div>
+                <div class="hist-bar" style="height: 40%;"></div>
+                <div class="hist-bar" style="height: 25%;"></div>
+                <div class="hist-bar" style="height: 15%;"></div>
+                <div class="hist-bar" style="height: 10%;"></div>
+              </div>
+              <div class="hist-labels"><span>0%</span><span>10%</span><span>25%</span></div>
+              <div class="deal-row"><span class="label">Last Contract</span><span class="value">9% → $2.27M</span></div>
+              <div class="deal-row"><span class="label">Install Base</span><span class="value">340 units</span></div>
+              <div class="deal-row"><span class="label">Champion</span><span class="value">Dr. Torres</span></div>
+              <div class="deal-row"><span class="label">Blocker</span><span class="value">Mark Chen (VP Supply)</span></div>
+            </div>
+          </div>
+
+          <!-- Discount Calculator -->
+          <div class="sidebar-card">
+            <div class="sidebar-card-head">
+              <span class="card-icon">N</span>
+              <h3>Discount Calculator</h3>
+            </div>
+            <div class="sidebar-card-body">
+              <div class="sidebar-label">Your Discount</div>
+              <div class="discount-value">16%</div>
+              <div style="position: relative;">
+                <div class="slider-track">
+                  <div class="slider-thumb"></div>
+                  <div class="optimal-label">10% optimal</div>
+                </div>
+                <div class="slider-labels"><span>0%</span><span>25%</span></div>
+              </div>
+              <div class="calc-grid">
+                <div class="calc-cell">
+                  <div class="calc-label">Net Revenue</div>
+                  <div class="calc-value blue">$3.53M</div>
+                </div>
+                <div class="calc-cell">
+                  <div class="calc-label">Win Probability</div>
+                  <div class="calc-value green">66%</div>
+                </div>
+                <div class="calc-cell">
+                  <div class="calc-label">vs. Last Contract</div>
+                  <div class="calc-value red">-$294K</div>
+                </div>
+                <div class="calc-cell">
+                  <div class="calc-label">Similar Deals</div>
+                  <div class="calc-value amber">847</div>
+                </div>
+              </div>
+              <div class="approval-flag">
+                <span class="approval-dot"></span>
+                VP Approval Required — Discount exceeds 15%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 4 PILLARS ════════════ -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <div style="text-align: center;">
+      <div class="section-badge">Intelligence Layers</div>
+      <h2 class="section-title">Five intelligence layers. One Salesforce component.</h2>
+      <p class="section-sub" style="margin: 12px auto 0;">Machine learning trained on your deal history, not generic models. NVibe reasons across contracts, competitors, and market signals — giving every rep the intelligence your top performers already carry in their heads.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🎯</div>
+        <h3>Deal Intelligence</h3>
+        <p>ML models trained on your deal history predict win probability by discount tier. AI recommends optimal price range with reasoning — learning and updating as every new deal closes.</p>
+        <div class="pillar-tag">847 similar deals analyzed</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🔄</div>
+        <h3>Renewal Intelligence</h3>
+        <p>Contract history patterns. GPO tier awareness. Expiration urgency signals. Your rep knows exactly where they stand before the renewal conversation starts.</p>
+        <div class="pillar-tag">Expiration alerts built in</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📡</div>
+        <h3>Market Intelligence</h3>
+        <p>Competitive recalls, FDA actions, market share shifts — surfaced in real time. Intelligence that changes the conversation, not just the spreadsheet.</p>
+        <div class="pillar-tag">Real-time competitive signals</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📊</div>
+        <h3>Rep Performance</h3>
+        <p>Discount variance by rep. Performance coaching for managers. Identify outliers and replicate what your top closers do differently.</p>
+        <div class="pillar-tag">Variance coaching per rep</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">💰</div>
+        <h3>Margin Performance</h3>
+        <p>Gross margin impact at every waterfall level. CFO-grade reporting embedded in the deal. See exactly where margin leaks before they hit the P&L.</p>
+        <div class="pillar-tag">Waterfall-level visibility</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PERSONAS ════════════ -->
+<section class="personas">
+  <div class="personas-inner">
+    <div style="text-align: center;">
+      <div class="section-badge">Built For</div>
+      <h2 class="section-title">Who this is for</h2>
+      <p class="section-sub" style="margin: 12px auto 0;">The people who own pricing decisions, revenue outcomes, and commercial execution at MedTech and Life Sciences companies.</p>
+    </div>
+    <div class="personas-grid">
+      <div class="persona-card">
+        <div class="persona-role">Chief Revenue Officer</div>
+        <h3>See what your reps actually negotiate — not what they report</h3>
+        <p>Discount variance by rep, by product line, by account type. Real-time visibility into how deals actually get done, not how CRM says they do.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">VP Pricing & Contracts</div>
+        <h3>Your pricing waterfall, visible at the point of deal</h3>
+        <p>GPO tiers, contract history, competitive benchmarks — AI synthesizes the full context and delivers it inside Salesforce, right before your rep sets a number.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">CFO / Finance</div>
+        <h3>Gross margin impact at the waterfall level, not just the P&L</h3>
+        <p>Every discount decision traced to margin impact. Approval thresholds enforced automatically. No more surprises at quarter close.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">VP Sales / Commercial Ops</div>
+        <h3>Give every rep the instincts of your top performer</h3>
+        <p>Evidence-based pricing recommendations, champion identification, competitor intelligence — the knowledge that lives in your best rep's head, available to everyone.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">Sales Ops & CRM Strategy</div>
+        <h3>No new tab. No migration. No behavior change.</h3>
+        <p>Managed Salesforce package. Intelligence surfaces right where your reps work — at the point of decision. Deploy in your VPC. Data never leaves your environment.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">The MedTech Moment</div>
+        <h3>M&A, portfolio transformation, commercial excellence</h3>
+        <p>Merging sales forces with conflicting discount cultures. Leaner portfolios demanding sharper execution. New leadership mandates to fix the commercial engine. The timing is now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PERFORMANCE ════════════ -->
+<section class="performance">
+  <div class="performance-inner">
+    <div style="text-align: center;">
+      <div class="section-badge">Production-Grade AI</div>
+      <h2 class="section-title">Built for your busiest quarter. Not just a demo.</h2>
+      <p class="section-sub" style="margin: 12px auto 0;">NVIDIA GPU-accelerated inference, deployed in your VPC. These are production numbers — not lab results.</p>
+    </div>
+    <div class="perf-grid">
+      <div class="perf-card">
+        <div class="perf-value" style="color: #0070d2;">&lt;2s</div>
+        <h3>Intelligence Delivery</h3>
+        <p>Full deal reasoning synthesized across contracts, competitors, and market signals — in under 2 seconds.</p>
+      </div>
+      <div class="perf-card">
+        <div class="perf-value" style="color: #2e844a;">847</div>
+        <h3>Deals Analyzed Per Recommendation</h3>
+        <p>Every pricing recommendation backed by pattern analysis across hundreds of similar closed deals.</p>
+      </div>
+      <div class="perf-card">
+        <div class="perf-value" style="color: #F37021;">12+</div>
+        <h3>Data Sources Unified</h3>
+        <p>Contracts, GPO tiers, CRM, ERP, competitive intel, FDA filings, financials — connected, not siloed.</p>
+      </div>
+      <div class="perf-card">
+        <div class="perf-value" style="color: #2e844a;">0%</div>
+        <h3>Hallucination Rate</h3>
+        <p>Zero fabricated data across 27 adversarial test categories. Every recommendation traceable to source evidence.</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <p style="font-size: 13px; color: #9ca3af;">NVIDIA Inception Member · GPU-accelerated inference · Deployed in your VPC · All benchmarks independently reproducible</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PROOF OF WORK ════════════ -->
+<section class="proof">
+  <div class="proof-inner">
+    <div style="text-align: center;">
+      <div class="section-badge">Zero Risk</div>
+      <h2 class="section-title">The Proof of Work</h2>
+      <p class="section-sub" style="margin: 12px auto 0;">We'll show you the problem before we ask you to solve it.</p>
+    </div>
+    <div style="display: flex; gap: 0; margin-top: 28px; align-items: stretch;">
+      <div class="proof-step" style="flex: 1;">
+        <div class="proof-step-num">01</div>
+        <h3>Share anonymized data</h3>
+        <p>Export 6–12 months of Salesforce opportunity data. We sign an NDA. No integration required.</p>
+      </div>
+      <div class="proof-arrow">→</div>
+      <div class="proof-step" style="flex: 1;">
+        <div class="proof-step-num">02</div>
+        <h3>We run the analysis</h3>
+        <p>Discount variance by rep, product line, account type. Win rates by tier. Margin impact quantified.</p>
+      </div>
+      <div class="proof-arrow">→</div>
+      <div class="proof-step" style="flex: 1;">
+        <div class="proof-step-num">03</div>
+        <h3>You decide</h3>
+        <p>Custom briefing on where margin is leaking, which reps are outliers, and what the evidence says the optimal range is.</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 36px;">
+      <div style="display: flex; gap: 24px; justify-content: center; margin-bottom: 20px;">
+        <span class="cta-check">✓ Zero cost</span>
+        <span class="cta-check">✓ Zero commitment</span>
+        <span class="cta-check">✓ Zero integration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <h2>Let's find what your data already knows.</h2>
+    <p class="cta-sub">
+      A 20-minute call. No pitch. Just a conversation about how pricing decisions get made at your company today — and what the data would say if someone asked it.
+    </p>
+    <a href="mailto:nirav@nvibe.ai" class="cta-btn">Book a 20-Minute Call</a>
+    <div class="cta-checks">
+      <span class="cta-check">✓ NDA signed first</span>
+      <span class="cta-check">✓ No pitch, just data</span>
+      <span class="cta-check">✓ Findings in 3–5 days</span>
+    </div>
+    <div class="cta-founder">
+      <p>"A conversation about how pricing decisions get made at your company today — and what the data would say if someone asked it."</p>
+      <div class="name">Nirav Desai</div>
+      <div class="role">Founder, NVibe AI · Ex-Salesforce AI · Google Partner · NVIDIA Partner · Salesforce Partner</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <p>© 2024 NVibe AI. NVIDIA Inception Partner · Google Cloud Partner · Salesforce Partner · SOC 2 Type II · HIPAA Ready</p>
+  <p style="font-size: 12px; color: #b0b0b0; margin-top: 6px;">Built for MedTech. Applicable across Life Sciences.</p>
+</footer>
+
+</body>
+</html>

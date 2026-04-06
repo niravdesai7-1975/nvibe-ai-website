@@ -1,7 +1,6 @@
 [build]
-  # Use standard webpack build on Netlify (--turbopack can fail in CI)
-  command = "echo Deploying static files"
-  # Next.js static export uses distDir: 'publish', so the built site lives in publish/ not .next
+  # Run Next.js build (keeps plugin happy + all existing pages), then overlay custom HTML
+  command = "npm run build:netlify && cp custom/index.html custom/about.html publish/"
   publish = "publish"
 
 [build.environment]
