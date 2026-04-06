@@ -1,6 +1,6 @@
 [build]
   # Use standard webpack build on Netlify (--turbopack can fail in CI)
-  command = "npm run build:netlify"
+  command = "echo Deploying pre-built static files"
   # Next.js static export uses distDir: 'publish', so the built site lives in publish/ not .next
   publish = "publish"
 
@@ -17,6 +17,13 @@
 [[redirects]]
   from = "/benchmarks.html"
   to = "/benchmarks.html"
+  status = 200
+
+
+# Serve the About page
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
   status = 200
 
 [[redirects]]
