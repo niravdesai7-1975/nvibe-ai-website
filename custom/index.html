@@ -215,10 +215,18 @@
   .cta-inner { max-width: 800px; margin: 0 auto; text-align: center; }
   .cta h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1.5px; color: #202124; margin-bottom: 16px; line-height: 1.15; }
   .cta-sub { font-size: 18px; color: #3c4043; line-height: 1.65; max-width: 600px; margin: 0 auto 32px; }
-  .cta-btn { display: inline-block; padding: 18px 42px; border-radius: 10px; background: #2A3F3E; color: #F37021; font-size: 17px; font-weight: 700; box-shadow: 0 4px 14px rgba(26,43,42,0.3); transition: background 0.2s; border: 1px solid rgba(243,112,33,0.3); }
+  .cta-btn { display: inline-block; padding: 18px 42px; border-radius: 10px; background: #2A3F3E; color: #F37021; font-size: 17px; font-weight: 700; box-shadow: 0 4px 14px rgba(26,43,42,0.3); transition: background 0.2s; border: 1px solid rgba(243,112,33,0.3); cursor: pointer; }
   .cta-btn:hover { background: #243836; }
   .cta-checks { display: flex; gap: 24px; justify-content: center; margin-top: 20px; }
   .cta-check { font-size: 13px; color: #F37021; font-weight: 600; }
+  .cta-form { max-width: 480px; margin: 0 auto; text-align: left; }
+  .cta-form .form-row { display: flex; gap: 16px; margin-bottom: 16px; }
+  .cta-form .form-row > div { flex: 1; }
+  .cta-form label { display: block; font-size: 12px; font-weight: 600; color: #5f6368; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .cta-form input, .cta-form textarea { width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; color: #202124; background: #fff; transition: border-color 0.2s; }
+  .cta-form input:focus, .cta-form textarea:focus { outline: none; border-color: #F37021; box-shadow: 0 0 0 3px rgba(243,112,33,0.1); }
+  .cta-form textarea { resize: vertical; min-height: 80px; }
+  .cta-form button { width: 100%; margin-top: 8px; }
   .cta-founder { margin-top: 40px; padding-top: 32px; border-top: 1px solid #e8eaed; }
   .cta-founder p { font-size: 15px; color: #5f6368; line-height: 1.65; font-style: italic; max-width: 540px; margin: 0 auto 12px; }
   .cta-founder .name { font-size: 14px; font-weight: 700; color: #202124; font-style: normal; }
@@ -258,6 +266,8 @@
     .personas-grid { grid-template-columns: 1fr; }
     .proof-steps { grid-template-columns: 1fr; gap: 16px; }
     .proof-arrow { display: none; }
+    .cta-form .form-row { flex-direction: column; gap: 12px; }
+    .cta-checks { flex-direction: column; gap: 8px; align-items: center; }
   }
 </style>
 </head>
@@ -682,18 +692,15 @@
   <div class="cta-inner">
     <h2>Let's find what your MedTech deal data already knows.</h2>
     <p class="cta-sub">
-      A 20-minute call. No pitch. Just a conversation about how pricing decisions flow through your commercial team today — from GPO contract to rep-level negotiation — and what the data would say if someone asked it.
+      A 30-minute call. No pitch. Just a conversation about how pricing decisions flow through your commercial team today — from GPO contract to rep-level negotiation — and what the data would say if someone asked it.
     </p>
-    <a href="mailto:nirav@nvibe.ai" class="cta-btn">Book a 20-Minute Call</a>
-    <div class="cta-checks">
+    <!-- Calendly inline widget -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/nirav-nvibe/30min?hide_gdpr_banner=1" style="min-width:320px;height:700px;margin:0 auto;max-width:660px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <div class="cta-checks" style="margin-top: 24px;">
       <span class="cta-check">✓ NDA signed first</span>
       <span class="cta-check">✓ No pitch, just data</span>
       <span class="cta-check">✓ Findings in 3–5 days</span>
-    </div>
-    <div class="cta-founder">
-      <p>"A conversation about how pricing decisions get made at your company today — and what the data would say if someone asked it."</p>
-      <div class="name">Nirav Desai</div>
-      <div class="role">Founder, NVibe AI · Ex-Salesforce AI · Google Partner · NVIDIA Partner · Salesforce Partner</div>
     </div>
   </div>
 </section>
