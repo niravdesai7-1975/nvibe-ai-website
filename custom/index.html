@@ -283,7 +283,7 @@
     <a href="/about">About</a>
     <a href="/trust">Trust</a>
     <a href="/benchmarks">Benchmarks</a>
-    <a href="#contact" class="nav-cta">Book a Call</a>
+    <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/nirav-nvibe/30min?hide_gdpr_banner=1'});return false;" class="nav-cta">Book a Call</a>
   </div>
 </nav>
 
@@ -694,9 +694,10 @@
     <p class="cta-sub">
       A 30-minute call. No pitch. Just a conversation about how pricing decisions flow through your commercial team today — from GPO contract to rep-level negotiation — and what the data would say if someone asked it.
     </p>
-    <!-- Calendly inline widget -->
-    <div class="calendly-inline-widget" data-url="https://calendly.com/nirav-nvibe/30min?hide_gdpr_banner=1" style="min-width:320px;height:700px;margin:0 auto;max-width:660px;"></div>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly popup widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/nirav-nvibe/30min?hide_gdpr_banner=1'});return false;" class="cta-btn">Book a 30-Minute Call</a>
     <div class="cta-checks" style="margin-top: 24px;">
       <span class="cta-check">✓ NDA signed first</span>
       <span class="cta-check">✓ No pitch, just data</span>
